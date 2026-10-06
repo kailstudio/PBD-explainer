@@ -1,0 +1,72 @@
+[
+  {
+    "id": "genetic-disorders",
+    "label": "Genetic Peroxisomal Disorders",
+    "hubLabel": "Genetic Disorders",
+    "summary": "Zellweger spectrum, X-ALD, RCDP, Refsum, and single-enzyme diseases; where every current treatment originated"
+  },
+  {
+    "id": "cancer",
+    "label": "Cancer",
+    "summary": "prostate, colorectal, lymphoma, and glioblastoma tumors lean on peroxisomal fat metabolism and antioxidant capacity",
+    "description": "Tumors are metabolically demanding and need both fuel and protection from oxidative damage. Several tumor types appear to lean on peroxisomal fat metabolism and peroxisomal antioxidant capacity to supply both.",
+    "parts": [
+      {
+        "id": "prostate",
+        "label": "Prostate cancer",
+        "text": "the most developed example — AMACR is elevated distinctively enough to be used as a routine diagnostic marker in pathology labs ([Luo et al., Cancer Res 2002](https://pubmed.ncbi.nlm.nih.gov/?term=Luo+AMACR+prostate+cancer+Cancer+Research+2002); [Rubin et al., JAMA 2002](https://pubmed.ncbi.nlm.nih.gov/?term=Rubin+AMACR+prostate+cancer+JAMA+2002); [Kong 2020](https://www.frontiersin.org/journals/molecular-biosciences/articles/10.3389/fmolb.2020.00153/full)).",
+        "panelTitle": "Prostate Cancer",
+        "left": [
+          "**AMACR ([Lipid Breakdown](#/mechanisms/lipid-breakdown)):** an established diagnostic marker for prostate cancer, elevated enough to be used routinely in pathology labs ([Luo et al., Cancer Res 2002](https://pubmed.ncbi.nlm.nih.gov/?term=Luo+AMACR+prostate+cancer+Cancer+Research+2002); [Rubin et al., JAMA 2002](https://pubmed.ncbi.nlm.nih.gov/?term=Rubin+AMACR+prostate+cancer+JAMA+2002)), and separately linked to tumor growth and redox stress ([Kong 2020](https://www.frontiersin.org/journals/molecular-biosciences/articles/10.3389/fmolb.2020.00153/full)).",
+          "**DECR2 ([Lipid Breakdown](#/mechanisms/lipid-breakdown)):** a second peroxisomal fatty-acid oxidation enzyme prostate tumors use to fuel growth and resist androgen-deprivation (hormone) therapy ([Mah 2024](https://www.nature.com/articles/s41416-023-02557-8))."
+        ],
+        "right": []
+      },
+      {
+        "id": "colorectal",
+        "label": "Colorectal cancer",
+        "text": "the fatty acid transporter PMP70 helps drug-resistant colorectal tumors survive treatment ([Yin 2025](https://www.nature.com/articles/s41419-025-07572-6))."
+      },
+      {
+        "id": "lymphoma",
+        "label": "Lymphoma",
+        "text": "peroxisomes buffer chemotherapy-induced free radicals, helping tumor cells survive otherwise lethal treatment ([Dahabieh 2017](https://pmc.ncbi.nlm.nih.gov/articles/PMC5635217/))."
+      },
+      {
+        "id": "glioblastoma",
+        "label": "Glioblastoma",
+        "text": "included per the reference document; specific peroxisomal mechanism not yet detailed here — open item."
+      }
+    ]
+  },
+  {
+    "id": "infection",
+    "label": "Infection",
+    "summary": "viruses evolve to shrink, degrade, or hijack peroxisomes during infection"
+  },
+  {
+    "id": "brain-nerve",
+    "label": "Brain & Nerve Disease",
+    "summary": "Alzheimer's, Parkinson's, MS, and the nerve damage that also defines X-ALD and Zellweger spectrum"
+  },
+  {
+    "id": "obesity-diabetes",
+    "label": "Obesity & Diabetes",
+    "summary": "fat cell development, brown fat heat generation, and insulin-producing cell survival"
+  },
+  {
+    "id": "liver",
+    "label": "Liver Disease",
+    "summary": "fatty liver disease, bile flow disorders, and the liver failure of severe genetic peroxisomal disease"
+  },
+  {
+    "id": "kidney",
+    "label": "Kidney Disease",
+    "summary": "oxalate and kidney stone disease, and diabetic kidney damage"
+  },
+  {
+    "id": "aging",
+    "label": "Aging",
+    "summary": "decline in peroxisome number, import efficiency, and quality control across tissues with age"
+  }
+]

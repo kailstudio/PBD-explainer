@@ -1,0 +1,231 @@
+[
+  {
+    "id": "lipid-breakdown",
+    "label": "Lipid Breakdown",
+    "summary": "breaks down fats no other part of the cell can handle, and builds bile acids and DHA in the process",
+    "description": "Peroxisomes break down fats that no other part of the cell can handle, preventing accumulation and damage, and creates usable molecules, including bile acids (digestion) and DHA (omega-3 building blocks for brain and retina).",
+    "parts": [
+      {
+        "id": "vlcfa",
+        "label": "Very Long Chain Fatty Acids (VLCFAs) (beta-oxidation)",
+        "text": "Peroxisomes break down VLCFAs (22 carbons or longer) and handoff the shortened products to mitochondria",
+        "panelTitle": "Breakdown (beta-oxidation) of Very Long Chain Fatty Acids (VLCFAs)",
+        "left": [
+          "**X-linked adrenoleukodystrophy (X-ALD):** the transporter that feeds VLCFAs into the peroxisome (ABCD1) fails, so VLCFAs build up in blood and tissue and damage the adrenal glands and the brain's white matter.",
+          "**Peroxisome Biogenesis Disorders (PBDs):** broad peroxisome formation failure causes VLCFA build-up, damaging organ function"
+        ],
+        "furtherReading": [
+          "[Wanders, Vaz & Waterham, Prog Lipid Res 2020](https://pubmed.ncbi.nlm.nih.gov/?term=Wanders+Vaz+Waterham+peroxisomal+fatty+acid+oxidation+2020) (pathway overview)"
+        ],
+        "right": [
+          "**Prostate cancer:** AMACR, an enzyme that acts on VLCFA-related fatty acids, is an established diagnostic marker for prostate cancer and links this pathway to tumor growth and redox stress ([Kong 2020](https://www.frontiersin.org/journals/molecular-biosciences/articles/10.3389/fmolb.2020.00153/full))",
+          "**Alzheimer's disease:** VLCFA oxidation fails in brain tissue ([Roczkowsky 2025](https://pmc.ncbi.nlm.nih.gov/articles/PMC12426004/))",
+          "**Multiple Sclerosis:** VLCFA oxidation fails in brain tissue ([Roczkowsky 2025](https://pmc.ncbi.nlm.nih.gov/articles/PMC12426004/))"
+        ]
+      },
+      {
+        "id": "branched-fats",
+        "label": "Branched fats such as phytanic acid (alpha-oxidation)",
+        "text": "Peroxisomes break down oddly shaped dietary fats for further processing"
+      },
+      {
+        "id": "bile-acids",
+        "label": "Bile acid production (beta-oxidation)",
+        "text": "Trims the 27-carbon precursors the liver makes from cholesterol down to the 24-carbon bile acids the gut uses to digest food."
+      },
+      {
+        "id": "dha",
+        "label": "DHA production (beta-oxidation)",
+        "text": "The brain's key omega-3 building block completes its formation in the peroxisome"
+      }
+    ]
+  },
+  {
+    "id": "lipid-synthesis",
+    "label": "Lipid Synthesis (Plasmalogens)",
+    "summary": "makes a family of membrane fats that no other part of the cell can build",
+    "description": "Peroxisomes build plasmalogens, a family of membrane fats that no other part of the cell can make. An unusual chemical bond at one end lets them do two jobs at once: structural building blocks in specialized membranes, and built-in antioxidants.",
+    "parts": [
+      {
+        "id": "structural-role",
+        "label": "Structural role in key membranes",
+        "text": "plasmalogens are unusually concentrated in the insulation around nerve fibers, heart muscle, and sperm.",
+        "panelTitle": "Structural role in key membranes",
+        "left": [
+          "**Rhizomelic Chondrodysplasia Punctata (RCDP):** caused by mutations in PEX7, GNPAT, or AGPS that block plasmalogen synthesis, leading to skeletal and neurological abnormalities present from birth."
+        ],
+        "furtherReading": [
+          "[Luoma et al. 2015](https://pubmed.ncbi.nlm.nih.gov/?term=Luoma+plasmalogen+nerve+oxidative+damage+2015) (plasmalogens protect nerve insulation from oxidative damage)"
+        ],
+        "right": [
+          "**Alzheimer's disease:** plasmalogen levels are measurably reduced in Alzheimer's disease brain tissue, alongside broader loss of nerve-insulating lipids."
+        ]
+      },
+      {
+        "id": "antioxidant",
+        "label": "Antioxidant / sacrificial protection",
+        "text": "plasmalogens absorb oxidative damage that would otherwise strike the membrane itself, protecting cells from within."
+      }
+    ]
+  },
+  {
+    "id": "detoxification",
+    "label": "Detoxification",
+    "summary": "runs the cell's dangerous chemistry on purpose, inside a sealed container",
+    "description": "Peroxisomes are where the cell runs its dangerous chemistry on purpose, inside a sealed container. Breaking things down generates hydrogen peroxide, which the organelle neutralizes on the spot using one of the fastest enzymes known, and disposes of other reactive molecules the body cannot leave circulating.",
+    "parts": [
+      {
+        "id": "glyoxylate",
+        "label": "Glyoxylate disposal",
+        "text": "a waste product that crystallizes into kidney stones if not handled; the peroxisomal enzyme that produces it is now the target of the first approved drug for any peroxisomal disease.",
+        "panelTitle": "Glyoxylate Disposal",
+        "left": [
+          "**Primary Hyperoxaluria Type 1 (PH1):** a defect in glyoxylate handling causes oxalate to accumulate and crystallize, damaging the kidneys."
+        ],
+        "furtherReading": [
+          "[Terry-Lorenzo et al. 2024](https://pubmed.ncbi.nlm.nih.gov/?term=Terry-Lorenzo+D-amino+acid+oxidase+inhibitor+2024) (D-amino acid oxidase inhibitors in human clinical trials)"
+        ],
+        "right": [
+          "**Kidney disease:** oxalate-driven kidney stone disease occurs in the general population, and lumasiran, an approved drug that silences a peroxisomal enzyme upstream of PH1, is the only disease-modifying therapy that specifically targets a peroxisomal enzyme."
+        ]
+      },
+      {
+        "id": "hydrogen-peroxide",
+        "label": "Hydrogen peroxide neutralization",
+        "text": "generated and neutralized in the same sealed compartment; controlled leakage may also serve as a signal of the cell's own metabolic state."
+      },
+      {
+        "id": "d-amino-acids",
+        "label": "D-amino acid handling",
+        "text": "disposes of mirror-image amino acids the brain uses to tune the strength of its own signaling."
+      }
+    ]
+  },
+  {
+    "id": "organelle-crosstalk",
+    "label": "Organelle Crosstalk",
+    "summary": "physically docks onto other compartments and hands material back and forth",
+    "description": "Peroxisomes physically dock onto the cell's other compartments and hand material back and forth. These are not loose associations but physical tethers: specific proteins on each surface clamp the two compartments together at a defined distance.",
+    "parts": [
+      {
+        "id": "mitochondria",
+        "label": "Mitochondria",
+        "text": "peroxisomes pass partially broken-down fats to mitochondria to finish the job; mitochondria in peroxisome-deficient cells are visibly abnormal as a result.",
+        "panelTitle": "Mitochondria",
+        "left": [
+          "**Zellweger Spectrum Disorders:** much of the cellular damage attributed to peroxisomal disease is inflicted second-hand, through visibly abnormal mitochondria in peroxisome-deficient cells."
+        ],
+        "furtherReading": [
+          "[Costello et al., J Cell Biol 2017](https://pubmed.ncbi.nlm.nih.gov/?term=Costello+ACBD5+VAPB+peroxisome+contact+2017)"
+        ],
+        "right": [
+          "**Viral infection:** peroxisome-mitochondria contacts are among the specific structures multiple viruses disrupt when hijacking or disabling peroxisomes during infection, one of this mechanism's two strongest connections on the connection grid."
+        ]
+      },
+      {
+        "id": "endoplasmic-reticulum",
+        "label": "Endoplasmic reticulum (ER)",
+        "text": "peroxisomes draw raw material from the cell's membrane-building factory."
+      },
+      {
+        "id": "lipid-droplets",
+        "label": "Lipid droplets",
+        "text": "peroxisomes tap directly into stored fat droplets for fuel."
+      }
+    ]
+  },
+  {
+    "id": "immune-signaling",
+    "label": "Immune & Inflammatory Signaling",
+    "summary": "raises the alarm when a virus gets in, and shapes how immune cells behave",
+    "description": "Peroxisomes are one of the places a cell raises the alarm when a virus gets in, and they shape how immune cells behave once inflammation starts. Several viruses have evolved to destroy or shrink peroxisomes specifically to shut this down, itself strong evidence the system matters.",
+    "parts": [
+      {
+        "id": "immune-cell-behavior",
+        "label": "Immune cell behavior and inflammation",
+        "text": "immune cells depend heavily on lipid handling to decide what to do, and the brain's resident immune cells (microglia) are particularly sensitive to peroxisomal failure.",
+        "panelTitle": "Immune Cell Behavior and Inflammation",
+        "left": [
+          "**Cerebral adrenoleukodystrophy (childhood ALD):** microglial damage appears before major loss of nerve insulation, not after it, meaning inflammation is part of the disease mechanism rather than a downstream reaction; this is why the disease is treated by replacing the patient's immune cells, through stem cell transplant or the approved gene therapy elivaldogene autotemcel ([Bergner et al., Brain 2019](https://pubmed.ncbi.nlm.nih.gov/?term=Bergner+microglia+adrenoleukodystrophy+Brain+2019))."
+        ],
+        "furtherReading": [
+          "[Ferreira et al., Front Cell Infect Microbiol 2019](https://pubmed.ncbi.nlm.nih.gov/?term=Ferreira+peroxisome+antiviral+innate+immunity+2019)"
+        ],
+        "right": [
+          "**Brain & nerve disease:** the same microglial sensitivity to peroxisomal dysfunction seen in ALD plausibly extends to Alzheimer's, Parkinson's, and MS-type nerve damage more broadly."
+        ]
+      },
+      {
+        "id": "antiviral-alarm",
+        "label": "Antiviral alarm system",
+        "text": "a sensor protein on the peroxisome surface triggers a fast first wave of antiviral defense, distinct from and quicker than the better-known response from mitochondria."
+      }
+    ]
+  },
+  {
+    "id": "metabolic-signaling",
+    "label": "Metabolic Signaling",
+    "summary": "not only a factory but also a sensor, feeding the switch that determines how much fat the body burns",
+    "description": "The peroxisome is a sensor, not only a factory. A family of nuclear proteins called PPARs act as fat detectors: when fat is abundant, they switch on the machinery that burns it, including peroxisomal enzymes, in a feedback loop that helps decide how much fat the body burns versus stores.",
+    "parts": [
+      {
+        "id": "pan-ppar",
+        "label": "Pan-PPAR signaling (lanifibranor)",
+        "text": "targets several PPAR family members at once and is in late-stage clinical trials for fatty liver disease (MASH).",
+        "panelTitle": "Pan-PPAR Signaling",
+        "left": [
+          "**Peroxisome Biogenesis Disorders (indirect):** this signaling loop depends on functional peroxisomal fat metabolism as its input, so when biogenesis fails broadly, the loop is disrupted as a downstream consequence rather than a primary cause; this is the weakest genetic linkage of the seven mechanisms."
+        ],
+        "furtherReading": [
+          "[Gonzalez & Shah 2008](https://pubmed.ncbi.nlm.nih.gov/?term=Gonzalez+Shah+PPAR+peroxisome+proliferation+2008) (peroxisome-proliferation naming is a rodent-specific artifact, not seen in humans)"
+        ],
+        "right": [
+          "**Liver disease:** pan-PPAR agonists are in late-stage trials for MASH (fatty liver disease), and PPARγ agonists are already used clinically in type 2 diabetes and obesity-related metabolic disease, among the strongest common-disease links on the whole wheel."
+        ]
+      },
+      {
+        "id": "ppar-alpha",
+        "label": "PPARα (fibrates, pemafibrate)",
+        "text": "the most established drug target in this family, used clinically to lower triglycerides."
+      },
+      {
+        "id": "ppar-gamma",
+        "label": "PPARγ (pioglitazone)",
+        "text": "targets insulin sensitivity, used clinically in type 2 diabetes."
+      }
+    ]
+  },
+  {
+    "id": "biogenesis-recycling",
+    "label": "Peroxisome Biogenesis & Recycling",
+    "summary": "how cells build new peroxisomes, stock them with enzymes, and recycle the worn-out ones",
+    "description": "Peroxisomes have lifespan of 1-2 days, so cells constantly build new ones, stock them with enzymes, and destroy the damaged ones. This mechanism fundamental: when it fails, every other function fails together as a consequence, rather than individually.",
+    "parts": [
+      {
+        "id": "import",
+        "label": "Import (address-tag delivery)",
+        "text": "every enzyme a peroxisome uses is manufactured elsewhere and carried in through the membrane, each one labeled with a short molecular address tag that a shuttle protein reads to deliver the cargo.",
+        "panelTitle": "Import (Address-Tag Delivery)",
+        "left": [
+          "**Zellweger Spectrum Disorders:** mutations in PEX1, PEX6, PEX26, and other PEX genes disrupt this import and assembly system entirely, so peroxisomes are not built, or are built empty, and every function on this wheel fails together."
+        ],
+        "furtherReading": [
+          "[Danpure 2006](https://pubmed.ncbi.nlm.nih.gov/?term=Danpure+primary+hyperoxaluria+peroxisome+2006)"
+        ],
+        "right": [
+          "**Kidney disease:** primary hyperoxaluria type 1 is a subtler failure of this same system: a misread address tag delivers a working enzyme to the wrong compartment (mitochondria instead of peroxisomes)"
+        ]
+      },
+      {
+        "id": "division",
+        "label": "Division",
+        "text": "peroxisomes divide to multiply, expanding their numbers as the cell's needs change."
+      },
+      {
+        "id": "pexophagy",
+        "label": "Recycling (pexophagy)",
+        "text": "worn-out peroxisomes are digested and their components recycled."
+      }
+    ]
+  }
+]

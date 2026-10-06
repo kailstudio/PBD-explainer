@@ -1,0 +1,24 @@
+{
+  "organisation": "PBD Project",
+  "title": "Peroxisome Explainer",
+  "intro": "For every peroxisomal mechanism and every disease it touches: what's established, what's still open, and where the primary literature lives.",
+  "startFrom": "Start from",
+  "hubName": "Peroxisome",
+  "furtherReading": "Further Reading",
+  "emptyPanel": "This section is still being written.",
+  "emptyPage": "The detail for this page is still being written.",
+  "views": {
+    "mechanisms": {
+      "label": "Mechanisms",
+      "hint": "how the organelle works",
+      "leftPanel": "Manifestation in Genetic Peroxisomal Disorders",
+      "rightPanel": "Connection to Common Conditions"
+    },
+    "diseases": {
+      "label": "Diseases & Conditions",
+      "hint": "a condition you recognize",
+      "leftPanel": "What We Know",
+      "rightPanel": "What's Needed For Further Study"
+    }
+  }
+}
