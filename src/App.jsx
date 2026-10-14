@@ -3,8 +3,10 @@ import { AnimatePresence, MotionConfig, motion, useReducedMotion } from 'framer-
 import { findItem, site, VIEWS } from './content';
 import { hubHref, useHashRoute } from './lib/useHashRoute';
 import Detail from './components/Detail';
+import BrandArt from './components/BrandArt';
 import Drift from './components/Drift';
 import Hub from './components/Hub';
+import Intro from './components/Intro';
 import Peroxisome, { BODY_SHARE } from './components/Peroxisome';
 
 // The peroxisome is drawn once, at this size, and never unmounts. Each page
@@ -27,6 +29,21 @@ export default function App() {
   const glideUntil = useRef(0);
   const [slot, setSlot] = useState(null);
   const [hot, setHot] = useState(false);
+
+  // The intro plays above the hub on a first visit that lands on the hub.
+  // It is skipped for deep links and reduced motion, and retired once the
+  // visitor opens a detail page, so coming back lands straight on the hub.
+  const [showIntro, setShowIntro] = useState(
+    () => page === 'hub' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+  );
+  useEffect(() => {
+    if (page === 'detail') setShowIntro(false);
+  }, [page]);
+  const skipIntro = useCallback(() => {
+    const intro = rootRef.current?.querySelector('.intro');
+    if (!intro) return;
+    window.scrollTo({ top: intro.offsetTop + intro.offsetHeight, behavior: still ? 'auto' : 'smooth' });
+  }, [still]);
 
   const measure = useCallback(() => {
     const root = rootRef.current;
@@ -80,9 +97,27 @@ export default function App() {
 
   const scale = slot ? slot.size / BODY_SHARE / CANVAS : 1;
 
+  // On a detail page, a click on empty space (anywhere outside the cards,
+  // header and links) goes back to the hub. Ignored while selecting text.
+  const onBackgroundClick = (event) => {
+    if (page !== 'detail' || event.button !== 0) return;
+    if (event.target.closest('.card, .detail-head, .detail-title, a, button')) return;
+    if (window.getSelection()?.toString()) return;
+    window.location.hash = hubHref(view);
+  };
+
   return (
     <MotionConfig reducedMotion="user">
-      <div className="app" data-view={view} data-page={page} ref={rootRef}>
+      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions -- mouse shortcut only; the orb and breadcrumbs are the keyboard route back */}
+      <div className="app" data-view={view} data-page={page} ref={rootRef} onClick={onBackgroundClick}>
+        <div className="backdrop" aria-hidden="true">
+          <div className="wash" data-for="mechanisms" />
+          <div className="wash" data-for="diseases" />
+          <div className="pattern" data-kind="fine" />
+          <div className="pattern" data-kind="large" />
+          <div className="grain" />
+        </div>
+        <BrandArt />
         <Drift view={view} still={still} />
 
         <motion.div
@@ -120,6 +155,8 @@ export default function App() {
             />
           )}
         </motion.div>
+
+        {showIntro && <Intro onSkip={skipIntro} />}
 
         <div className="views">
           <AnimatePresence initial={false}>

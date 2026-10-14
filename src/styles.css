@@ -1,40 +1,60 @@
 /* ------------------------------------------------------------------
    Tokens
-   Black throughout. One accent at a time: cool blue-cyan while looking
-   at mechanisms, warm coral-red while looking at diseases. Registering
-   the accent as a real colour lets the whole page cross-fade with it.
+   PBD Project's brand, light and glassy. A soft white page with faint
+   glows of brand lilac, teal, yellow and red, the brand pixel pattern
+   fading in at the edges, a frosted blob of a peroxisome, and lilac as the
+   highlight. Mechanisms leans cool, diseases leans warm, and the page
+   cross-fades between them. Registering the accent as a real colour
+   lets everything that uses it fade too.
    ------------------------------------------------------------------ */
 @property --accent {
   syntax: '<color>';
   inherits: true;
-  initial-value: #5fd8ff;
+  initial-value: #86a2df;
 }
-@property --accent-deep {
+@property --accent-soft {
   syntax: '<color>';
   inherits: true;
-  initial-value: #1c63ea;
+  initial-value: #86a2df;
 }
 
 :root {
-  --void: #000;
-  --ink: #eef4f7;
-  --body: #cdd6dc;
-  --dim: #a3aeb6;
-  --faint: #66727b;
-  --hairline: rgb(255 255 255 / 0.12);
+  --card-pad: clamp(20px, 2vw, 28px);
+  /* PBD Project brand palette */
+  --brand-black: #1f212f;
+  --brand-teal: #04849e;
+  --brand-blue: #143575;
+  --brand-lilac: #86a2df;
+  --brand-purple: #404a9e;
+  --brand-red: #cf655f;
+  --brand-yellow: #e8d075;
 
-  --mechanisms: #5fd8ff;
-  --mechanisms-deep: #1c63ea;
-  --diseases: #ff8366;
-  --diseases-deep: #e0452f;
+  --paper: #f1f2f6;
+  --ink: var(--brand-black);
+  --body: #3a3d50;
+  --dim: #5a5e73;
+  --faint: #8d91a4;
+  --hairline: rgb(31 33 47 / 0.12);
+  --glass: rgb(255 255 255 / 0.55);
+  --glass-edge: rgb(255 255 255 / 0.85);
 
-  /* Spectral for titles; Atkinson Hyperlegible for everything you read or
-     press. Atkinson was drawn for low-vision readers, which matters here. */
-  --serif: 'Spectral', 'Iowan Old Style', Georgia, serif;
-  --sans: 'Atkinson Hyperlegible Next', 'Atkinson Hyperlegible', system-ui, sans-serif;
+  /* Brand shapes are squares with one rounded corner. Glass panels follow. */
+  --leaf: 22px 4px 4px 4px;
+  --leaf-small: 14px 3px 3px 3px;
+
+  /* Text accents are deep enough to read on the pale page (4.5:1 or
+     better); the soft accents are for sparks, glows and fills. */
+  --mechanisms: #2f55a8; /* between brand blue and lilac */
+  --mechanisms-soft: var(--brand-lilac);
+  --diseases: #b0463f; /* brand red, deepened a step for legibility */
+  --diseases-soft: var(--brand-red);
+
+  /* Brand type: Atkinson Hyperlegible Next for headlines, Roboto for body. */
+  --display: 'Atkinson Hyperlegible Next', 'Roboto', system-ui, sans-serif;
+  --sans: 'Roboto', system-ui, sans-serif;
 
   --pad: clamp(20px, 3.4vw, 52px);
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 *,
@@ -44,13 +64,13 @@
 }
 
 html {
-  background: var(--void);
+  background: var(--paper);
   -webkit-text-size-adjust: 100%;
 }
 
 body {
   margin: 0;
-  background: var(--void);
+  background: var(--paper);
   color: var(--ink);
   font-family: var(--sans);
   font-size: 1rem;
@@ -77,21 +97,134 @@ p {
   overflow-x: clip;
   transition:
     --accent 0.9s ease,
-    --accent-deep 0.9s ease;
+    --accent-soft 0.9s ease;
 }
 .app[data-view='mechanisms'] {
   --accent: var(--mechanisms);
-  --accent-deep: var(--mechanisms-deep);
+  --accent-soft: var(--mechanisms-soft);
 }
 .app[data-view='diseases'] {
   --accent: var(--diseases);
-  --accent-deep: var(--diseases-deep);
+  --accent-soft: var(--diseases-soft);
+}
+
+/* ------------------------------------------------------------------
+   Backdrop: two blurred colour washes (one per view) that cross-fade,
+   drifting very slowly, with a little film grain on top.
+   ------------------------------------------------------------------ */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.wash {
+  position: absolute;
+  inset: -12%;
+  opacity: 0;
+  filter: blur(40px) saturate(1.15);
+  transition: opacity 1.1s ease;
+  animation: wash-drift 46s ease-in-out infinite alternate;
+}
+.wash[data-for='mechanisms'] {
+  background:
+    radial-gradient(44% 40% at 84% 6%, rgb(134 162 223 / 0.4) 0%, transparent 70%),
+    radial-gradient(38% 44% at 8% 18%, rgb(134 162 223 / 0.38) 0%, transparent 72%),
+    radial-gradient(46% 42% at 14% 92%, rgb(61 109 214 / 0.2) 0%, transparent 70%),
+    radial-gradient(34% 34% at 94% 80%, rgb(4 132 158 / 0.18) 0%, transparent 72%),
+    radial-gradient(34% 30% at 62% 46%, rgb(134 162 223 / 0.2) 0%, transparent 75%),
+    linear-gradient(160deg, #f1f4fb, #e9eef8 55%, #eef1f9);
+}
+.wash[data-for='diseases'] {
+  background:
+    radial-gradient(44% 40% at 84% 6%, rgb(226 80 74 / 0.3) 0%, transparent 70%),
+    radial-gradient(38% 44% at 8% 18%, rgb(244 160 145 / 0.35) 0%, transparent 72%),
+    radial-gradient(46% 42% at 14% 92%, rgb(180 47 86 / 0.14) 0%, transparent 70%),
+    radial-gradient(34% 34% at 94% 80%, rgb(226 80 74 / 0.2) 0%, transparent 72%),
+    radial-gradient(34% 30% at 62% 46%, rgb(244 160 145 / 0.2) 0%, transparent 75%),
+    linear-gradient(160deg, #fbf3f2, #f8ebea 55%, #faf0ef);
+}
+.app[data-view='mechanisms'] .wash[data-for='mechanisms'],
+.app[data-view='diseases'] .wash[data-for='diseases'] {
+  opacity: 1;
+}
+@keyframes wash-drift {
+  from {
+    transform: translate3d(-2%, -1.5%, 0) scale(1);
+  }
+  to {
+    transform: translate3d(2%, 1.5%, 0) scale(1.06);
+  }
+}
+/* The brand pixel pattern, in lilac, fading in from the edges. */
+.pattern {
+  position: absolute;
+  background: var(--brand-lilac);
+  -webkit-mask-image: var(--tiles), var(--fade);
+  mask-image: var(--tiles), var(--fade);
+  -webkit-mask-size: var(--tile-size), 100% 100%;
+  mask-size: var(--tile-size), 100% 100%;
+  -webkit-mask-repeat: repeat, no-repeat;
+  mask-repeat: repeat, no-repeat;
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+.pattern[data-kind='fine'] {
+  --tiles: url('./assets/pattern-fine.png');
+  --tile-size: 620px auto;
+  --fade: radial-gradient(70% 80% at 100% 100%, #000 0%, rgb(0 0 0 / 0.4) 45%, transparent 75%);
+  right: 0;
+  bottom: 0;
+  width: min(62vw, 900px);
+  height: min(70vh, 640px);
+  opacity: 0.3;
+}
+.pattern[data-kind='large'] {
+  --tiles: url('./assets/pattern-large.png');
+  --tile-size: 520px auto;
+  --fade: radial-gradient(80% 90% at 0% 0%, #000 0%, rgb(0 0 0 / 0.3) 50%, transparent 78%);
+  left: 0;
+  top: 0;
+  width: min(46vw, 620px);
+  height: min(56vh, 520px);
+  opacity: 0.12;
+}
+.app[data-view='diseases'] .pattern {
+  background: #e0625b;
+}
+
+/* The brand spark, used as a highlight. */
+.spark {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  background: currentColor;
+  -webkit-mask: url('./assets/spark.png') center / contain no-repeat;
+  mask: url('./assets/spark.png') center / contain no-repeat;
+}
+.title-spark {
+  width: 0.36em;
+  height: 0.36em;
+  margin-left: 0.1em;
+  vertical-align: top;
+  margin-top: 0.06em;
+  color: var(--accent-soft);
+  transition: color 0.9s;
+}
+
+.grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.12;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 .drift {
   position: fixed;
   inset: 0;
-  z-index: 0;
+  z-index: 1;
   width: 100%;
   height: 100%;
   pointer-events: none;
@@ -131,7 +264,7 @@ p {
   width: 9px;
   height: 9px;
   border-radius: 50%;
-  border: 1.5px solid color-mix(in srgb, var(--accent) 62%, transparent);
+  border: 1.5px solid color-mix(in srgb, var(--accent) 70%, transparent);
   transition:
     background-color 0.3s,
     border-color 0.3s,
@@ -154,28 +287,43 @@ p {
   position: absolute !important;
   inset: 0;
 }
+/* A soft coloured shadow, cast down and to the right, as under frosted glass. */
 .peroxisome-aura {
   position: absolute;
-  inset: -14%;
+  inset: 23% 20% 19% 22%;
   border-radius: 50%;
   background: radial-gradient(
     closest-side,
-    color-mix(in srgb, var(--accent-deep) 30%, transparent),
-    color-mix(in srgb, var(--accent-deep) 9%, transparent) 52%,
-    transparent 74%
+    color-mix(in srgb, var(--accent-soft) 60%, rgb(31 33 47 / 0.7)),
+    color-mix(in srgb, var(--accent-soft) 35%, transparent) 55%,
+    transparent 100%
   );
-  mix-blend-mode: screen;
-  opacity: 0.75;
+  translate: 12% 22%;
+  filter: blur(20px);
+  mix-blend-mode: multiply;
+  opacity: 0.9;
   transition: opacity 0.5s;
 }
 .peroxisome[data-hot] .peroxisome-aura {
   opacity: 1;
 }
+/* The page seen through the glass: a blurred disc just inside the body. */
+.peroxisome-frost {
+  position: absolute;
+  inset: 24%;
+  border-radius: 50%;
+  -webkit-backdrop-filter: blur(22px) saturate(1.3);
+  backdrop-filter: blur(22px) saturate(1.3);
+}
 .peroxisome-fallback {
   position: absolute;
   inset: 21%;
   border-radius: 50%;
-  background: radial-gradient(circle at 34% 30%, var(--accent), var(--accent-deep) 42%, #000 96%);
+  background:
+    radial-gradient(circle at 30% 32%, rgb(242 194 94 / 0.85), transparent 45%),
+    radial-gradient(circle at 50% 52%, rgb(236 125 116 / 0.85), transparent 45%),
+    radial-gradient(circle at 74% 66%, rgb(95 136 208 / 0.85), transparent 45%),
+    #eef1f8;
 }
 .peroxisome-hit {
   position: absolute;
@@ -206,17 +354,49 @@ a.peroxisome-hit:focus-visible {
 }
 
 .org {
-  margin-bottom: clamp(20px, 5vh, 52px);
-  font-size: 0.9375rem;
-  color: var(--dim);
+  margin-bottom: clamp(24px, 5vh, 56px);
+}
+
+/* The logo sits on a small frosted glass badge. */
+.logo {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 16px;
+  border: 1px solid var(--glass-edge);
+  border-radius: var(--leaf);
+  background: linear-gradient(135deg, rgb(255 255 255 / 0.75), rgb(255 255 255 / 0.4));
+  -webkit-backdrop-filter: blur(14px) saturate(1.3);
+  backdrop-filter: blur(14px) saturate(1.3);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.9),
+    0 12px 32px -18px rgb(31 33 47 / 0.35);
+  transition:
+    border-color 0.3s,
+    background-color 0.3s;
+}
+.logo img {
+  display: block;
+  height: 38px;
+  width: auto;
+}
+.logo[data-size='small'] {
+  margin-left: auto;
+  padding: 8px 12px;
+  border-radius: var(--leaf-small);
+}
+.logo[data-size='small'] img {
+  height: 24px;
+}
+a.logo:hover {
+  border-color: var(--brand-lilac);
 }
 
 .hub-title {
-  font-family: var(--serif);
-  font-weight: 200;
+  font-family: var(--display);
+  font-weight: 300;
   font-size: clamp(2.6rem, 4.7vw, 4.75rem);
-  line-height: 1;
-  letter-spacing: -0.015em;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
 }
 
 .hub-lede {
@@ -228,70 +408,117 @@ a.peroxisome-hit:focus-visible {
 
 /* View switch */
 .toggle-lead {
-  margin-bottom: 8px;
-  padding-left: 38px;
+  margin: 0 0 10px 6px;
   font-size: 0.875rem;
   color: var(--dim);
 }
-.toggle ul {
-  display: grid;
-  gap: 4px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
+
+/* View switch: a frosted glass pill with a tinted glass thumb that slides
+   to the active view. */
+.switch {
+  width: max-content;
 }
-.toggle-option {
-  --accent: var(--mechanisms);
+.switch-track {
+  position: relative;
   display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  width: fit-content;
-  padding: 6px 0;
+  gap: 2px;
+  padding: 5px;
+  border: 1px solid rgb(255 255 255 / 0.9);
+  border-radius: 999px;
+  background: linear-gradient(160deg, rgb(255 255 255 / 0.62), rgb(255 255 255 / 0.32));
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  backdrop-filter: blur(18px) saturate(1.4);
+  box-shadow:
+    inset 0 2px 6px rgb(31 33 47 / 0.08),
+    inset 0 -1px 0 rgb(255 255 255 / 0.7),
+    0 18px 36px -24px rgb(31 33 47 / 0.35);
+}
+.switch-option {
+  --accent: var(--mechanisms);
+  --accent-soft: var(--mechanisms-soft);
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px 10px 12px;
+  border-radius: 999px;
   color: var(--dim);
+  font-family: var(--display);
+  font-size: clamp(0.9375rem, 1.1vw, 1.0625rem);
+  line-height: 1.2;
+  white-space: nowrap;
   text-decoration: none;
+  transition: color 0.3s;
 }
-.toggle-option[data-view='diseases'] {
+.switch-option[data-view='diseases'] {
   --accent: var(--diseases);
+  --accent-soft: var(--diseases-soft);
 }
-.toggle-option .bead {
-  margin-top: 3px;
-}
-.toggle-label {
-  display: block;
-  font-family: var(--serif);
-  font-weight: 300;
-  font-size: clamp(1.5rem, 2.1vw, 1.9rem);
-  line-height: 1.15;
-  transition:
-    color 0.4s,
-    text-shadow 0.4s;
-}
-.toggle-hint {
-  display: block;
-  margin-top: 2px;
-  font-size: 0.875rem;
-  color: var(--dim);
-  opacity: 0.75;
-}
-.toggle-option:hover .toggle-label {
+.switch-option:hover {
   color: var(--ink);
 }
-.toggle-option:hover .bead::before {
-  border-color: var(--accent);
-}
-.toggle-option[aria-current] .toggle-label {
+.switch-option[aria-current] {
   color: var(--accent);
-  text-shadow: 0 0 26px color-mix(in srgb, var(--accent) 55%, transparent);
 }
-.toggle-option[aria-current] .toggle-hint {
+.switch-option:focus-visible {
+  outline-offset: 2px;
+  border-radius: 999px;
+}
+.switch-label,
+.switch-icon {
+  position: relative;
+  z-index: 1;
+}
+.switch-icon {
+  width: 14px;
+  height: 14px;
+  color: var(--accent);
+  opacity: 0.35;
+  transition:
+    opacity 0.3s,
+    transform 0.5s;
+}
+.switch-option[aria-current] .switch-icon {
   opacity: 1;
+  transform: rotate(22deg) scale(1.15);
 }
-.toggle-option[aria-current] .bead::before {
-  background: var(--accent);
-  border-color: var(--accent);
+
+/* The thumb: a little slab of tinted glass, lit from the top left. */
+.switch-thumb {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgb(255 255 255 / 0.95);
+  border-radius: 999px;
+  background:
+    radial-gradient(120% 140% at 18% 0%, rgb(255 255 255 / 0.95), transparent 55%),
+    linear-gradient(160deg, color-mix(in srgb, var(--accent-soft) 18%, white), color-mix(in srgb, var(--accent-soft) 34%, white));
   box-shadow:
-    0 0 0 4px color-mix(in srgb, var(--accent) 16%, transparent),
-    0 0 16px var(--accent);
+    inset 0 1px 0 rgb(255 255 255),
+    inset 0 -2px 6px color-mix(in srgb, var(--accent-soft) 30%, transparent),
+    0 6px 16px -6px color-mix(in srgb, var(--accent-soft) 70%, transparent),
+    0 2px 4px -1px rgb(31 33 47 / 0.12);
+}
+.switch-shine {
+  position: absolute;
+  top: 3px;
+  left: 14%;
+  width: 46%;
+  height: 38%;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgb(255 255 255 / 0.85), rgb(255 255 255 / 0));
+  pointer-events: none;
+}
+.switch-hint {
+  margin: 10px 0 0 8px;
+  font-size: 0.875rem;
+  color: var(--dim);
+}
+@media (max-width: 440px) {
+  .switch-option {
+    gap: 6px;
+    padding: 10px 12px 10px 10px;
+    font-size: 0.9375rem;
+  }
 }
 
 /* Ring */
@@ -317,14 +544,15 @@ a.peroxisome-hit:focus-visible {
   overflow: visible;
 }
 .filament {
-  stroke: var(--accent);
-  stroke-opacity: 0.28;
-  stroke-width: 1;
+  stroke: var(--brand-black);
+  stroke-opacity: 0.18;
+  stroke-width: 1.5;
+  stroke-linecap: round;
 }
 .filament-glow {
   stroke: var(--accent);
-  stroke-opacity: 0.2;
-  stroke-width: 7;
+  stroke-opacity: 0.22;
+  stroke-width: 8;
   stroke-linecap: round;
 }
 .filament-lit {
@@ -401,9 +629,15 @@ a.peroxisome-hit:focus-visible {
   position: absolute;
   top: 100%;
   left: 0;
-  width: var(--label-width);
-  padding: 6px 0 10px;
-  background: var(--void);
+  width: calc(var(--label-width) + 24px);
+  margin: 8px -12px 0;
+  padding: 9px 12px 11px;
+  border: 1px solid var(--glass-edge);
+  border-radius: var(--leaf-small);
+  background: rgb(255 255 255 / 0.72);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 30px -14px rgb(31 33 47 / 0.3);
   color: var(--body);
   font-weight: 400;
   opacity: 0;
@@ -424,7 +658,7 @@ a.peroxisome-hit:focus-visible {
 }
 
 .spoke[data-state='dim'] a {
-  opacity: 0.6;
+  opacity: 0.55;
 }
 .spoke[data-state='lit'] a {
   color: var(--ink);
@@ -442,8 +676,8 @@ a.peroxisome-hit:focus-visible {
   background: var(--accent);
   border-color: var(--accent);
   box-shadow:
-    0 0 0 4px color-mix(in srgb, var(--accent) 16%, transparent),
-    0 0 18px var(--accent);
+    0 0 0 4px color-mix(in srgb, var(--accent-soft) 55%, transparent),
+    0 0 16px var(--accent-soft);
   transform: scale(1.2);
 }
 
@@ -501,7 +735,7 @@ a.peroxisome-hit:focus-visible {
   align-items: flex-start;
   gap: 8px;
   padding: 14px 0 16px;
-  border-top: 1px solid var(--hairline);
+  border-top: 1px solid var(--glass-edge);
   color: var(--ink);
   text-decoration: none;
 }
@@ -514,7 +748,7 @@ a.peroxisome-hit:focus-visible {
    Detail page
    ------------------------------------------------------------------ */
 .detail {
-  --gap: clamp(28px, 4vw, 64px);
+  --gap: clamp(16px, 1.8vw, 28px);
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
@@ -563,17 +797,18 @@ a.peroxisome-hit:focus-visible {
 .detail-title {
   max-width: 18ch;
   margin: clamp(28px, 6vh, 60px) 0 clamp(28px, 5vh, 52px);
-  font-family: var(--serif);
-  font-weight: 200;
+  font-family: var(--display);
+  font-weight: 300;
   font-size: clamp(2.4rem, 5vw, 4.5rem);
-  line-height: 1.02;
-  letter-spacing: -0.015em;
+  line-height: 1.04;
+  letter-spacing: -0.02em;
   text-wrap: balance;
 }
 
 .detail-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.14fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1.14fr) minmax(0, 1fr) minmax(0, 1fr);
+  align-items: start;
   gap: var(--gap);
 }
 .detail-grid[data-empty] {
@@ -597,8 +832,8 @@ a.peroxisome-hit:focus-visible {
   position: relative;
   padding: 12px 18px 15px 8px;
   border: 1px solid transparent;
-  border-radius: 14px;
-  opacity: 0.5;
+  border-radius: var(--leaf);
+  opacity: 0.62;
   cursor: pointer;
   transition:
     opacity 0.3s,
@@ -607,34 +842,29 @@ a.peroxisome-hit:focus-visible {
     box-shadow 0.3s;
 }
 .part:hover {
-  opacity: 0.82;
+  opacity: 0.85;
 }
 .part[data-selected] {
   opacity: 1;
-  border-color: color-mix(in srgb, var(--accent) 50%, transparent);
-  background: color-mix(in srgb, var(--accent) 5%, transparent);
-  box-shadow: 0 0 34px -12px color-mix(in srgb, var(--accent) 60%, transparent);
+  border-color: var(--glass-edge);
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 14px 36px -18px rgb(31 33 47 / 0.3);
   cursor: default;
 }
-/* Short tethers from the selected part out to each side panel. */
-.part::before,
+/* A short tether from the selected part across to the panels it drives. */
 .part::after {
   content: '';
   position: absolute;
   top: 50%;
-  width: var(--gap);
+  left: 100%;
+  width: calc(var(--gap) + var(--card-pad) + 1px);
   height: 1px;
-  background: color-mix(in srgb, var(--accent) 50%, transparent);
+  background: color-mix(in srgb, var(--accent) 45%, transparent);
   opacity: 0;
   transition: opacity 0.3s;
 }
-.part::before {
-  right: 100%;
-}
-.part::after {
-  left: 100%;
-}
-.part[data-selected]::before,
 .part[data-selected]::after {
   opacity: 1;
 }
@@ -648,7 +878,7 @@ a.peroxisome-hit:focus-visible {
   background: none;
   color: var(--ink);
   font: inherit;
-  font-weight: 600;
+  font-weight: 500;
   text-align: left;
   cursor: inherit;
 }
@@ -669,28 +899,21 @@ a.peroxisome-hit:focus-visible {
   background: var(--accent);
   border-color: var(--accent);
   box-shadow:
-    0 0 0 4px color-mix(in srgb, var(--accent) 16%, transparent),
-    0 0 16px var(--accent);
+    0 0 0 4px color-mix(in srgb, var(--accent-soft) 55%, transparent),
+    0 0 14px var(--accent-soft);
 }
 
 .panel {
   min-width: 0;
   color: var(--body);
 }
-.panel[data-side='left'] {
-  padding-right: calc(var(--gap) * 0.6);
-  border-right: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
-}
-.panel[data-side='right'] {
-  padding-left: calc(var(--gap) * 0.6);
-  border-left: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
-}
+
 .panel-topic {
   margin-bottom: 8px;
   color: var(--accent);
-  font-family: var(--serif);
-  font-style: italic;
-  font-weight: 300;
+  font-family: var(--display);
+  font-weight: 400;
+  letter-spacing: -0.005em;
   font-size: 1.375rem;
   line-height: 1.25;
   text-wrap: balance;
@@ -699,7 +922,7 @@ a.peroxisome-hit:focus-visible {
 .panel-subheading {
   color: var(--ink);
   font-size: 0.9375rem;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.35;
 }
 .panel-heading {
@@ -720,7 +943,7 @@ a.peroxisome-hit:focus-visible {
 .panel-list strong,
 .part-text strong {
   color: var(--ink);
-  font-weight: 600;
+  font-weight: 500;
 }
 .panel-empty {
   color: var(--dim);
@@ -744,14 +967,8 @@ a.peroxisome-hit:focus-visible {
   .detail-core {
     order: -1;
   }
-  .part::before,
   .part::after {
     display: none;
-  }
-  .panel[data-side] {
-    padding: 28px 0 0;
-    border: 0;
-    border-top: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
   }
 }
 
@@ -760,5 +977,334 @@ a.peroxisome-hit:focus-visible {
   *::before,
   *::after {
     transition-duration: 0.01ms !important;
+    animation: none !important;
+  }
+}
+
+/* Selected and lit beads turn into the brand spark. */
+.spoke[data-state='lit'] .bead::before,
+.part[data-selected] .bead::before {
+  width: 16px;
+  height: 16px;
+  border: 0;
+  border-radius: 0;
+  background: var(--accent);
+  box-shadow: none;
+  -webkit-mask: url('./assets/spark.png') center / contain no-repeat;
+  mask: url('./assets/spark.png') center / contain no-repeat;
+  transform: rotate(0deg);
+}
+.spoke[data-state='lit'] .bead::before {
+  transform: rotate(22deg) scale(1.1);
+}
+
+/* ------------------------------------------------------------------
+   Glass cards for text: frosted white, a fine bright edge, a soft tint of
+   the current view's colour pooling inside, and a gentle shadow.
+   ------------------------------------------------------------------ */
+.card {
+  position: relative;
+  padding: var(--card-pad);
+  border: 1px solid rgb(255 255 255 / 0.9);
+  border-radius: 26px;
+  background:
+    radial-gradient(70% 60% at 78% 92%, color-mix(in srgb, var(--accent-soft) 20%, transparent), transparent 72%),
+    linear-gradient(160deg, rgb(255 255 255 / 0.7), rgb(255 255 255 / 0.4));
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  backdrop-filter: blur(18px) saturate(1.4);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.95),
+    inset 0 -1px 0 rgb(255 255 255 / 0.5),
+    0 22px 44px -28px rgb(31 33 47 / 0.35),
+    0 2px 8px -4px rgb(31 33 47 / 0.08);
+}
+.panel.card {
+  min-height: 100%;
+}
+.detail-core.card .parts {
+  margin: 0 calc(var(--card-pad) * -0.5);
+}
+.part[data-selected] {
+  background: rgb(255 255 255 / 0.75);
+}
+
+/* ------------------------------------------------------------------
+   Brand art: breathing tile clusters and slowly turning sparks
+   ------------------------------------------------------------------ */
+.brand-art {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+.tiles {
+  --tile: clamp(26px, 3.2vw, 46px);
+  position: absolute;
+  width: calc(var(--tile) * 3);
+  height: calc(var(--tile) * 5);
+}
+.tiles-a {
+  top: 120px;
+  right: 0;
+}
+.tiles-b {
+  bottom: calc(var(--tile) * -1);
+  left: 34vw;
+}
+.tile {
+  position: absolute;
+  left: calc(var(--col) * var(--tile));
+  top: calc(var(--row) * var(--tile));
+  width: var(--tile);
+  height: var(--tile);
+  background: color-mix(in srgb, var(--accent-soft) 38%, white);
+  opacity: 0.85;
+  transition: background-color 0.9s;
+  animation: tile-breathe 9s ease-in-out infinite;
+  animation-delay: calc(var(--i) * -1.3s);
+}
+.tile[data-solid] {
+  background: var(--accent-soft);
+  opacity: 0.75;
+  animation-name: tile-breathe-solid;
+}
+.tile[data-corner='tl'] {
+  border-top-left-radius: 45%;
+}
+.tile[data-corner='br'] {
+  border-bottom-right-radius: 45%;
+}
+@keyframes tile-breathe {
+  0%, 100% { opacity: 0.85; transform: none; }
+  50% { opacity: 0.25; transform: translateY(4px); }
+}
+@keyframes tile-breathe-solid {
+  0%, 100% { opacity: 0.75; transform: none; }
+  50% { opacity: 0.4; transform: translate(-4px, 3px); }
+}
+
+.float-spark {
+  position: absolute;
+  width: var(--size);
+  height: var(--size);
+  color: var(--accent-soft);
+  transition: color 0.9s;
+  animation: spark-turn var(--turn) linear infinite;
+  animation-delay: var(--delay);
+}
+.float-spark .spark {
+  display: block;
+  width: 100%;
+  height: 100%;
+  animation: spark-twinkle 5s ease-in-out infinite;
+  animation-delay: var(--delay);
+}
+@keyframes spark-turn {
+  to { transform: rotate(360deg); }
+}
+@keyframes spark-twinkle {
+  0%, 100% { opacity: 0.85; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(0.7); }
+}
+
+/* The fine pixel pattern drifts very slowly sideways. */
+.pattern[data-kind='fine'] {
+  animation: pattern-drift 120s linear infinite;
+}
+@keyframes pattern-drift {
+  from { -webkit-mask-position: 0 0, 0 0; mask-position: 0 0, 0 0; }
+  to { -webkit-mask-position: 620px 0, 0 0; mask-position: 620px 0, 0 0; }
+}
+
+@media (max-width: 899px) {
+  .tiles-b {
+    display: none;
+  }
+}
+
+/* Detail pages: empty space is a way back to the hub, so it shows as clickable. */
+.app[data-page='detail'] {
+  cursor: pointer;
+}
+.app[data-page='detail'] :is(.card, .detail-head, .detail-title) {
+  cursor: auto;
+}
+
+/* ------------------------------------------------------------------
+   Intro: a tall scroll section with a pinned stage. Scrolling scrubs the
+   timeline in Intro.jsx forwards and back.
+   ------------------------------------------------------------------ */
+.intro {
+  position: relative;
+  z-index: 2;
+  height: 560vh;
+}
+.intro-stage {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+}
+.intro-top {
+  position: absolute;
+  top: var(--pad);
+  left: var(--pad);
+  right: var(--pad);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.intro-skip {
+  padding: 10px 18px;
+  border: 1px solid rgb(255 255 255 / 0.9);
+  border-radius: 999px;
+  background: linear-gradient(160deg, rgb(255 255 255 / 0.7), rgb(255 255 255 / 0.4));
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 10px 24px -16px rgb(31 33 47 / 0.4);
+  color: var(--body);
+  font: 500 0.875rem var(--sans);
+  cursor: pointer;
+  transition: color 0.3s, border-color 0.3s;
+}
+.intro-skip:hover {
+  color: var(--accent);
+  border-color: var(--brand-lilac);
+}
+
+.intro-orb {
+  position: absolute;
+  top: 50%;
+  left: 62%;
+  width: min(86vh, 58vw);
+  aspect-ratio: 1;
+  translate: -50% -50%;
+}
+.intro-canvas,
+.intro-lines,
+.intro-frost {
+  position: absolute;
+  inset: 0;
+}
+.intro-canvas {
+  z-index: 1;
+}
+.intro-lines {
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+.intro-frost {
+  inset: 24%;
+  border-radius: 50%;
+  -webkit-backdrop-filter: blur(22px) saturate(1.3);
+  backdrop-filter: blur(22px) saturate(1.3);
+}
+.intro-stroke {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+.intro-stroke[data-weight='fine'] {
+  stroke-width: 1;
+}
+.intro-dots circle,
+#intro-dot circle {
+  fill: var(--accent);
+}
+#shard-dot circle {
+  fill: rgb(255 255 255 / 0.9);
+}
+.intro-shard {
+  fill: rgb(255 214 214 / 0.5);
+  stroke: rgb(214 92 92 / 0.55);
+  stroke-width: 1.2;
+  vector-effect: non-scaling-stroke;
+}
+.intro-shard-dots {
+  fill: url(#shard-dot);
+  opacity: 0.8;
+}
+.intro-mote {
+  fill: #6b3a40;
+}
+
+.intro-text {
+  position: absolute;
+  left: var(--pad);
+  top: 50%;
+  width: min(30vw, 440px);
+  translate: 0 -50%;
+}
+.intro-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  translate: 0 -50%;
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: clamp(1.6rem, 2.6vw, 2.6rem);
+  line-height: 1.18;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.intro-cue {
+  position: absolute;
+  left: 50%;
+  bottom: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  translate: -50% 0;
+  color: var(--dim);
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.intro-cue-line {
+  width: 1px;
+  height: 36px;
+  background: linear-gradient(var(--accent), transparent);
+  animation: cue-drop 1.8s ease-in-out infinite;
+  transform-origin: top;
+}
+@keyframes cue-drop {
+  0% { transform: scaleY(0); opacity: 1; }
+  70% { transform: scaleY(1); opacity: 1; }
+  100% { transform: scaleY(1); opacity: 0; }
+}
+
+@media (max-width: 899px) {
+  .intro {
+    height: 480vh;
+  }
+  .intro-orb {
+    top: 38%;
+    left: 50%;
+    width: min(92vw, 52vh);
+  }
+  .intro-text {
+    top: auto;
+    bottom: 110px;
+    left: var(--pad);
+    right: var(--pad);
+    width: auto;
+    translate: none;
+  }
+  .intro-line {
+    top: auto;
+    bottom: 0;
+    translate: none;
+    font-size: 1.45rem;
   }
 }

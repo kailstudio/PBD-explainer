@@ -2,6 +2,7 @@ import { useLayoutEffect, useState } from 'react';
 import { AnimatePresence, motion, useIsPresent } from 'framer-motion';
 import { site, VIEWS } from '../content';
 import { hubHref } from '../lib/useHashRoute';
+import Logo from './Logo';
 import RichText from './RichText';
 
 const EASE = [0.22, 1, 0.36, 1];
@@ -12,7 +13,7 @@ function Panel({ side, heading, part }) {
   const empty = entries.length === 0 && reading.length === 0;
 
   return (
-    <aside className="panel" data-side={side} aria-live="polite">
+    <aside className="panel card" data-side={side} aria-live="polite">
       <AnimatePresence mode="wait" initial={false}>
         <motion.div
           key={part?.id ?? 'none'}
@@ -86,14 +87,13 @@ export default function Detail({ view, item, onLayout }) {
             <li aria-current="page">{item.label}</li>
           </ol>
         </nav>
+        <Logo href={hubHref(view)} size="small" />
       </header>
 
       <h1 className="detail-title">{item.label}</h1>
 
       <div className="detail-grid" data-empty={parts.length === 0 || undefined}>
-        {parts.length > 0 && <Panel side="left" heading={config.leftPanel} part={selected} />}
-
-        <section className="detail-core">
+        <section className="detail-core card">
           <p className="detail-lede">
             <RichText>{item.description ?? item.summary}</RichText>
           </p>
@@ -126,6 +126,8 @@ export default function Detail({ view, item, onLayout }) {
           )}
         </section>
 
+        {/* Read left to right: what it is and its parts, then the two panels. */}
+        {parts.length > 0 && <Panel side="left" heading={config.leftPanel} part={selected} />}
         {parts.length > 0 && <Panel side="right" heading={config.rightPanel} part={selected} />}
       </div>
     </motion.article>

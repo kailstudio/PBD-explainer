@@ -3,6 +3,7 @@ import { AnimatePresence, motion, useIsPresent } from 'framer-motion';
 import { site, VIEWS } from '../content';
 import { itemHref } from '../lib/useHashRoute';
 import { useElementSize, useMediaQuery } from '../lib/hooks';
+import Logo from './Logo';
 import ViewToggle from './ViewToggle';
 
 // Proportions of the ring, as shares of its overall size S.
@@ -203,8 +204,13 @@ export default function Hub({ view, onLayout }) {
     >
       <header className="hub-intro">
         <div>
-          <p className="org">{site.organisation}</p>
-          <h1 className="hub-title">{site.title}</h1>
+          <div className="org">
+            <Logo />
+          </div>
+          <h1 className="hub-title">
+            {site.title}
+            <span className="spark title-spark" aria-hidden="true" />
+          </h1>
           <p className="hub-lede">{site.intro}</p>
         </div>
         <ViewToggle view={view} />
