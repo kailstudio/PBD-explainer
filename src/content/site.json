@@ -5,6 +5,8 @@
   "startFrom": "Start from",
   "hubName": "Peroxisome",
   "furtherReading": "Further Reading",
+  "choosePart": "Choose one to explore",
+  "pickHint": "Select a box above to see how it connects to disease.",
   "emptyPanel": "This section is still being written.",
   "emptyPage": "The detail for this page is still being written.",
   "views": {

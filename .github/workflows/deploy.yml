@@ -27,8 +27,7 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
-      # Keep the single-file previews available at /preview/ and /preview-pastel/.
-      - run: cp -r preview preview-pastel dist/ && touch dist/.nojekyll
+      - run: touch dist/.nojekyll
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

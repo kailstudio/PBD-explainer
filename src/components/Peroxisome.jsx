@@ -3,24 +3,24 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { bodyFragment, bodyVertex } from './peroxisomeShaders';
 
-// A milky, wavy membrane around a glowing core: cyan to deep blue for
-// mechanisms, bright to dark red for diseases.
+// A glossy liquid drop: deep blue with a cyan rim for mechanisms, deep
+// crimson with a pink rim for diseases.
 const PALETTE = {
   mechanisms: {
-    tint: '#f6f8ff',
-    rimA: '#ffffff',
-    rimB: '#c3d0f2',
-    coreA: '#3fd2ff',
-    coreB: '#1a86ea',
-    coreC: '#0636b0',
+    tint: '#1d5be0',
+    rimA: '#f4fbff',
+    rimB: '#7fd8ff',
+    coreA: '#3b9dff',
+    coreB: '#0c3fc4',
+    coreC: '#050f52',
   },
   diseases: {
-    tint: '#fff4f3',
-    rimA: '#ffffff',
-    rimB: '#f1c6c8',
-    coreA: '#ff4a3a',
-    coreB: '#e8141c',
-    coreC: '#860010',
+    tint: '#d8203c',
+    rimA: '#fff4f5',
+    rimB: '#ffb1bd',
+    coreA: '#ff5a68',
+    coreB: '#b30f2b',
+    coreC: '#3d0210',
   },
 };
 const KEYS = Object.keys(PALETTE.mechanisms);
@@ -102,7 +102,7 @@ function Organelle({ view, hot, still, fx }) {
     const f = fx?.current ?? STEADY;
     uniforms.uReveal.value = f.reveal;
     uniforms.uDecay.value = f.decay;
-    uniforms.uWobble.value = 0.075 * (1 + 0.9 * f.decay);
+    uniforms.uWobble.value = 0.075 * (1 + 0.8 * f.decay);
     uniforms.uTime.value = m.clock;
     uniforms.uEnergy.value = m.energy * 0.9 + pulse * 0.5 + m.kick * 0.7;
 

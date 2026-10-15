@@ -1,11 +1,11 @@
 import { useEffect, useRef } from 'react';
 
 // The space around the organelle: faint specks drifting in the cytosol and a
-// handful of soft, lumpy proteins wandering about, nudging each other and
+// handful of tiled, lumpy proteins wandering about, nudging each other and
 // bouncing off the edges. Kept soft on purpose. It should register as "we are
 // inside a cell" and then be forgotten.
 
-const ACCENT = { mechanisms: [80, 120, 210], diseases: [214, 84, 76] };
+const ACCENT = { mechanisms: [130, 160, 245], diseases: [255, 120, 118] };
 const rand = (min, max) => min + Math.random() * (max - min);
 
 function makeSpecks(width, height) {
@@ -110,6 +110,8 @@ function step(proteins, width, height, dt) {
   }
 }
 
+// Each protein is drawn as a small cluster of square tiles: a grid laid over
+// its lobes, each tile lit by how deep inside the shape it sits.
 function drawProtein(ctx, p, [r, g, b]) {
   ctx.save();
   ctx.translate(p.x, p.y);
@@ -117,17 +119,22 @@ function drawProtein(ctx, p, [r, g, b]) {
   const s = 1 + p.squash * 0.12;
   ctx.scale(s, 1 / s);
   const light = (k) => `${Math.round(r + (255 - r) * k)}, ${Math.round(g + (255 - g) * k)}, ${Math.round(b + (255 - b) * k)}`;
-  for (const lobe of p.lobes) {
-    const gx = lobe.dx - lobe.r * 0.35;
-    const gy = lobe.dy - lobe.r * 0.4;
-    const fill = ctx.createRadialGradient(gx, gy, lobe.r * 0.1, lobe.dx, lobe.dy, lobe.r);
-    fill.addColorStop(0, `rgba(${light(0.75)}, ${0.5 * p.shade})`);
-    fill.addColorStop(0.6, `rgba(${light(0.35)}, ${0.38 * p.shade})`);
-    fill.addColorStop(1, `rgba(${light(0.15)}, ${0.16 * p.shade})`);
-    ctx.fillStyle = fill;
-    ctx.beginPath();
-    ctx.arc(lobe.dx, lobe.dy, lobe.r, 0, Math.PI * 2);
-    ctx.fill();
+  const cell = Math.max(4, Math.round(p.r / 3.2));
+  const reach = Math.ceil((p.r * 1.4) / cell);
+  for (let gy = -reach; gy <= reach; gy += 1) {
+    for (let gx = -reach; gx <= reach; gx += 1) {
+      const cx = (gx + 0.5) * cell;
+      const cy = (gy + 0.5) * cell;
+      let depth = 0;
+      for (const lobe of p.lobes) {
+        const d = Math.hypot(cx - lobe.dx, cy - lobe.dy) / lobe.r;
+        depth = Math.max(depth, 1 - d);
+      }
+      if (depth <= 0) continue;
+      const k = Math.min(1, depth * 1.6);
+      ctx.fillStyle = `rgba(${light(0.7 - 0.45 * k)}, ${(0.12 + 0.4 * k) * p.shade})`;
+      ctx.fillRect(gx * cell + 0.5, gy * cell + 0.5, cell - 1, cell - 1);
+    }
   }
   ctx.restore();
 }
@@ -175,9 +182,7 @@ export default function Drift({ view, still }) {
         s.y = (s.y + s.vy * dt + height) % height;
         const twinkle = 0.75 + 0.25 * Math.sin(clock * 0.6 + s.phase);
         ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${s.alpha * twinkle})`;
-        ctx.beginPath();
-        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-        ctx.fill();
+        ctx.fillRect(s.x - s.r, s.y - s.r, s.r * 2, s.r * 2);
       }
 
       if (!still) step(proteins, width, height, dt);

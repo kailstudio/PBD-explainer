@@ -23,9 +23,9 @@ WebGL (three.js via react-three-fiber) and page transitions in Framer Motion.
 
 **Intro (first visit only).** A scroll-driven sequence above the hub, scrubbed
 forwards and back by scrolling: the orb's outline and a wireframe of its core
-draw themselves in, the dot lattice ripples out, the membrane and core
-condense inside the lines, then it fails (the core turns red with dark
-patches, the membrane cracks away and sheds shards and debris) and heals
+draw themselves in, then the drop pixelates into place tile by tile inside
+the lines; then it fails (tiles slip out of line, darken and drop out, and loose
+tiles fly off) and heals
 before handing over to the hub. A "Skip intro" button jumps straight to the
 hub. It is left out for deep links and for reduced motion, and once a visitor
 opens a detail page, coming back lands on the hub. Timings and copy live at
@@ -34,17 +34,16 @@ the top of `src/components/Intro.jsx`.
 
 From the "Hub view (landing)" part of the brief:
 
-- PBD Project's brand in a light glass style: a soft white page, faint glows
-  of brand lilac, teal, yellow and red, the brand pixel pattern fading in at
+- PBD Project's brand in a dark glass style: a near-black page with faint
+  blue or red tile fields, light text, dark glass panels, the brand pixel pattern fading in at
   the edges, and lilac as the highlight colour. The brand spark marks
   whatever is selected or lit, and glass panels use the brand's one rounded
   corner. Mechanisms leans cool (lilac), Diseases & Conditions leans warm
   (brand red), and the page cross-fades when the view flips.
-- Peroxisome as a milky, wavy membrane around a glowing core (cyan to deep
-  blue, or bright to dark red), with a lattice of fine dots over the
-  surface, a coloured shadow, a slow wobble and a
-  gentle pulse every 7 seconds. It brightens when hovered and leans up to 10 degrees
-  towards the cursor.
+- Peroxisome as a glossy liquid drop: deep colour swirling slowly inside
+  (blue, or crimson), a thick glowing rim and a small caustic near the
+  bottom, with a soft organic outline that wobbles slowly, a coloured shadow
+  and a gentle pulse every 7 seconds.
 - Spokes sit dim, light up on hover or keyboard focus (filament, bead and a
   one-line description), and open their page on click.
 - Clicking a spoke shrinks the peroxisome into the top-left corner of the
@@ -52,8 +51,10 @@ From the "Hub view (landing)" part of the brief:
 - Soft, lumpy proteins wander the background, bumping into each other and
   bouncing off the edges. Brand tiles breathe in and out at the edges and a
   few brand sparks slowly turn and twinkle.
-- Detail pages read left to right on glass cards: description and
-  selectable sub-parts first, then the two panels the selected part drives.
+- Detail pages read top to bottom: title, a plain-language description,
+  then one glass box per sub-type. Picking a box opens two panels below,
+  headed "Manifestation in Genetic Peroxisomal Disorders" and "Connection to
+  Common Conditions" (or "What We Know" / "What's Needed For Further Study").
 
 Beyond the brief, as proposals to discuss:
 
@@ -113,6 +114,6 @@ Things you are likely to tune: palette at the top of `Peroxisome.jsx` and
 `styles.css`; tilt angle and pulse interval at the top of `Peroxisome.jsx`;
 ring proportions at the top of `Hub.jsx`.
 
-Type follows the brand: Atkinson Hyperlegible Next for headlines, Roboto for
-everything else. Both are bundled,
+Type follows the brand, two fonts only: Atkinson Hyperlegible Next for the two
+heading sizes, Roboto for everything you read or press. Both are bundled,
 so nothing is fetched from a font service.

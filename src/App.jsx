@@ -8,6 +8,8 @@ import Drift from './components/Drift';
 import Hub from './components/Hub';
 import Intro from './components/Intro';
 import Peroxisome, { BODY_SHARE } from './components/Peroxisome';
+import PixelField from './components/PixelField';
+import Logo from './components/Logo';
 
 // The peroxisome is drawn once, at this size, and never unmounts. Each page
 // marks where it should sit with an empty [data-anchor] box; we measure that
@@ -101,7 +103,7 @@ export default function App() {
   // header and links) goes back to the hub. Ignored while selecting text.
   const onBackgroundClick = (event) => {
     if (page !== 'detail' || event.button !== 0) return;
-    if (event.target.closest('.card, .detail-head, .detail-title, a, button')) return;
+    if (event.target.closest('.card, .detail-head, .detail-title, .detail-lede, .parts, .parts-lead, .panels, .site-logo, a, button')) return;
     if (window.getSelection()?.toString()) return;
     window.location.hash = hubHref(view);
   };
@@ -111,13 +113,15 @@ export default function App() {
       {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions -- mouse shortcut only; the orb and breadcrumbs are the keyboard route back */}
       <div className="app" data-view={view} data-page={page} ref={rootRef} onClick={onBackgroundClick}>
         <div className="backdrop" aria-hidden="true">
-          <div className="wash" data-for="mechanisms" />
-          <div className="wash" data-for="diseases" />
+          <PixelField view="mechanisms" />
+          <PixelField view="diseases" />
           <div className="pattern" data-kind="fine" />
           <div className="pattern" data-kind="large" />
           <div className="grain" />
         </div>
         <BrandArt />
+        {/* One logo for the whole site, fixed in the same spot on every page. */}
+        <Logo href={hubHref(view)} />
         <Drift view={view} still={still} />
 
         <motion.div

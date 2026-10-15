@@ -1,6 +1,5 @@
 import { useMemo, useRef, useState } from 'react';
 import { motion, useMotionValueEvent, useScroll, useTransform } from 'framer-motion';
-import Logo from './Logo';
 import Peroxisome from './Peroxisome';
 
 // The scroll-driven intro that sits above the hub on a first visit.
@@ -43,35 +42,50 @@ function blobPath(radius, seed, wave = 1) {
   return `M${points.join('L')}Z`;
 }
 
-// Irregular shards, placed around the membrane, each with a flight path out.
-function makeShards(count) {
-  let seed = 7;
-  const rnd = () => {
+const seeded = (start) => {
+  let seed = start;
+  return () => {
     seed = (seed * 16807) % 2147483647;
     return seed / 2147483647;
   };
-  return Array.from({ length: count }, (_, i) => {
-    const angle = (i / count) * Math.PI * 2 + rnd() * 0.3;
-    const r = 260 + rnd() * 40;
-    const size = 26 + rnd() * 42;
-    const corners = 5 + Math.floor(rnd() * 3);
-    const pts = Array.from({ length: corners }, (_, k) => {
-      const a = (k / corners) * Math.PI * 2 + rnd() * 0.6;
-      const d = size * (0.55 + rnd() * 0.5);
-      return `${(Math.cos(a) * d * 1.3).toFixed(1)},${(Math.sin(a) * d * 0.7).toFixed(1)}`;
+};
+
+const TILE_COLOURS = ['#ffbfcb', '#ff8aa1', '#ff4f6a', '#e8400f', '#fdeef1', '#ff8aa1'];
+const TILE = 90; // one tile of the orb, in this 1000-unit drawing
+
+// Loose tiles knocked out of the orb, each on a grid spot near the edge,
+// with a flight path outwards.
+function makeShards(count) {
+  const rnd = seeded(7);
+  const spots = [];
+  for (let gx = -4; gx <= 3; gx += 1) {
+    for (let gy = -4; gy <= 3; gy += 1) {
+      const cx = (gx + 0.5) * TILE;
+      const cy = (gy + 0.5) * TILE;
+      const r = Math.hypot(cx, cy);
+      if (r > 170 && r < 330) spots.push([cx, cy]);
+    }
+  }
+  return spots
+    .map((spot) => ({ spot, key: rnd() }))
+    .sort((a, b) => a.key - b.key)
+    .slice(0, count)
+    .map(({ spot: [cx, cy] }) => {
+      const angle = Math.atan2(cy, cx) + (rnd() - 0.5) * 0.5;
+      const fly = 140 + rnd() * 300;
+      const size = TILE * (0.55 + rnd() * 0.4);
+      return {
+        x: 500 + cx,
+        y: 500 + cy,
+        dx: Math.cos(angle) * fly,
+        dy: Math.sin(angle) * fly,
+        spin: (rnd() - 0.5) * 120,
+        tilt: 0,
+        size,
+        fill: TILE_COLOURS[Math.floor(rnd() * TILE_COLOURS.length)],
+        lag: rnd() * 0.06,
+      };
     });
-    const fly = 120 + rnd() * 260;
-    return {
-      x: 500 + Math.cos(angle) * r,
-      y: 500 + Math.sin(angle) * r,
-      dx: Math.cos(angle) * fly,
-      dy: Math.sin(angle) * fly,
-      spin: (rnd() - 0.5) * 140,
-      tilt: (angle * 180) / Math.PI + 90,
-      points: pts.join(' '),
-      lag: rnd() * 0.06,
-    };
-  });
 }
 
 function makeDebris(count) {
@@ -111,7 +125,11 @@ function Step({ progress, from, to, text }) {
 function Drawn({ progress, from, to, children, fadeTo = 0.35 }) {
   const pathLength = useTransform(progress, [from, to], [0, 1]);
   // Lines stay strong while drawing, then settle back once the orb fills in.
-  const opacity = useTransform(progress, [from, from + 0.01, 0.3, 0.38], [0, 1, 1, fadeTo]);
+  const opacity = useTransform(
+    progress,
+    [from, from + 0.01, 0.3, 0.38, 0.47, 0.52, 0.9, 0.96],
+    [0, 1, 1, fadeTo, fadeTo, 0, 0, fadeTo],
+  );
   return children({ pathLength, opacity });
 }
 
@@ -123,11 +141,19 @@ function Shard({ shard, progress }) {
   const opacity = useTransform(progress, [0.5 + shard.lag, 0.54 + shard.lag, 0.86, 0.9], [0, 1, 1, 0]);
   return (
     <motion.g style={{ x, y, rotate, opacity }}>
-      <polygon className="intro-shard" points={shard.points} />
-      <polygon className="intro-shard-dots" points={shard.points} />
+      <rect
+        className="intro-shard"
+        x={-shard.size / 2}
+        y={-shard.size / 2}
+        width={shard.size}
+        height={shard.size}
+        style={{ fill: shard.fill }}
+      />
     </motion.g>
   );
 }
+
+
 
 function Mote({ mote, progress }) {
   const out = useTransform(progress, [0.55 + mote.lag, 0.76 + mote.lag, 0.8, 0.88], [0, 1, 1, 0]);
@@ -155,14 +181,12 @@ export default function Intro({ onSkip }) {
     setOrbView((prev) => (prev === next ? prev : next));
   });
 
-  const frostOpacity = useTransform(progress, [0.24, 0.42, 0.55, 0.72, 0.84, 0.94], [0, 1, 1, 0.2, 0.2, 1]);
+  const frostOpacity = useTransform(progress, [0.24, 0.42, 0.52, 0.6, 0.86, 0.94], [0, 1, 1, 0, 0, 1]);
   const cue = useTransform(progress, [0, 0.04], [1, 0]);
-  const dotsRadius = useTransform(progress, [0.14, 0.24], [0, 180]);
-  const dotsOpacity = useTransform(progress, [0.14, 0.16, 0.34, 0.42], [0, 1, 1, 0]);
   const endCue = useTransform(progress, [0.9, 0.96], [0, 1]);
 
   const outlines = useMemo(() => [blobPath(292, 0.4), blobPath(300, 2.1, 0.8), blobPath(284, 4.2, 1.2)], []);
-  const shards = useMemo(() => makeShards(18), []);
+  const shards = useMemo(() => makeShards(22), []);
   const debris = useMemo(() => makeDebris(70), []);
   const latitudes = [-120, -60, 0, 60, 120];
   const longitudes = [40, 95, 140];
@@ -171,8 +195,8 @@ export default function Intro({ onSkip }) {
     <section className="intro" ref={sectionRef} aria-label="Introduction">
       <div className="intro-stage">
         <div className="intro-top">
-          <Logo />
           <button type="button" className="intro-skip" onClick={onSkip}>
+            <span className="spark skip-spark" aria-hidden="true" />
             Skip intro
           </button>
         </div>
@@ -185,15 +209,6 @@ export default function Intro({ onSkip }) {
 
           <svg className="intro-lines" viewBox="0 0 1000 1000" aria-hidden="true">
             <defs>
-              <pattern id="intro-dot" width="18" height="18" patternUnits="userSpaceOnUse">
-                <circle cx="9" cy="9" r="2.2" />
-              </pattern>
-              <pattern id="shard-dot" width="12" height="12" patternUnits="userSpaceOnUse">
-                <circle cx="6" cy="6" r="1.3" />
-              </pattern>
-              <mask id="intro-dots-mask">
-                <motion.circle cx="515" cy="535" r={dotsRadius} fill="#fff" />
-              </mask>
             </defs>
 
             {/* 1. outlines draw in */}
@@ -231,18 +246,6 @@ export default function Intro({ onSkip }) {
                 )}
               </Drawn>
             ))}
-
-            {/* the dot lattice ripples out from the middle */}
-            <motion.rect
-              x="330"
-              y="350"
-              width="370"
-              height="370"
-              fill="url(#intro-dot)"
-              className="intro-dots"
-              mask="url(#intro-dots-mask)"
-              style={{ opacity: dotsOpacity }}
-            />
 
             {/* 3. shards and debris */}
             {debris.map((m, i) => (

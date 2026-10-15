@@ -1,12 +1,12 @@
 // GLSL for the peroxisome.
 //
-// A milky membrane around a glowing core. The body is one sphere, rippled by
-// slow noise into a soft, wavy outline. It is drawn part-transparent over a
-// blurred disc (see .peroxisome-frost), so the page shows through it.
-// The core is not a second mesh: each pixel fires a ray into the body and
-// works out where it would meet a sphere in the middle. That gives real
-// parallax when the organelle tilts. A lattice of fine dots is laid over the
-// membrane and bends with it.
+// A glossy liquid drop. The body is one sphere, pushed by slow noise into
+// a soft organic outline. Inside, deep colour swirls slowly (domain-warped
+// noise in the organelle's own space, so it turns with it); a thick glowing
+// rim, a darker band just inside it and a bright caustic near the bottom
+// give it the look of a lit drop of coloured liquid.
+// Intro controls: uReveal pixelates it into place tile by tile, and uDecay
+// darkens it and knocks the tiles loose again.
 
 // Simplex noise by Ian McEwan / Ashima Arts (MIT licence).
 const NOISE = /* glsl */ `
@@ -61,8 +61,8 @@ uniform float uTime;
 uniform float uWobble;
 
 float bump(vec3 p){
-  float slow = snoise(p * 1.05 + vec3(0.0, uTime * 0.11, uTime * 0.07)) * 0.55;
-  float fine = snoise(p * 3.1 + vec3(uTime * 0.09, 0.0, -uTime * 0.05)) * 0.3;
+  float slow = snoise(p * 0.8 + vec3(0.0, uTime * 0.08, uTime * 0.05)) * 0.75;
+  float fine = snoise(p * 1.6 + vec3(uTime * 0.07, 0.0, -uTime * 0.04)) * 0.1;
   return (slow + fine) * uWobble;
 }
 vec3 shape(vec3 n){ return n * (1.0 + bump(n)); }
@@ -103,99 +103,87 @@ export const bodyFragment = /* glsl */ `
 ${NOISE}
 uniform float uTime;
 uniform float uEnergy;   // 0 at rest, rises on hover and on each pulse
-uniform float uReveal;   // intro: 0 = not formed yet, 1 = whole
+uniform float uReveal;   // intro: 0 = no tiles yet, 1 = whole drop
 uniform float uDecay;    // intro: 0 = healthy, 1 = breaking apart
-uniform vec3 uTint;      // the milky membrane
-uniform vec3 uRimA;      // bright rim
-uniform vec3 uRimB;      // shadow in the membrane's folds
-uniform vec3 uCoreA;     // core: brightest side
-uniform vec3 uCoreB;     // core: main colour
-uniform vec3 uCoreC;     // core: deepest point
+uniform vec3 uTint;      // mid body colour
+uniform vec3 uRimA;      // outermost rim light
+uniform vec3 uRimB;      // rim glow and caustic tint
+uniform vec3 uCoreA;     // brightest swirls
+uniform vec3 uCoreB;     // main colour
+uniform vec3 uCoreC;     // deepest colour
 uniform vec3 uCamO;      // camera position in the organelle's own space
 
 varying vec3 vNormal;
 varying vec3 vView;
 varying vec3 vPosO;
 
+const float CELLS = 6.5;
+float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
+
 void main(){
   vec3 N = normalize(vNormal);
   vec3 V = normalize(vView);
-  vec3 L = normalize(vec3(-0.5, 0.7, 0.55));
-  vec3 H = normalize(L + V);
   float ndv = clamp(dot(N, V), 0.0, 1.0);
   float edge = 1.0 - ndv;
-  float wrap = dot(N, L) * 0.5 + 0.5;
 
-  // The core: where would this pixel's ray meet a sphere in the middle?
+  // Slow swirls of colour inside, warped so they flow like liquid.
+  float t = uTime * 0.05;
+  vec3 p = vPosO * 0.6;
+  vec3 w = vec3(snoise(p + vec3(0.0, t, 0.0)), snoise(p + vec3(5.2, 1.3, t)), snoise(p + vec3(t, 9.1, 2.7)));
+  float n1 = snoise(p * 0.9 + w * 0.9 + vec3(t)) * 0.5 + 0.5;
+  float n2 = snoise(p * 1.3 + w * 0.6 - vec3(t * 1.3)) * 0.5 + 0.5;
+  vec3 col = mix(uCoreC, uCoreB, smoothstep(0.2, 0.75, n1));
+  col = mix(col, uTint, smoothstep(0.5, 0.85, n2) * 0.55);
+  col = mix(col, uCoreA, smoothstep(0.62, 0.92, n1 * 0.55 + n2 * 0.5) * 0.6);
+
+  // Lit from the lower right, as in a studio shot of a drop.
+  float lit = dot(N, normalize(vec3(0.35, -0.35, 0.87))) * 0.5 + 0.5;
+  col *= 0.7 + 0.5 * lit + 0.15 * uEnergy;
+
+  // A darker band just inside the rim, then a thick glowing rim.
+  float band = smoothstep(0.22, 0.4, edge) * (1.0 - smoothstep(0.42, 0.55, edge));
+  col *= 1.0 - 0.35 * band;
+  // A softer glow towards the edge, with no hard white line.
+  vec3 rimCol = mix(uRimB, uRimA, smoothstep(0.75, 1.0, edge) * 0.35);
+  col = mix(col, rimCol, smoothstep(0.45, 0.9, edge) * (0.55 + 0.1 * uEnergy));
+
+  // A bright caustic pooled near the bottom, and a soft highlight up top.
+  // (a small one, set inside the rim like the reference)
+  float caus = smoothstep(0.962, 0.99, dot(N, normalize(vec3(-0.05, -0.62, 0.78))));
+  col = mix(col, mix(uRimB, uRimA, 0.3), caus * 0.8);
+  col = mix(col, uCoreB * 0.7, smoothstep(0.986, 0.998, dot(N, normalize(vec3(-0.05, -0.62, 0.78)))) * 0.7);
+
+  // Intro tiles: the drop arrives, and breaks up, as a grid of tiles.
   vec3 ro = vPosO;
   vec3 rd = normalize(vPosO - uCamO);
-  float drift = uTime * 0.12;
-  vec3 cc = vec3(0.03 + 0.04 * sin(drift), -0.07 + 0.03 * cos(drift * 0.8), 0.02);
-  float R = 0.6 + 0.02 * uEnergy;
-  vec3 oc = cc - ro;
-  float t = dot(oc, rd);
-  float d2 = max(dot(oc, oc) - t * t, 0.0);
-  float inside = d2 / (R * R);
-  float coreMask = (1.0 - smoothstep(0.72, 1.0, inside)) * smoothstep(-0.2, 0.3, t);
-  vec3 hit = ro + rd * (t - sqrt(max(R * R - d2, 0.0)));
-  vec3 cn = normalize(hit - cc);
-  float lit = dot(cn, normalize(vec3(0.55, 0.65, 0.5))) * 0.5 + 0.5;
-  float centre = 1.0 - inside;
-  vec3 core = mix(uCoreB, uCoreA, smoothstep(0.55, 0.95, lit));
-  core = mix(core, uCoreC, clamp(smoothstep(0.45, 0.05, lit) * 0.75 + smoothstep(0.3, 1.0, centre) * smoothstep(0.7, 0.3, lit) * 0.6, 0.0, 1.0));
-
-  // Decay: the core dims and dark, necrotic patches spread across it.
-  float rot = snoise(cn * 2.6 + 3.0) * 0.5 + 0.5;
-  float patches = smoothstep(0.62 - 0.35 * uDecay, 0.78 - 0.35 * uDecay, rot) * uDecay;
-  core *= 1.0 - 0.3 * uDecay;
-  core = mix(core, vec3(0.12, 0.08, 0.09), patches * 0.85);
-
-  // The membrane: milky white with soft folds catching the light.
-  float fold = snoise(vPosO * 1.6 + vec3(0.0, uTime * 0.05, 0.0)) * 0.5 + 0.5;
-  float sheen = snoise(vPosO * 2.4 - vec3(uTime * 0.04, 0.0, 0.0)) * 0.5 + 0.5;
-  vec3 membrane = mix(uRimB, uTint, 0.5 + 0.5 * fold);
-  membrane = mix(membrane, vec3(1.0), smoothstep(0.62, 0.95, sheen) * 0.55);
-  membrane *= 0.95 + 0.08 * wrap;
-
-  // The core shows through the membrane, veiled more towards the edge.
-  float veil = 0.08 + 0.4 * smoothstep(0.4, 1.0, edge);
-  vec3 col = mix(membrane, core, coreMask * (1.0 - veil));
-
-  // Decay: the membrane breaks up into holes with dark cracked edges, so
-  // the core shows through bare where it has gone.
-  float shell = snoise(vPosO * 2.1 + 11.0) * 0.5 + 0.5;
-  float gone = uDecay * 1.15 - 0.05;
-  float intact = smoothstep(gone - 0.03, gone + 0.03, shell);
-  float crack = (1.0 - smoothstep(0.0, 0.035, abs(shell - gone))) * step(0.02, uDecay);
-  col = mix(core, col, intact);
-  col = mix(col, uCoreC * 0.55, crack * 0.7);
-
-  // Bright rim and a soft highlight.
-  col = mix(col, uRimA, pow(edge, 3.2) * (0.8 + 0.2 * uEnergy));
-  col += vec3(1.0) * pow(max(dot(N, H), 0.0), 36.0) * 0.22;
-
-  // A lattice of fine dots, laid over the membrane so it bends with it.
-  vec2 cell = fract(vPosO.xy * 26.0) - 0.5;
-  float dd = length(cell);
-  float aa = fwidth(dd) + 1e-4;
-  float radius = mix(0.1, 0.15, coreMask);
-  float dotMark = 1.0 - smoothstep(radius - aa, radius + aa, dd);
-  float dotShow = (0.55 + 0.45 * coreMask) * (1.0 - smoothstep(0.6, 0.95, edge));
-  col = mix(col, vec3(1.0), dotMark * dotShow * 0.92);
+  vec2 q = (ro + rd * (-ro.z / min(rd.z, -0.05))).xy;
+  vec2 g = q * CELLS;
+  vec2 id = floor(g);
+  vec2 f = fract(g) - 0.5;
+  float h = hash(id);
+  float h2 = hash(id + 17.3);
+  float dist = length((id + 0.5) / CELLS);
+  float th = 0.08 + 0.5 * clamp(dist, 0.0, 1.0) + 0.32 * h;
+  float lp = clamp((uReveal - th * 0.9) / 0.12, 0.0, 1.0);
+  lp = lp * lp * (3.0 - 2.0 * lp);
+  float slip = uDecay * (0.25 + 0.75 * h2);
+  f += (vec2(h, h2) - 0.5) * 0.45 * slip;
+  // Tiles grow past their cell once in place, so the whole drop is seamless.
+  float size = mix(0.15, 0.62, lp) * (1.0 - 0.3 * slip);
+  float box = max(abs(f.x), abs(f.y));
+  float aa = fwidth(box) * 1.2 + 1e-4;
+  float tile = 1.0 - smoothstep(size - aa, size + aa, box);
+  float lost = step(1.0 - uDecay * 0.5, h2);
+  float dark = step(h, uDecay * 0.42) * uDecay;
+  col = mix(col, uCoreC * 0.35, dark * 0.85);
+  col *= 1.0 - 0.25 * uDecay;
 
   // Fine grain.
-  float g = fract(sin(dot(gl_FragCoord.xy, vec2(12.9898, 78.233))) * 43758.5453);
-  col += (g - 0.5) * 0.035;
+  col += (hash(floor(gl_FragCoord.xy)) - 0.5) * 0.03;
 
-  float alpha = mix(0.8, 0.97, pow(edge, 1.5)) + coreMask * 0.2;
-  alpha = mix(coreMask * 0.98, alpha, intact);
-  alpha = max(alpha, crack * 0.8);
-
-  // Reveal: the body fills in in soft patches, as if condensing.
-  float grain2 = snoise(vPosO * 3.2 - 5.0) * 0.5 + 0.5;
-  float formed = smoothstep(grain2 - 0.12, grain2 + 0.12, uReveal * 1.3 - 0.15);
-  alpha *= formed;
-  gl_FragColor = vec4(col, clamp(alpha, 0.0, 1.0));
+  // Fade out over the outer part of the drop so it melts into the page.
+  float alpha = (1.0 - smoothstep(0.55, 0.98, edge)) * tile * lp * (1.0 - lost);
+  gl_FragColor = vec4(clamp(col, 0.0, 1.0), clamp(alpha, 0.0, 1.0));
   #include <colorspace_fragment>
 }
 `;
