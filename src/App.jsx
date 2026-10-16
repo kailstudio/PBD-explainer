@@ -18,7 +18,7 @@ const CANVAS = 560;
 const GLIDE = { duration: 0.95, ease: [0.65, 0, 0.2, 1] };
 
 export default function App() {
-  const { view, itemId } = useHashRoute();
+  const { view, itemId, partId } = useHashRoute();
   const item = itemId ? findItem(view, itemId) : null;
   const page = item ? 'detail' : 'hub';
   const routeKey = `${view}/${item?.id ?? ''}`;
@@ -167,7 +167,7 @@ export default function App() {
             {page === 'hub' ? (
               <Hub key="hub" view={view} onLayout={measure} />
             ) : (
-              <Detail key={routeKey} view={view} item={item} onLayout={measure} />
+              <Detail key={routeKey} view={view} item={item} partId={partId} onLayout={measure} />
             )}
           </AnimatePresence>
         </div>

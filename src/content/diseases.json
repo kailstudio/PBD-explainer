@@ -3,70 +3,672 @@
     "id": "genetic-disorders",
     "label": "Genetic Peroxisomal Disorders",
     "hubLabel": "Genetic Disorders",
-    "summary": "Zellweger spectrum, X-ALD, RCDP, Refsum, and single-enzyme diseases; where every current treatment originated"
+    "summary": "Zellweger spectrum, X-ALD, RCDP, Refsum disease and single-enzyme disorders; home to every approved peroxisome-directed therapy to date",
+    "description": "More than a dozen inherited conditions are caused by variants in the genes that build peroxisomes (PEX genes) or in single peroxisomal enzymes or transporters. They are individually rare, but together they are the clearest evidence of what peroxisomes do in people, and every approved peroxisome-directed therapy to date was developed for one of them.",
+    "parts": [
+      {
+        "id": "zellweger-spectrum-disorders-peroxisome-biogenesis-disorders",
+        "label": "Zellweger spectrum disorders (Peroxisome Biogenesis Disorders)",
+        "panelTitle": "Zellweger spectrum disorders (Peroxisome Biogenesis Disorders)",
+        "text": "Variants in any one of more than a dozen PEX genes prevent peroxisomes from forming or importing their enzymes. Severity ranges from death in infancy to milder forms that reach adulthood with vision and hearing loss.",
+        "left": [
+          "**[Biogenesis & Recycling](#/mechanisms/biogenesis-recycling):** PEX1 is the most commonly affected gene. Because import fails, nearly every peroxisomal function is lost at once.",
+          "**Diagnosis:** raised VLCFAs, low plasmalogens, raised 27-carbon bile acid intermediates and phytanic/pristanic acid in blood, now usually confirmed by gene panel or exome sequencing.",
+          "**Prevalence:** often cited as about 1 in 50,000 births, though published estimates span a range and milder forms are likely underdiagnosed ([Braverman 2016](https://pubmed.ncbi.nlm.nih.gov/26750748/)).",
+          "**Treatment:** no disease-modifying therapy. Care is supportive: oral cholic acid for bile acid intermediates, fat-soluble vitamins, hearing and vision support, and adrenal monitoring."
+        ],
+        "furtherReading": [
+          "[Braverman 2016](https://pubmed.ncbi.nlm.nih.gov/26750748/) (clinical consensus guideline)",
+          "[Wanders 2018](https://doi.org/10.1016/j.mcp.2018.02.001) (improved laboratory diagnosis of peroxisomal disorders)",
+          "[Wanders 2018](https://doi.org/10.1007/978-981-13-2233-4_15) (peroxisomes in metabolic interaction networks)"
+        ],
+        "right": [
+          "Therapies that restore import in specific variants, such as small-molecule chaperones for missense variants like PEX1-G843D ([MacLean 2019](https://www.pnas.org/doi/full/10.1073/pnas.0914960107)) and gene therapy approaches tested in mouse retina ([Argyriou 2021](https://pmc.ncbi.nlm.nih.gov/articles/PMC8516995/)).",
+          "Whether blocking excess pexophagy can preserve peroxisomes in patients, building on cell studies ([Law 2017](https://pubmed.ncbi.nlm.nih.gov/28521612/)).",
+          "Structure-guided therapy: high-resolution structures of the import machinery ([Feng 2022](https://pubmed.ncbi.nlm.nih.gov/35768507/)) make it possible to ask which patient variants could be rescued.",
+          "Natural history data and validated blood biomarkers to make clinical trials feasible."
+        ]
+      },
+      {
+        "id": "x-linked-adrenoleukodystrophy-x-ald",
+        "label": "X-linked adrenoleukodystrophy (X-ALD)",
+        "panelTitle": "X-linked adrenoleukodystrophy (X-ALD)",
+        "text": "The most common peroxisomal disorder, caused by loss of ABCD1, the transporter that carries VLCFAs into peroxisomes. It affects the adrenal glands, spinal cord and, in some boys and men, the brain.",
+        "left": [
+          "**[Lipid Breakdown](#/mechanisms/lipid-breakdown):** VLCFAs build up in blood and tissue.",
+          "**Presentations:** adrenal insufficiency; progressive spinal cord disease in adults (adrenomyeloneuropathy); and cerebral ALD, a rapid inflammatory loss of brain white matter, most often in boys.",
+          "**[Immune & Inflammatory Signaling](#/mechanisms/immune-signaling):** microglial damage precedes demyelination in cerebral ALD ([Bergner 2019](https://pubmed.ncbi.nlm.nih.gov/30980503/)).",
+          "**Treatment:** cerebral ALD caught early is treated by stem cell transplant or the gene therapy elivaldogene autotemcel, which received FDA accelerated approval in 2022 and carries a boxed warning for blood cancers ([Duncan 2024](https://pubmed.ncbi.nlm.nih.gov/39383458/)). X-ALD was added to the US newborn screening panel in 2016 ([Kemper 2017](https://pubmed.ncbi.nlm.nih.gov/27337030/))."
+        ],
+        "furtherReading": [
+          "[Engelen 2012](https://pubmed.ncbi.nlm.nih.gov/22889154/) (clinical overview of X-ALD, from presentation to management)"
+        ],
+        "right": [
+          "Predicting which boys will develop cerebral disease, so treatment can be timed before damage starts.",
+          "Disease-modifying treatment for adult spinal cord disease; the PPARγ agonist leriglitazone has been studied in clinical trials here.",
+          "Safer gene therapy vectors."
+        ]
+      },
+      {
+        "id": "rhizomelic-chondrodysplasia-punctata-rcdp",
+        "label": "Rhizomelic Chondrodysplasia Punctata (RCDP)",
+        "panelTitle": "Rhizomelic Chondrodysplasia Punctata (RCDP)",
+        "text": "A group of disorders in which plasmalogen synthesis fails, causing shortened upper limbs, cataracts, skeletal changes and severe developmental delay from birth.",
+        "left": [
+          "**[Lipid Synthesis (Plasmalogens)](#/mechanisms/lipid-synthesis):** caused by variants in PEX7 (type 1), GNPAT (type 2), AGPS (type 3), FAR1 (type 4) or the long isoform of PEX5 (type 5).",
+          "**[Biogenesis & Recycling](#/mechanisms/biogenesis-recycling):** RCDP type 1 is an import disorder limited to PTS2 cargo, which is why plasmalogen synthesis and phytanic acid breakdown fail while most other functions are spared.",
+          "Residual plasmalogen levels track with clinical severity: red blood cell plasmalogens are almost undetectable in classic RCDP, and higher residual levels in nonclassic forms go with better growth and development ([Fallatah 2021](https://pubmed.ncbi.nlm.nih.gov/33337545/))."
+        ],
+        "furtherReading": [
+          "[Braverman 2012](https://pubmed.ncbi.nlm.nih.gov/22627108/) (clinical and biochemical overview of RCDP)"
+        ],
+        "right": [
+          "Whether plasmalogen replacement or synthetic plasmalogen precursors can raise tissue levels and improve outcomes. Dietary alkyl-glycerol restores plasmalogens and improves pathology in Pex7 knockout mice, but this work is preclinical ([Brites 2011](https://pubmed.ncbi.nlm.nih.gov/22163031/)).",
+          "Natural history studies and outcome measures for trials."
+        ]
+      },
+      {
+        "id": "refsum-disease",
+        "label": "Refsum disease",
+        "panelTitle": "Refsum disease",
+        "text": "Phytanic acid, a branched fat from the diet, cannot be broken down and slowly accumulates, causing vision loss, loss of smell, nerve damage and unsteady gait.",
+        "left": [
+          "**[Lipid Breakdown](#/mechanisms/lipid-breakdown):** caused by variants in PHYH (most cases) or PEX7.",
+          "**Treatment:** one of the few peroxisomal disorders with an effective intervention: restricting dietary phytanic acid, with plasma exchange in acute episodes ([Wanders 2011](https://pubmed.ncbi.nlm.nih.gov/21683154/))."
+        ],
+        "furtherReading": [
+          "[Wanders 2011](https://pubmed.ncbi.nlm.nih.gov/21683154/) (phytanic acid metabolism and Refsum disease)"
+        ],
+        "right": [
+          "Earlier diagnosis, since retinal damage is largely irreversible by the time it is recognized."
+        ]
+      },
+      {
+        "id": "single-enzyme-disorders",
+        "label": "Single-enzyme disorders",
+        "panelTitle": "Single-enzyme disorders",
+        "text": "Loss of a single peroxisomal enzyme or tether disables one pathway, while the peroxisomes themselves form normally.",
+        "left": [
+          "**[Lipid Breakdown](#/mechanisms/lipid-breakdown):** D-bifunctional protein deficiency and ACOX1 deficiency cause severe infantile disease resembling Zellweger spectrum; AMACR and ACOX2 deficiencies affect branched fats and bile acids.",
+          "**[Detoxification](#/mechanisms/detoxification):** primary hyperoxaluria type 1 (AGXT) causes kidney stones and kidney failure; lumasiran is approved for it.",
+          "**[Organelle Crosstalk](#/mechanisms/organelle-crosstalk):** ACBD5 deficiency, loss of a peroxisome-ER tether, causes retinal and white matter disease."
+        ],
+        "furtherReading": [
+          "[Waterham 2016](https://pubmed.ncbi.nlm.nih.gov/26611709/) (genetics of peroxisomal disorders, biogenesis and single-enzyme)"
+        ],
+        "right": [
+          "Each disorder isolates a single peroxisomal function in people. Systematic comparison across them could show which functions drive which symptoms, which is directly relevant to Zellweger Spectrum Disorder."
+        ]
+      }
+    ]
   },
   {
     "id": "cancer",
     "label": "Cancer",
-    "summary": "prostate, colorectal, lymphoma, and glioblastoma tumors lean on peroxisomal fat metabolism and antioxidant capacity",
-    "description": "Tumors are metabolically demanding and need both fuel and protection from oxidative damage. Several tumor types appear to lean on peroxisomal fat metabolism and peroxisomal antioxidant capacity to supply both.",
+    "summary": "AMACR and other PPAR-regulated genes link peroxisomal lipid metabolism to tumor growth; anti-cancer PPAR antagonists may expose peroxisomal vulnerabilities ([Kong 2020](https://www.frontiersin.org/journals/molecular-biosciences/articles/10.3389/fmolb.2020.00153/full)).",
+    "description": "Tumors are metabolically demanding and need both fuel and protection from oxidative damage. Several tumor types appear to lean on peroxisomal fat metabolism and peroxisomal antioxidant capacity to supply both, creating possible metabolic weak points for treatment.",
     "parts": [
       {
-        "id": "prostate",
+        "id": "prostate-cancer",
         "label": "Prostate cancer",
-        "text": "the most developed example — AMACR is elevated distinctively enough to be used as a routine diagnostic marker in pathology labs ([Luo et al., Cancer Res 2002](https://pubmed.ncbi.nlm.nih.gov/?term=Luo+AMACR+prostate+cancer+Cancer+Research+2002); [Rubin et al., JAMA 2002](https://pubmed.ncbi.nlm.nih.gov/?term=Rubin+AMACR+prostate+cancer+JAMA+2002); [Kong 2020](https://www.frontiersin.org/journals/molecular-biosciences/articles/10.3389/fmolb.2020.00153/full)).",
-        "panelTitle": "Prostate Cancer",
+        "panelTitle": "Prostate cancer",
+        "text": "The most developed example: AMACR is elevated distinctively enough to be used as a routine diagnostic marker in pathology labs.",
         "left": [
-          "**AMACR ([Lipid Breakdown](#/mechanisms/lipid-breakdown)):** an established diagnostic marker for prostate cancer, elevated enough to be used routinely in pathology labs ([Luo et al., Cancer Res 2002](https://pubmed.ncbi.nlm.nih.gov/?term=Luo+AMACR+prostate+cancer+Cancer+Research+2002); [Rubin et al., JAMA 2002](https://pubmed.ncbi.nlm.nih.gov/?term=Rubin+AMACR+prostate+cancer+JAMA+2002)), and separately linked to tumor growth and redox stress ([Kong 2020](https://www.frontiersin.org/journals/molecular-biosciences/articles/10.3389/fmolb.2020.00153/full)).",
-          "**DECR2 ([Lipid Breakdown](#/mechanisms/lipid-breakdown)):** a second peroxisomal fatty-acid oxidation enzyme prostate tumors use to fuel growth and resist androgen-deprivation (hormone) therapy ([Mah 2024](https://www.nature.com/articles/s41416-023-02557-8))."
+          "**AMACR ([Lipid Breakdown](#/mechanisms/lipid-breakdown)):** an established diagnostic marker for prostate cancer ([Luo 2002](https://pubmed.ncbi.nlm.nih.gov/11956072/); [Rubin 2002](https://pubmed.ncbi.nlm.nih.gov/11926890/)), separately linked to tumor growth and redox stress ([Kong 2020a](https://www.frontiersin.org/journals/molecular-biosciences/articles/10.3389/fmolb.2020.00153/full)).",
+          "**DECR2 ([Lipid Breakdown](#/mechanisms/lipid-breakdown)):** a second peroxisomal fat-burning enzyme that prostate tumors use to fuel growth and resist androgen-deprivation (hormone) therapy ([Mah 2024](https://www.nature.com/articles/s41416-023-02557-8))."
         ],
-        "right": []
+        "furtherReading": [
+          "[Mah 2024](https://www.nature.com/articles/s41416-023-02557-8) (tumors use DECR2 to burn fatty acids and resist hormone therapy)",
+          "[Kong 2020a](https://www.frontiersin.org/journals/molecular-biosciences/articles/10.3389/fmolb.2020.00153/full) (AMACR links peroxisomal lipid metabolism to tumor growth and redox stress)"
+        ],
+        "right": [
+          "What molecular mechanism kills cancer cells when DECR2 is blocked, and does this directly inhibit hormone-driven survival?",
+          "In AMACR-high tumors, is there a specific dependency on peroxisomal AMACR activity, and does AMACR inhibition work together with anti-cancer PPAR antagonists?",
+          "When does PPAR activation help the host, and when does it help tumors or viruses? Can the harmful peroxisome-dependent part be blocked selectively?"
+        ]
       },
       {
-        "id": "colorectal",
+        "id": "colorectal-cancer",
         "label": "Colorectal cancer",
-        "text": "the fatty acid transporter PMP70 helps drug-resistant colorectal tumors survive treatment ([Yin 2025](https://www.nature.com/articles/s41419-025-07572-6))."
+        "panelTitle": "Colorectal cancer",
+        "text": "The peroxisomal fatty acid transporter PMP70 helps drug-resistant colorectal tumors survive treatment.",
+        "left": [
+          "**PMP70 ([Lipid Breakdown](#/mechanisms/lipid-breakdown)):** PMP70 (ABCD3) protects drug-resistant colorectal cancer cells from toxic fat build-up and helps them evade treatment ([Yin 2025](https://www.nature.com/articles/s41419-025-07572-6))."
+        ],
+        "furtherReading": [
+          "[Yin 2025](https://www.nature.com/articles/s41419-025-07572-6) (PMP70 protects drug-resistant colorectal cancer from toxic fat damage)"
+        ],
+        "right": [
+          "Is PMP70's role in drug resistance about transporting fatty acids, or about positioning peroxisomes near lipid droplets?"
+        ]
       },
       {
         "id": "lymphoma",
         "label": "Lymphoma",
-        "text": "peroxisomes buffer chemotherapy-induced free radicals, helping tumor cells survive otherwise lethal treatment ([Dahabieh 2017](https://pmc.ncbi.nlm.nih.gov/articles/PMC5635217/))."
+        "panelTitle": "Lymphoma",
+        "text": "Peroxisomes buffer drug-induced free radicals, helping lymphoma cells survive otherwise lethal treatment.",
+        "left": [
+          "**[Detoxification](#/mechanisms/detoxification):** peroxisomes buffer free radicals generated by cancer drugs in lymphoma; in the study cited, these were HDAC inhibitors (a class of cancer drug), specifically vorinostat ([Dahabieh 2017](https://pmc.ncbi.nlm.nih.gov/articles/PMC5635217/))."
+        ],
+        "furtherReading": [
+          "[Dahabieh 2017](https://pmc.ncbi.nlm.nih.gov/articles/PMC5635217/) (peroxisomes buffer free radicals from chemotherapy in lymphoma)",
+          "[Dahabieh 2018](https://doi.org/10.1016/j.bbcan.2018.07.004) (peroxisomes and cancer: a metabolic specialist in a disease of aberrant metabolism)",
+          "[Kim 2020](https://doi.org/10.3390/cells9071692) (peroxisome metabolism in cancer)"
+        ],
+        "right": [
+          "Can lymphoma drug resistance be overcome by blocking peroxisomal antioxidants alone, or do multiple peroxisomal functions need to be targeted?",
+          "Can catalase or plasmalogen synthesis alone restore resistance to HDAC inhibitors?"
+        ]
+      },
+      {
+        "id": "ether-lipid-dependent-tumors-multiple-types",
+        "label": "Ether lipid-dependent tumors (multiple types)",
+        "panelTitle": "Ether lipid-dependent tumors (multiple types)",
+        "text": "The peroxisomal enzyme AGPS builds ether lipids that fuel cancer cell migration, invasion and survival across multiple tumor types.",
+        "left": [
+          "**[Lipid Synthesis (Plasmalogens)](#/mechanisms/lipid-synthesis):** AGPS-made ether lipids drive aggressive tumor behavior ([Chen 2024](https://www.nature.com/articles/s41467-024-51489-1)).",
+          "**[Lipid Synthesis (Plasmalogens)](#/mechanisms/lipid-synthesis):** the same peroxisome-dependent ether lipids can make cancer cells more vulnerable to ferroptosis (Zou 2020)."
+        ],
+        "furtherReading": [
+          "[Chen 2024](https://www.nature.com/articles/s41467-024-51489-1) (AGPS-made ether lipids fuel cancer migration, invasion and survival)"
+        ],
+        "right": [
+          "Which AGPS-made lipids drive cancer aggression?",
+          "Do those same lipids make tumors vulnerable to ferroptosis-inducing treatment?",
+          "In cancer, can peroxisomal ROS buffering be deliberately disrupted to resensitize tumors to chemotherapy?"
+        ]
       },
       {
         "id": "glioblastoma",
         "label": "Glioblastoma",
-        "text": "included per the reference document; specific peroxisomal mechanism not yet detailed here — open item."
+        "panelTitle": "Glioblastoma",
+        "text": "The most aggressive primary brain tumor. Glioma cells appear to depend on peroxisomal protein import and fat burning to grow and invade.",
+        "left": [
+          "Biogenesis & Recycling: PEX5, the receptor that carries enzymes into the peroxisome, is required for glioma cell growth, migration and invasion, and a peroxisomal enzyme signature carries prognostic information ([Qin 2024](https://pubmed.ncbi.nlm.nih.gov/38540734/))."
+        ],
+        "furtherReading": [
+          "[Qin 2024](https://pubmed.ncbi.nlm.nih.gov/38540734/) (PEX5 is required for glioma cell growth, migration and invasion)"
+        ],
+        "right": [
+          "What other peroxisome proteins are required for glioma cell growth?"
+        ]
       }
     ]
   },
   {
     "id": "infection",
     "label": "Infection",
-    "summary": "viruses evolve to shrink, degrade, or hijack peroxisomes during infection"
+    "summary": "viruses evolve to shrink, degrade or hijack peroxisomes during infection",
+    "description": "Peroxisomes help cells detect viruses early, and they also supply the lipids viruses need to build new particles. Different viruses therefore either suppress peroxisomes to escape early immune detection or expand them to support their own replication.",
+    "parts": [
+      {
+        "id": "peroxisomes-as-an-early-antiviral-alarm",
+        "label": "Peroxisomes as an early antiviral alarm",
+        "panelTitle": "Peroxisomes as an early antiviral alarm",
+        "text": "Peroxisomal MAVS switches on antiviral defense genes within hours, without waiting for interferon, slowing infection before the full immune response arrives.",
+        "left": [
+          "**[Immune & Inflammatory Signaling](#/mechanisms/immune-signaling):** peroxisomes act as an early antiviral alarm system, switching on defense genes before the interferon-driven response (Dixit 2010).",
+          "**[Immune & Inflammatory Signaling](#/mechanisms/immune-signaling):** the peroxisomal response is distinct from the mitochondrial one and favors type III (lambda) interferons ([Odendall 2014](https://pubmed.ncbi.nlm.nih.gov/24952503/))."
+        ],
+        "furtherReading": [
+          "[Dixit 2010](https://pubmed.ncbi.nlm.nih.gov/20451243/) (discovery of peroxisomal MAVS signaling)",
+          "[Liu 2024](https://www.mdpi.com/1999-4915/16/8/1309) (influenza A M2 protein binds PEX19 and disrupts peroxisome formation)",
+          "[Di Cara 2019](https://doi.org/10.3390/ijms20163877) (peroxisomes in immune response and inflammation)"
+        ],
+        "right": [
+          "How different are the immune signals from peroxisomal versus mitochondrial antiviral hubs, and which viruses depend most on peroxisomal immunity?"
+        ]
+      },
+      {
+        "id": "viruses-that-shrink-peroxisomes",
+        "label": "Viruses that shrink peroxisomes",
+        "panelTitle": "Viruses that shrink peroxisomes",
+        "text": "Flaviviruses (such as Zika and dengue), HIV, SARS-CoV-2 and others reduce peroxisome numbers to silence early immune detection.",
+        "left": [
+          "**[Biogenesis & Recycling:](#/mechanisms/biogenesis-recycling)** these viruses shrink peroxisomes or disrupt key biogenesis factors to silence the peroxisomal MAVS-interferon alarm ([Zhang 2018](https://journals.asm.org/doi/10.1128/jvi.01677-17)). Influenza A does this directly: its M2 protein binds PEX19 and disrupts peroxisome formation, raising reactive oxygen species in a way that favors viral replication ([Liu 2024](https://www.mdpi.com/1999-4915/16/8/1309)).",
+          "**[Biogenesis & Recycling](#/mechanisms/biogenesis-recycling):** infection reshapes peroxisome size, number and positioning over time ([Knoblach 2021](https://www.molbiolcell.org/doi/10.1091/mbc.E21-02-0074))."
+        ],
+        "furtherReading": [
+          "[Zhang 2018](https://journals.asm.org/doi/10.1128/jvi.01677-17) (flaviviruses, HIV and SARS-CoV-2 shrink peroxisomes to evade early detection)",
+          "[Knoblach 2021](https://www.molbiolcell.org/doi/10.1091/mbc.E21-02-0074) (peroxisome structure and matrix content in SARS-CoV-2 infected cells)"
+        ],
+        "right": [
+          "Do viruses benefit more from shrinking peroxisomes by shutting down immune signaling, or by rewiring lipid and stress metabolism to help replication?",
+          "Do viruses that chronically destroy peroxisomes contribute to accelerated aging or metabolic complications in infected patients?",
+          "How do changes in peroxisome number and shape track with function (fat breakdown, ROS handling, immune signaling) across tissues and diseases?"
+        ]
+      },
+      {
+        "id": "viruses-that-expand-and-exploit-peroxisomes",
+        "label": "Viruses that expand and exploit peroxisomes",
+        "panelTitle": "Viruses that expand and exploit peroxisomes",
+        "text": "Some viruses, including certain herpesviruses, expand peroxisomes and use them as factories for the lipids that build viral membranes.",
+        "left": [
+          "**[Lipid Synthesis (Plasmalogens)](#/mechanisms/lipid-synthesis):** some viruses deliberately expand peroxisomes to sustain replication, taking over ether lipid and plasmalogen production ([Ferreira 2022](http://linkinghub.elsevier.com/retrieve/pii/S0962892421001999)).",
+          "**[Organelle Crosstalk](#/mechanisms/organelle-crosstalk):** different viruses use peroxisomes in opposite ways: some destroy them to escape immunity, others expand them to take lipids and replication machinery ([Cook 2019](https://pmc.ncbi.nlm.nih.gov/articles/PMC6857447/))."
+        ],
+        "furtherReading": [
+          "[Ferreira 2022](http://linkinghub.elsevier.com/retrieve/pii/S0962892421001999) (review of how viruses expand and exploit peroxisomes)",
+          "[Cook 2019](https://pmc.ncbi.nlm.nih.gov/articles/PMC6857447/) (peroxisome plasticity at the virus-host interface)"
+        ],
+        "right": [
+          "Which specific peroxisomal functions switch from protecting cells to helping viruses, and what determines that switch?",
+          "Which viral proteins directly grab peroxisomal machinery, and does the change in peroxisome shape itself alter how they work?",
+          "Do all viruses use the same remodeling playbook, or does each reprogram peroxisomes differently?"
+        ]
+      }
+    ]
   },
   {
     "id": "brain-nerve",
     "label": "Brain & Nerve Disease",
-    "summary": "Alzheimer's, Parkinson's, MS, and the nerve damage that also defines X-ALD and Zellweger spectrum"
+    "summary": "Alzheimer's disease, MS, Parkinson's disease, and the white matter damage that defines X-ALD and Zellweger spectrum",
+    "description": "The brain is rich in fats that peroxisomes make or break down, including the plasmalogens in myelin. Nerve damage defines the most severe genetic peroxisomal disorders, and peroxisomal changes are reported in Alzheimer's disease and multiple sclerosis, with more limited evidence in Parkinson's disease.",
+    "parts": [
+      {
+        "id": "alzheimers-disease",
+        "label": "Alzheimer's disease",
+        "panelTitle": "Alzheimer's disease",
+        "text": "Peroxisomal fat breakdown and plasmalogen synthesis fail in Alzheimer's brain tissue, and PPARγ drugs improve cognition in animal models.",
+        "left": [
+          "**[Lipid Breakdown](#/mechanisms/lipid-breakdown) and [Lipid Synthesis](#/mechanisms/lipid-synthesis):** VLCFA oxidation and plasmalogen synthesis fail in Alzheimer's brains ([Roczkowsky 2025](https://pmc.ncbi.nlm.nih.gov/articles/PMC12426004/)).",
+          "**[Detoxification](#/mechanisms/detoxification) and [Import](#/mechanisms/biogenesis-recycling):** PEX5 import defects and catalase loss compromise ROS detoxification in neurodegenerative disease ([Jo 2020](https://www.nature.com/articles/s12276-020-00503-9)).",
+          "**[Metabolic Signaling](#/mechanisms/metabolic-signaling):** PPARγ agonists rescue cognition in animal models, but a peroxisome-driven mechanism is unproven ([Steinke 2023](https://www.mdpi.com/2073-4409/12/8/1116)).",
+          "**[Biogenesis & Recycling](#/mechanisms/biogenesis-recycling):** peroxisome abundance, protein import and catalase content change in a region-specific way in Alzheimer's brains, in proportion to disease severity (Kou 2011).",
+          "**[Lipid Breakdown:](#/mechanisms/lipid-breakdown)** peroxisome changes appear in an Alzheimer's mouse model before symptoms ([Cimini 2009](https://doi.org/10.3233/jad-2009-1199)), and blocking peroxisomal beta-oxidation in rats raises VLCFAs and amyloid-beta ([Shi 2012](https://doi.org/10.1016/j.neulet.2012.08.086)).",
+          "**[Detoxification:](#/mechanisms/detoxification)** peroxisome-targeted catalase protected rat neurons from amyloid-beta damage ([Giordano 2014](https://doi.org/10.1038/srep04983))."
+        ],
+        "furtherReading": [
+          "[Roczkowsky 2025](https://pmc.ncbi.nlm.nih.gov/articles/PMC12426004/) (VLCFA oxidation and plasmalogen synthesis fail in Alzheimer's and MS brains)",
+          "[Steinke 2023](https://www.mdpi.com/2073-4409/12/8/1116) (PPARγ agonists rescue cognition in Alzheimer's models)",
+          "[Jo and Cho 2019](https://doi.org/10.1007/s12272-019-01131-2) (peroxisomal dysfunction in neurodegenerative disease)",
+          "[Kou 2011](https://doi.org/10.1007/s00401-011-0836-9) (peroxisomal alterations in Alzheimer's disease)",
+          "[Santos 2005](https://doi.org/10.1074/jbc.m505160200) (peroxisome proliferation protects neurons from amyloid-beta)"
+        ],
+        "right": [
+          "Does the benefit of PPARγ drugs require functional peroxisomal import and lipid metabolism?",
+          "Which plasmalogen and ether lipid species are most tightly linked to cognitive resilience versus decline?",
+          "Can restoring peroxisomal protein import alone slow or reverse neurodegeneration?",
+          "Can peroxisome-biased PPAR drugs keep the metabolic and brain-protective benefits while reducing side effects elsewhere in the body?"
+        ]
+      },
+      {
+        "id": "multiple-sclerosis-ms",
+        "label": "Multiple sclerosis (MS)",
+        "panelTitle": "Multiple sclerosis (MS)",
+        "text": "Peroxisome loss in oligodendrocytes, the cells that make myelin, triggers demyelination, a hallmark of MS.",
+        "left": [
+          "**[Biogenesis & Recycling](#/mechanisms/biogenesis-recycling):** peroxisome loss in oligodendrocytes, linked to defective import and biogenesis, triggers demyelination ([Martinović 2023](https://link.springer.com/article/10.1186/s40478-023-01595-w)).",
+          "**[Lipid Breakdown](#/mechanisms/lipid-breakdown) and [Lipid Synthesis](#/mechanisms/lipid-synthesis):** VLCFA oxidation and plasmalogen synthesis fail in MS brains, disrupting myelin integrity ([Roczkowsky 2025](https://pmc.ncbi.nlm.nih.gov/articles/PMC12426004/)).",
+          "**[Biogenesis & Recycling:](#/mechanisms/biogenesis-recycling)** neuronal peroxisomes are reduced in the grey matter of people with MS ([Gray 2014](https://doi.org/10.1177/1352458513505691))."
+        ],
+        "furtherReading": [
+          "[Martinović 2023](https://link.springer.com/article/10.1186/s40478-023-01595-w) (peroxisome loss in oligodendrocytes triggers demyelination)",
+          "[Gray 2014](https://doi.org/10.1177/1352458513505691) (reduced neuronal peroxisomes in MS grey matter)"
+        ],
+        "right": [
+          "Can MS models be rescued by restoring peroxisomal function?",
+          "Which cell types are most sensitive to peroxisomal lipid dysfunction across neurodegenerative diseases?"
+        ]
+      },
+      {
+        "id": "parkinsons-disease",
+        "label": "Parkinson's disease",
+        "panelTitle": "Parkinson's disease",
+        "text": "Reduced plasmalogens and altered peroxisomal function have been reported, but the evidence is thinner than for Alzheimer's or MS.",
+        "left": [
+          "**[Lipid Synthesis (Plasmalogens):](#/mechanisms/lipid-synthesis)** changes in brain and blood plasmalogens have been reported in Parkinson's disease, including reduced red blood cell and plasma plasmalogen species ([Mawatari 2022](https://pubmed.ncbi.nlm.nih.gov/35973579/)).",
+          "**[Lipid Synthesis (Plasmalogens):](#/mechanisms/lipid-synthesis)** blood plasmalogens are lower in Parkinson's disease ([Dragonas 2009](https://doi.org/10.1515/cclm.2009.205)), and frontal cortex membrane lipids are altered ([Fabelo 2011](https://doi.org/10.2119/molmed.2011.00119)).",
+          "**[Lipid Synthesis (Plasmalogens):](#/mechanisms/lipid-synthesis)** in MPTP mice, plasmalogen augmentation and plasmalogen precursors reduce striatal dopamine loss ([Miville-Godbout 2016](https://doi.org/10.1371/journal.pone.0151020); [Miville-Godbout 2017](https://doi.org/10.1016/j.brainres.2017.08.020)). A causal role in human disease is not established."
+        ],
+        "furtherReading": [
+          "[Mawatari 2022](https://pubmed.ncbi.nlm.nih.gov/35973579/) (reduced plasmalogen species in Parkinson's disease)",
+          "[Miville-Godbout 2016](https://doi.org/10.1371/journal.pone.0151020) (plasmalogen augmentation reverses striatal dopamine loss in MPTP mice)"
+        ],
+        "right": [
+          "Direct evidence on whether peroxisomal dysfunction precedes or follows loss of dopamine-producing neurons."
+        ]
+      },
+      {
+        "id": "genetic-leukodystrophies-x-ald-zellweger-spectrum",
+        "label": "Genetic leukodystrophies (X-ALD, Zellweger spectrum)",
+        "panelTitle": "Genetic leukodystrophies (X-ALD, Zellweger spectrum)",
+        "text": "Loss of brain white matter (leukodystrophy) defines cerebral X-ALD and many cases of Zellweger spectrum disorders.",
+        "left": [
+          "**[Lipid Breakdown](#/mechanisms/lipid-breakdown):** VLCFA build-up damages myelin in X-ALD and Zellweger spectrum disorders.",
+          "**[Immune & Inflammatory Signaling](#/mechanisms/immune-signaling):** in cerebral ALD, microglial damage comes before myelin loss ([Bergner 2019](https://pubmed.ncbi.nlm.nih.gov/30980503/)).",
+          "**[Lipid Synthesis (Plasmalogens)](#/mechanisms/lipid-synthesis):** plasmalogens are concentrated in myelin and protect it from oxidative damage ([Luoma 2015](https://pubmed.ncbi.nlm.nih.gov/25801291/))."
+        ],
+        "furtherReading": [
+          "[Bergner 2019](https://pubmed.ncbi.nlm.nih.gov/30980503/) (microglial damage precedes myelin breakdown in X-ALD)"
+        ],
+        "right": [
+          "What mechanisms shared between genetic leukodystrophies and MS could be targeted by the same therapy?"
+        ]
+      },
+      {
+        "id": "neurons-and-synapses",
+        "label": "Neurons and synapses",
+        "panelTitle": "Neurons and synapses",
+        "text": "Peroxisomes contact mitochondria and the ER in neurons and help set the lipid makeup of synaptic membranes.",
+        "left": [
+          "**[Organelle Crosstalk](#/mechanisms/organelle-crosstalk):** peroxisome contacts with mitochondria and ER shape synaptic membrane composition ([Carmichael 2025](https://www.frontiersin.org/journals/molecular-neuroscience/articles/10.3389/fnmol.2025.1603632/full))."
+        ],
+        "furtherReading": [
+          "[Carmichael 2025](https://www.frontiersin.org/journals/molecular-neuroscience/articles/10.3389/fnmol.2025.1603632/full) (peroxisome contacts with mitochondria and ER shape synaptic membranes)",
+          "[Trompier 2014](https://doi.org/10.1016/j.biochi.2013.09.009) (brain peroxisomes)",
+          "[Berger 2016](https://doi.org/10.1016/j.bbamcr.2015.12.005) (peroxisomes in brain development and function)"
+        ],
+        "right": [
+          "Do peroxisomes take part in neuronal calcium signaling and support synaptic transmission?",
+          "Do specific patterns of peroxisome contacts correlate with resilience versus vulnerability in neurodegeneration?"
+        ]
+      }
+    ]
   },
   {
     "id": "obesity-diabetes",
     "label": "Obesity & Diabetes",
-    "summary": "fat cell development, brown fat heat generation, and insulin-producing cell survival"
+    "summary": "fat cell development, brown fat heat generation, insulin-producing cell survival, and diabetic nerve damage",
+    "description": "In fat tissue, peroxisomes help control how fat cells develop, how they release stored fat, and how brown fat generates heat. In diabetes, they are emerging as shared metabolic nodes that link disordered lipids to damage in insulin-producing cells, nerves and kidneys.",
+    "parts": [
+      {
+        "id": "fat-cell-development-and-fat-release",
+        "label": "Fat cell development and fat release",
+        "panelTitle": "Fat cell development and fat release",
+        "text": "Peroxisome number rises as fat cells mature, and peroxisomes help decide when stored fat is released.",
+        "left": [
+          "**[Biogenesis & Recycling](#/mechanisms/biogenesis-recycling):** as fat cells mature, peroxisome number and function increase ([Park 2019](https://www.jci.org/articles/view/120606)).",
+          "**[Metabolic Signaling](#/mechanisms/metabolic-signaling):** obesity reduces peroxisomal function in fat tissue and liver, while PPARα activation, exercise and fasting can enhance it ([Jiang 2022](https://e-dmj.org/journal/view.php?doi=10.4093/dmj.2021.0274)).",
+          "**[Organelle Crosstalk](#/mechanisms/organelle-crosstalk):** during fasting, PEX5 escorts the fat-releasing enzyme ATGL to peroxisome-lipid droplet contacts ([Han 2020](https://journals.sagepub.com/doi/10.1177/2515256420960303)).",
+          "**[Detoxification](#/mechanisms/detoxification):** peroxisome-derived ROS stabilize PEX2, which degrades ATGL and suppresses fat release ([Ding 2021](https://pmc.ncbi.nlm.nih.gov/articles/PMC8688145/)).",
+          "**[Biogenesis & Recycling:](#/mechanisms/biogenesis-recycling)** peroxisome formation is turned down in the white fat of obese mice, and obese people show lower expression of peroxisomal genes ([Piao 2019](https://doi.org/10.1089/ars.2018.7614))."
+        ],
+        "furtherReading": [
+          "[Jiang 2022](https://e-dmj.org/journal/view.php?doi=10.4093/dmj.2021.0274) (obesity reduces peroxisomal function; PPARα activation, exercise and fasting restore it)",
+          "[Ding 2021](https://pmc.ncbi.nlm.nih.gov/articles/PMC8688145/) (peroxisome-derived ROS stabilize PEX2, which degrades ATGL and suppresses lipolysis)",
+          "[Lodhi and Semenkovich 2014](https://doi.org/10.1016/j.cmet.2014.01.002) (peroxisomes in lipid metabolism and signaling)",
+          "[Liu 2019](https://doi.org/10.1016/j.redox.2019.101167) (peroxisomal control of redox balance and adipocyte metabolism)",
+          "[Piao 2019](https://doi.org/10.1089/ars.2018.7614) (impaired peroxisomal fitness in obese mice)"
+        ],
+        "right": [
+          "If peroxisome function is boosted during fat cell development, does that produce healthier fat cells?",
+          "In obesity and high insulin states, which steps in the peroxisome / lipid droplet / PEX5 / ATGL axis fail, and which can be safely restored?",
+          "How much does the peroxisome-specific PEX2-ATGL pathway, as opposed to mitochondrial fat burning, control lipid handling in obesity?",
+          "Which diet and exercise regimens best restore peroxisomal function, and does restoring it alone improve insulin resistance and inflammation?",
+          "Can boosting peroxisome formation or selective pexophagy reverse metabolic disease?"
+        ]
+      },
+      {
+        "id": "brown-fat-and-heat-generation",
+        "label": "Brown fat and heat generation",
+        "panelTitle": "Brown fat and heat generation",
+        "text": "Brown fat burns energy to make heat. Peroxisome loss impairs both white and brown fat.",
+        "left": [
+          "**[Biogenesis & Recycling](#/mechanisms/biogenesis-recycling):** peroxisome loss impairs white and brown fat, worsening obesity, heat-generation defects and insulin resistance ([Hofer 2017](https://www.sciencedirect.com/science/article/pii/S1388198116303468)).",
+          "**[Lipid Synthesis (Plasmalogens)](#/mechanisms/lipid-synthesis):** peroxisome-derived lipids are needed for cold-induced mitochondrial division in brown fat (Park 2019).",
+          "**[Biogenesis & Recycling:](#/mechanisms/biogenesis-recycling)** PEX13 is required for white fat to generate heat in cold-exposed mice ([Park 2022](https://pubmed.ncbi.nlm.nih.gov/34517131/))."
+        ],
+        "furtherReading": [
+          "[Hofer 2017](https://www.sciencedirect.com/science/article/pii/S1388198116303468) (peroxisome loss impairs both white and brown fat)",
+          "[Park 2019](https://www.jci.org/articles/view/120606) (peroxisome-derived lipids drive cold-induced mitochondrial fission)",
+          "[Martens 2012](https://doi.org/10.1016/j.ymgme.2012.10.015) (Pex5 knockout impairs white fat and muscle function)"
+        ],
+        "right": [
+          "Which specific peroxisomal pathways in fat cells are required to protect against obesity and loss of heat generation?"
+        ]
+      },
+      {
+        "id": "insulin-producing-beta-cells",
+        "label": "Insulin-producing beta-cells",
+        "panelTitle": "Insulin-producing beta-cells",
+        "text": "Functional peroxisomes are required for beta-cell integrity and insulin production.",
+        "left": [
+          "**[Biogenesis & Recycling](#/mechanisms/biogenesis-recycling):** when peroxisomes fail, beta-cells die even without obvious oxidative stress ([Baboota 2019](https://pubmed.ncbi.nlm.nih.gov/30795913/)).",
+          "**[Metabolic Signaling](#/mechanisms/metabolic-signaling):** genetic variants and drugs that activate PPARγ affect insulin sensitivity and diabetes risk ([Vales-Villamarin 2022](https://www.frontiersin.org/journals/pharmacology/articles/10.3389/fphar.2021.763853/full))."
+        ],
+        "furtherReading": [
+          "[Baboota 2019](https://pubmed.ncbi.nlm.nih.gov/30795913/) (functional peroxisomes are required for beta-cell integrity and insulin production)"
+        ],
+        "right": [
+          "Which peroxisomal pathway in beta-cells is necessary and sufficient to preserve their function?",
+          "How much of PPARγ's protective benefit happens through peroxisomal remodeling versus other targets?"
+        ]
+      },
+      {
+        "id": "diabetic-neuropathy",
+        "label": "Diabetic neuropathy",
+        "panelTitle": "Diabetic neuropathy",
+        "text": "In diabetic nerve damage, excess fat chemically modifies PEX11B and blocks peroxisome formation in Schwann cells, the cells that insulate peripheral nerves.",
+        "left": [
+          "**[Biogenesis & Recycling](#/mechanisms/biogenesis-recycling) (division):** PEX11B modification blocks peroxisome formation in Schwann cells and drives neuropathy; import and division appear to work together to maintain a healthy peroxisome pool ([Yang 2025](https://pubmed.ncbi.nlm.nih.gov/39934809/))."
+        ],
+        "furtherReading": [
+          "[Yang 2025](https://pubmed.ncbi.nlm.nih.gov/39934809/) (excess fat modifies PEX11B, blocking peroxisome formation in Schwann cells)"
+        ],
+        "right": [
+          "Is PEX11B modification the main link between fat overload and nerve damage in diabetic neuropathy?",
+          "Which PEX genes and formation steps are rate-limiting in fat cells, Schwann cells, beta-cells and key brain cell types?"
+        ]
+      }
+    ]
   },
   {
     "id": "liver",
     "label": "Liver Disease",
-    "summary": "fatty liver disease, bile flow disorders, and the liver failure of severe genetic peroxisomal disease"
+    "summary": "fatty liver disease, bile flow disorders, and the liver disease of severe genetic peroxisomal disorders",
+    "description": "The liver is one of the organs richest in peroxisomes. There, peroxisomes burn fats, make bile acids and dispose of glyoxylate. Liver disease is a major feature of severe genetic peroxisomal disorders, and drugs acting on PPAR signaling, which is linked to peroxisomes, are approved or have been studied in clinical trials for common liver conditions.",
+    "parts": [
+      {
+        "id": "fatty-liver-disease-masld-mash",
+        "label": "Fatty liver disease (MASLD / MASH)",
+        "panelTitle": "Fatty liver disease (MASLD / MASH)",
+        "text": "Metabolic dysfunction-associated steatotic liver disease (MASLD), and its inflammatory form MASH, is the most common chronic liver disease.",
+        "left": [
+          "**[Metabolic Signaling](#/mechanisms/metabolic-signaling):** the pan-PPAR agonist lanifibranor has been studied in clinical trials for MASH.",
+          "**[Lipid Breakdown](#/mechanisms/lipid-breakdown):** mice lacking the first enzyme of peroxisomal fat breakdown (ACOX1) develop fatty liver, inflammation and liver tumors ([Fan 1998](https://pubmed.ncbi.nlm.nih.gov/9624157/)).",
+          "**[Metabolic Signaling](#/mechanisms/metabolic-signaling):** obesity reduces peroxisomal function in the liver ([Jiang 2022](https://e-dmj.org/journal/view.php?doi=10.4093/dmj.2021.0274))."
+        ],
+        "furtherReading": [
+          "[Jiang 2022](https://pubmed.ncbi.nlm.nih.gov/35768507/) (obesity reduces peroxisomal function in liver and fat; PPARα activation restores it)"
+        ],
+        "right": [
+          "How much of the benefit of PPAR drugs in MASH depends on peroxisomal fat burning versus mitochondrial or anti-inflammatory effects?",
+          "Does peroxisomal hydrogen peroxide contribute to liver injury in MASH?",
+          "Do PPAR drugs lose effectiveness when peroxisomal import or formation is impaired, and how does that dependency vary by tissue?"
+        ]
+      },
+      {
+        "id": "bile-flow-disorders-cholestatic-liver-disease",
+        "label": "Bile flow disorders (cholestatic liver disease)",
+        "panelTitle": "Bile flow disorders (cholestatic liver disease)",
+        "text": "In cholestatic diseases such as primary biliary cholangitis (PBC), bile does not flow normally and bile acids damage the liver.",
+        "left": [
+          "**[Metabolic Signaling](#/mechanisms/metabolic-signaling):** two PPAR-targeting drugs, elafibranor and seladelpar, received accelerated FDA approval in 2024 for PBC.",
+          "**[Lipid Breakdown](#/mechanisms/lipid-breakdown):** peroxisomes perform the final steps of bile acid synthesis; whether those steps are altered in common cholestatic disease is not established. The evidence that exists is indirect, resting on PPAR drug effects on the bile acid pool rather than on direct measurement ([Ghonem 2020](https://pubmed.ncbi.nlm.nih.gov/32480421/))."
+        ],
+        "furtherReading": [
+          "[Ghonem 2020](https://pubmed.ncbi.nlm.nih.gov/32480421/) (fibrates normalize the bile acid pool in patients responding partly to UDCA)"
+        ],
+        "right": [
+          "Do the PBC benefits of PPAR drugs involve peroxisomes at all?",
+          "Are peroxisome-specific bile acid intermediates useful biomarkers in cholestatic disease?"
+        ]
+      },
+      {
+        "id": "liver-disease-in-genetic-peroxisomal-disorders",
+        "label": "Liver disease in genetic peroxisomal disorders",
+        "panelTitle": "Liver disease in genetic peroxisomal disorders",
+        "text": "Enlarged liver, impaired bile flow and scarring are common in Zellweger spectrum disorders and can progress to liver failure.",
+        "left": [
+          "**[Lipid Breakdown](#/mechanisms/lipid-breakdown):** 27-carbon bile acid intermediates accumulate. Oral cholic acid (FDA-approved 2015) is used as add-on treatment, with caution in advanced liver disease ([Berendse 2016](https://pubmed.ncbi.nlm.nih.gov/27469511/))."
+        ],
+        "furtherReading": [
+          "[Braverman 2016](https://pubmed.ncbi.nlm.nih.gov/26750748/) (clinical overview of peroxisome biogenesis disorders)"
+        ],
+        "right": [
+          "Which peroxisomal functions drive liver injury in Zellweger spectrum, and can liver-targeted therapy (for example liver-directed gene therapy) help even if brain disease is not addressed?"
+        ]
+      }
+    ]
   },
   {
     "id": "kidney",
     "label": "Kidney Disease",
-    "summary": "oxalate and kidney stone disease, and diabetic kidney damage"
+    "summary": "oxalate and kidney stone disease, and diabetic kidney damage",
+    "description": "Kidney tubule cells are rich in peroxisomes. Peroxisomal failure shows up in the kidney as oxalate stones in primary hyperoxaluria, as cysts and stones in Zellweger spectrum disorders, and as loss of antioxidant defense in diabetic kidney disease.",
+    "parts": [
+      {
+        "id": "oxalate-and-kidney-stone-disease",
+        "label": "Oxalate and kidney stone disease",
+        "panelTitle": "Oxalate and kidney stone disease",
+        "text": "Primary hyperoxaluria type 1 is a peroxisomal disorder in which oxalate builds up and crystallizes in the kidneys.",
+        "left": [
+          "**[Detoxification](#/mechanisms/detoxification):** loss of the peroxisomal enzyme AGXT lets glyoxylate turn into oxalate.",
+          "**[Biogenesis & Recycling](#/mechanisms/biogenesis-recycling):** in some patients a working AGXT enzyme is sent to mitochondria instead of peroxisomes ([Danpure 2006](https://pubmed.ncbi.nlm.nih.gov/17027096/)).",
+          "**Treatment:** lumasiran (FDA-approved 2020) silences glycolate oxidase, a peroxisomal enzyme upstream of oxalate ([Garrelfs 2021](https://pubmed.ncbi.nlm.nih.gov/33789010/))."
+        ],
+        "furtherReading": [
+          "[Danpure 2006](https://pubmed.ncbi.nlm.nih.gov/17027096/) (how AGT mistargeting causes primary hyperoxaluria type 1)"
+        ],
+        "right": [
+          "Genetic studies suggest the peroxisomal glyoxylate genes explain very little common stone disease: in 787 unselected adult stone formers, variants in AGXT, GRHPR or HOGA1 were found in only three ([Anderegg 2024](https://pubmed.ncbi.nlm.nih.gov/38544324/)). Whether milder variation in this pathway contributes at all is still open."
+        ]
+      },
+      {
+        "id": "diabetic-kidney-disease",
+        "label": "Diabetic kidney disease",
+        "panelTitle": "Diabetic kidney disease",
+        "text": "Diabetic kidneys develop peroxisomes that are structurally intact but functionally empty, and peroxisomal fat breakdown generates harmful by-products.",
+        "left": [
+          "**[Lipid Breakdown](#/mechanisms/lipid-breakdown) and [Organelle Crosstalk](#/mechanisms/organelle-crosstalk):** peroxisomal fat breakdown produces succinate, which disrupts mitochondrial energy production and generates reactive oxygen species (ROS) ([Wang 2022](https://pmc.ncbi.nlm.nih.gov/articles/PMC8881667/)).",
+          "**[Detoxification](#/mechanisms/detoxification):** restoring the DsbA-L/catalase complex reduces kidney damage ([Liu 2023](https://www.sciencedirect.com/science/article/pii/S2213231723002562))."
+        ],
+        "furtherReading": [
+          "[Wang 2022](https://pmc.ncbi.nlm.nih.gov/articles/PMC8881667/) (peroxisomal fat breakdown produces succinate that damages the diabetic kidney)",
+          "[Liu 2023](https://www.sciencedirect.com/science/article/pii/S2213231723002562) (restoring the DsbA-L-catalase complex reduces kidney damage)",
+          "[Vasko 2016](https://doi.org/10.1089/ars.2016.6666) (peroxisomes and kidney injury)"
+        ],
+        "right": [
+          "Which molecules link peroxisomal fat breakdown to toxic succinate build-up and kidney damage?",
+          "Can established diabetic kidney disease be reversed by restoring the DsbA-L/catalase complex, or only slowed?",
+          "Could restoring peroxisomal ROS handling (for example, targeted catalase delivery or better protein import) improve brain, kidney, fat and muscle at the same time?",
+          "Whether boosting peroxisomal fat burning protects the kidney and heart during ischemia-reperfusion injury ([Gulati 1993](https://doi.org/10.1016/0925-4439(93)90071-8); [Liepinsh 2013](https://doi.org/10.1007/s00210-013-0849-0))."
+        ]
+      },
+      {
+        "id": "kidney-involvement-in-zellweger-spectrum-disorders",
+        "label": "Kidney involvement in Zellweger spectrum disorders",
+        "panelTitle": "Kidney involvement in Zellweger spectrum disorders",
+        "text": "Kidney cysts and calcium oxalate stones occur in Zellweger spectrum disorders.",
+        "left": [
+          "**[Detoxification:](#/mechanisms/detoxification)** hyperoxaluria is common in patients who survive past infancy, affecting 19 of 23 tested in one Dutch cohort, and five of 31 developed stones or nephrocalcinosis, one progressing to end-stage kidney disease ([van Woerden 2006](https://pubmed.ncbi.nlm.nih.gov/16621644/))."
+        ],
+        "furtherReading": [
+          "[van Woerden 2006](https://pubmed.ncbi.nlm.nih.gov/16621644/) (hyperoxaluria and kidney involvement in Zellweger spectrum patients)"
+        ],
+        "right": [
+          "Whether the screening proposed on the strength of one cohort, urinalysis for hyperoxaluria plus renal ultrasound, should become routine practice (van Woerden 2006)."
+        ]
+      }
+    ]
   },
   {
     "id": "aging",
     "label": "Aging",
-    "summary": "decline in peroxisome number, import efficiency, and quality control across tissues with age"
+    "summary": "quality-control systems clear damaged peroxisomes, preventing them from becoming sources of oxidative damage; these pathways decline with age ([Jo 2020](https://www.nature.com/articles/s12276-020-00503-9)).",
+    "description": "With age, impaired peroxisomal import and metabolism correlate with altered lipids, oxidative stress and functional loss across multiple tissues.",
+    "parts": [
+      {
+        "id": "declining-protein-import",
+        "label": "Declining protein import",
+        "panelTitle": "Declining protein import",
+        "text": "The peroxisomal import system declines with age, so key enzymes such as catalase stop reaching the peroxisome.",
+        "left": [
+          "**[Biogenesis & Recycling](#/mechanisms/biogenesis-recycling):** age-related decline reduces import of catalase and fat-burning proteins and triggers stress pathways ([Kim 2024](https://academic.oup.com/pnasnexus/article/3/10/pgae429/7793200)).",
+          "**[Biogenesis & Recycling:](#/mechanisms/biogenesis-recycling)** catalase import falls and catalase is mislocalized in senescent human cells ([Legakis 2002](https://doi.org/10.1091/mbc.e02-06-0322)), and restoring peroxisomal catalase import reverses features of cellular aging ([Koepke 2007](https://doi.org/10.1111/j.1600-0854.2007.00633.x); [Koepke 2008](https://doi.org/10.1016/j.taap.2008.06.004)).",
+          "**[Detoxification:](#/mechanisms/detoxification)** in worms and yeast, losing the peroxisomal catalase alone shortens lifespan and produces premature-aging features ([Petriv 2004](https://doi.org/10.1074/jbc.m400207200))."
+        ],
+        "furtherReading": [
+          "[Kim 2024](https://academic.oup.com/pnasnexus/article/3/10/pgae429/7793200) (the peroxisomal import system declines with age)",
+          "[Perichon 1998](https://doi.org/10.1007/s000180050192) (the role of peroxisomes in aging)",
+          "[Legakis 2002](https://doi.org/10.1091/mbc.e02-06-0322) (peroxisome senescence in human fibroblasts)"
+        ],
+        "right": [
+          "What molecular mechanisms drive age-dependent PEX5 loss in specific cell types?",
+          "Can boosting peroxisomal function in aged tissues reverse aging phenotypes and shift circulating biomarkers?",
+          "Is catalase mislocalization a single upstream failure that shows up as different diseases in different tissues, including drug-resistant cancer, neurodegeneration, diabetic kidney damage and frailty?"
+        ]
+      },
+      {
+        "id": "quality-control",
+        "label": "Quality control",
+        "panelTitle": "Quality control",
+        "text": "Quality-control systems clear damaged peroxisomal proteins and dysfunctional peroxisomes; these systems weaken with age.",
+        "left": [
+          "**[Biogenesis & Recycling](#/mechanisms/biogenesis-recycling) (pexophagy):** failing quality control lets damaged peroxisomes accumulate and become sources of oxidative damage ([Jo 2020](https://www.nature.com/articles/s12276-020-00503-9))."
+        ],
+        "furtherReading": [
+          "[Jo 2020](https://www.nature.com/articles/s12276-020-00503-9) (quality control clears damaged peroxisomes; these pathways fail with age)",
+          "[Cipolla 2017](https://pmc.ncbi.nlm.nih.gov/articles/PMC5366081/) (peroxisomal dysfunction in age-related disease)"
+        ],
+        "right": [
+          "Does loss of peroxisome quality control correlate with cellular markers of aging?",
+          "Can enhancing selective pexophagy reverse age-related tissue decline?",
+          "How does peroxisome-derived ROS interact with ROS from mitochondria and the cytosol, and does that interaction differ by disease?"
+        ]
+      },
+      {
+        "id": "weakening-organelle-contacts",
+        "label": "Weakening organelle contacts",
+        "panelTitle": "Weakening organelle contacts",
+        "text": "Aging weakens contacts between peroxisomes and mitochondria/ER, disrupting lipid transfer.",
+        "left": [
+          "**[Organelle Crosstalk](#/mechanisms/organelle-crosstalk):** weaker contacts accelerate mitochondrial breakdown and muscle aging ([Scalabrin 2025](https://www.nature.com/articles/s41467-025-64833-w))."
+        ],
+        "furtherReading": [
+          "[Scalabrin 2025](https://www.nature.com/articles/s41467-025-64833-w) (aging weakens peroxisome contacts with mitochondria and ER)"
+        ],
+        "right": [
+          "Which tether proteins best indicate healthy organelle coupling, and which decline most consistently with age?",
+          "Can restoring peroxisome-mitochondria contacts rescue age-related muscle decline?",
+          "Could small molecules or biologics that stabilize peroxisome contact sites become a new class of \"organelle communication\" drugs?"
+        ]
+      },
+      {
+        "id": "blood-biomarkers-of-peroxisomal-aging",
+        "label": "Blood biomarkers of peroxisomal aging",
+        "panelTitle": "Blood biomarkers of peroxisomal aging",
+        "text": "Peroxisomal decline happens differently across tissues and can be tracked through changes in blood lipids.",
+        "left": [
+          "**[Lipid Breakdown](#/mechanisms/lipid-breakdown) and [Lipid Synthesis](#/mechanisms/lipid-synthesis):** tissue-specific peroxisomal decline is reflected in blood lipid profiles ([Vercaemst 2026](https://www.mdpi.com/2073-4409/15/3/254))."
+        ],
+        "furtherReading": [
+          "[Vercaemst 2026](https://www.mdpi.com/2073-4409/15/3/254) (peroxisomal decline differs by tissue and can be tracked in blood lipids)",
+          "[Mi 2007](https://doi.org/10.1186/1477-5956-5-19) (age-related changes in mouse liver and kidney peroxisomes)",
+          "[Amelina 2011](https://doi.org/10.1016/j.jchromb.2011.08.044) (age-related changes in mouse liver peroxisomes)",
+          "[Narayan 2016](https://doi.org/10.1016/j.cels.2016.06.011) (peroxisomal proteins that decline with age in C. elegans)"
+        ],
+        "right": [
+          "Can a single blood ether lipid panel detect peroxisomal deficiency in aging and neurodegeneration, and an exploitable ether lipid dependency in cancer?"
+        ]
+      },
+      {
+        "id": "plasmalogens-and-cognitive-aging",
+        "label": "Plasmalogens and cognitive aging",
+        "panelTitle": "Plasmalogens and cognitive aging",
+        "text": "Plasmalogens drop in brain and blood with age, correlating with cognitive decline.",
+        "left": [
+          "**[Lipid Synthesis (Plasmalogens)](#/mechanisms/lipid-synthesis):** plasmalogen loss tracks with cognitive decline and influences cell-death sensitivity in aging tissues ([Curran 2025](https://www.sciencedirect.com/science/article/pii/S0022227525001889))."
+        ],
+        "furtherReading": [
+          "[Curran 2025](https://www.sciencedirect.com/science/article/pii/S0022227525001889) (plasmalogens drop in brain and blood with age, tracking cognitive decline)"
+        ],
+        "right": [
+          "Which plasmalogen species in blood and spinal fluid best predict functional aging?",
+          "What dosing range of plasmalogen replacement improves resilience without increasing harmful cell death?"
+        ]
+      }
+    ]
   }
 ]

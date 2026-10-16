@@ -54,10 +54,14 @@ function Panel({ side, heading, part, index }) {
   );
 }
 
-export default function Detail({ view, item, onLayout }) {
+export default function Detail({ view, item, partId, onLayout }) {
   const config = VIEWS[view];
   const parts = item.parts ?? [];
-  const [selectedId, setSelectedId] = useState(null);
+  const [selectedId, setSelectedId] = useState(partId);
+  // A link straight to one box (e.g. from another page) picks it.
+  useEffect(() => {
+    if (partId) setSelectedId(partId);
+  }, [partId]);
   const selected = parts.find((part) => part.id === selectedId) ?? null;
   const present = useIsPresent();
   const panelsRef = useRef(null);
