@@ -5,8 +5,8 @@
 // noise in the organelle's own space, so it turns with it); a thick glowing
 // rim, a darker band just inside it and a bright caustic near the bottom
 // give it the look of a lit drop of coloured liquid.
-// Intro controls: uReveal pixelates it into place tile by tile, and uDecay
-// darkens it and knocks the tiles loose again.
+// Intro controls: uReveal condenses it into place from the centre, and uDecay
+// darkens it and tears it open.
 
 // Simplex noise by Ian McEwan / Ashima Arts (MIT licence).
 const NOISE = /* glsl */ `
@@ -103,7 +103,7 @@ export const bodyFragment = /* glsl */ `
 ${NOISE}
 uniform float uTime;
 uniform float uEnergy;   // 0 at rest, rises on hover and on each pulse
-uniform float uReveal;   // intro: 0 = no tiles yet, 1 = whole drop
+uniform float uReveal;   // intro: 0 = nothing yet, 1 = whole drop
 uniform float uDecay;    // intro: 0 = healthy, 1 = breaking apart
 uniform vec3 uTint;      // mid body colour
 uniform vec3 uRimA;      // outermost rim light
@@ -117,8 +117,6 @@ varying vec3 vNormal;
 varying vec3 vView;
 varying vec3 vPosO;
 
-const float CELLS = 6.5;
-float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
 
 void main(){
   vec3 N = normalize(vNormal);
@@ -126,15 +124,16 @@ void main(){
   float ndv = clamp(dot(N, V), 0.0, 1.0);
   float edge = 1.0 - ndv;
 
-  // Slow swirls of colour inside, warped so they flow like liquid.
-  float t = uTime * 0.05;
-  vec3 p = vPosO * 0.6;
+  // Slow, broad swirls of colour inside: a few large soft flows rather
+  // than lots of small blotches, so the drop reads as smooth liquid.
+  float t = uTime * 0.04;
+  vec3 p = vPosO * 0.5;
   vec3 w = vec3(snoise(p + vec3(0.0, t, 0.0)), snoise(p + vec3(5.2, 1.3, t)), snoise(p + vec3(t, 9.1, 2.7)));
-  float n1 = snoise(p * 0.9 + w * 0.9 + vec3(t)) * 0.5 + 0.5;
-  float n2 = snoise(p * 1.3 + w * 0.6 - vec3(t * 1.3)) * 0.5 + 0.5;
-  vec3 col = mix(uCoreC, uCoreB, smoothstep(0.2, 0.75, n1));
-  col = mix(col, uTint, smoothstep(0.5, 0.85, n2) * 0.55);
-  col = mix(col, uCoreA, smoothstep(0.62, 0.92, n1 * 0.55 + n2 * 0.5) * 0.6);
+  float n1 = snoise(p * 0.8 + w * 0.45 + vec3(t)) * 0.5 + 0.5;
+  float n2 = snoise(p * 1.0 + w * 0.3 - vec3(t * 1.3)) * 0.5 + 0.5;
+  vec3 col = mix(uCoreC, uCoreB, smoothstep(0.15, 0.85, n1));
+  col = mix(col, uTint, smoothstep(0.4, 0.9, n2) * 0.55);
+  col = mix(col, uCoreA, smoothstep(0.5, 0.95, n1 * 0.55 + n2 * 0.5) * 0.6);
 
   // Lit from the lower right, as in a studio shot of a drop.
   float lit = dot(N, normalize(vec3(0.35, -0.35, 0.87))) * 0.5 + 0.5;
@@ -153,36 +152,28 @@ void main(){
   col = mix(col, mix(uRimB, uRimA, 0.3), caus * 0.8);
   col = mix(col, uCoreB * 0.7, smoothstep(0.986, 0.998, dot(N, normalize(vec3(-0.05, -0.62, 0.78)))) * 0.7);
 
-  // Intro tiles: the drop arrives, and breaks up, as a grid of tiles.
+  // Intro: the drop condenses out from the centre with a soft, noisy front,
+  // and when it fails it tears open in ragged holes from the rim inwards.
   vec3 ro = vPosO;
   vec3 rd = normalize(vPosO - uCamO);
   vec2 q = (ro + rd * (-ro.z / min(rd.z, -0.05))).xy;
-  vec2 g = q * CELLS;
-  vec2 id = floor(g);
-  vec2 f = fract(g) - 0.5;
-  float h = hash(id);
-  float h2 = hash(id + 17.3);
-  float dist = length((id + 0.5) / CELLS);
-  float th = 0.08 + 0.5 * clamp(dist, 0.0, 1.0) + 0.32 * h;
-  float lp = clamp((uReveal - th * 0.9) / 0.12, 0.0, 1.0);
-  lp = lp * lp * (3.0 - 2.0 * lp);
-  float slip = uDecay * (0.25 + 0.75 * h2);
-  f += (vec2(h, h2) - 0.5) * 0.45 * slip;
-  // Tiles grow past their cell once in place, so the whole drop is seamless.
-  float size = mix(0.15, 0.62, lp) * (1.0 - 0.3 * slip);
-  float box = max(abs(f.x), abs(f.y));
-  float aa = fwidth(box) * 1.2 + 1e-4;
-  float tile = 1.0 - smoothstep(size - aa, size + aa, box);
-  float lost = step(1.0 - uDecay * 0.5, h2);
-  float dark = step(h, uDecay * 0.42) * uDecay;
+  float rq = clamp(length(q), 0.0, 1.0);
+  float nA = snoise(vec3(q * 2.4, 1.7)) * 0.5 + 0.5;
+  float nB = snoise(vec3(q * 4.6 + 3.0, uTime * 0.05)) * 0.5 + 0.5;
+  float front = uReveal * 1.35 - (rq * 0.8 + nA * 0.4);
+  float lp = smoothstep(0.0, 0.22, front);
+  float tearAt = 1.12 - uDecay * 0.7;
+  float lost = smoothstep(tearAt - 0.08, tearAt + 0.04, rq * 0.55 + nB * 0.55);
+  float dark = smoothstep(0.55, 0.2, nA) * uDecay;
   col = mix(col, uCoreC * 0.35, dark * 0.85);
+  // Embers glow along the torn edges.
+  float ember = smoothstep(tearAt - 0.2, tearAt - 0.02, rq * 0.55 + nB * 0.55) * (1.0 - lost) * uDecay;
+  col = mix(col, uRimB * 1.2, ember * 0.6);
   col *= 1.0 - 0.25 * uDecay;
 
-  // Fine grain.
-  col += (hash(floor(gl_FragCoord.xy)) - 0.5) * 0.03;
 
   // Fade out over the outer part of the drop so it melts into the page.
-  float alpha = (1.0 - smoothstep(0.55, 0.98, edge)) * tile * lp * (1.0 - lost);
+  float alpha = (1.0 - smoothstep(0.55, 0.98, edge)) * lp * (1.0 - lost);
   gl_FragColor = vec4(clamp(col, 0.0, 1.0), clamp(alpha, 0.0, 1.0));
   #include <colorspace_fragment>
 }

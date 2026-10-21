@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 
 // The space around the organelle: faint specks drifting in the cytosol and a
-// handful of tiled, lumpy proteins wandering about, nudging each other and
+// handful of ball-cluster proteins wandering about, nudging each other and
 // bouncing off the edges. Kept soft on purpose. It should register as "we are
 // inside a cell" and then be forgotten.
 
@@ -39,7 +39,7 @@ function makeProtein(width, height, existing) {
   } while (tries < 30 && existing.some((p) => Math.hypot(p.x - x, p.y - y) < p.r + r + 12));
   const speed = rand(14, 30);
   const heading = rand(0, Math.PI * 2);
-  return {
+  const protein = {
     x,
     y,
     r,
@@ -51,6 +51,8 @@ function makeProtein(width, height, existing) {
     squash: 0,
     shade: rand(0.55, 1),
   };
+  protein.beads = packBeads(protein);
+  return protein;
 }
 
 function step(proteins, width, height, dt) {
@@ -110,31 +112,53 @@ function step(proteins, width, height, dt) {
   }
 }
 
-// Each protein is drawn as a small cluster of square tiles: a grid laid over
-// its lobes, each tile lit by how deep inside the shape it sits.
+// Each protein is drawn as a cluster of small shaded balls packed into its
+// lobes, like a space-filling molecular model. The balls are placed once, when
+// the protein is made, so the shape holds together as it tumbles.
+function packBeads(p) {
+  const beads = [];
+  const size = Math.max(3.2, p.r * 0.26);
+  for (const lobe of p.lobes) {
+    const n = Math.max(3, Math.round((lobe.r * lobe.r) / (size * size) * 1.1));
+    for (let i = 0; i < n; i += 1) {
+      // Sunflower spiral inside the lobe, jittered, so balls sit snugly.
+      const t = (i + 0.5) / n;
+      const a = i * 2.39996 + rand(-0.3, 0.3);
+      const d = Math.sqrt(t) * (lobe.r - size * 0.6);
+      const x = lobe.dx + Math.cos(a) * d;
+      const y = lobe.dy + Math.sin(a) * d;
+      if (beads.some((b) => Math.hypot(b.x - x, b.y - y) < size * 0.9)) continue;
+      beads.push({ x, y, r: size * rand(0.85, 1.15), depth: 1 - Math.hypot(x, y) / (p.r * 1.3) });
+    }
+  }
+  // Paint back to front: outer balls first, the centre on top.
+  return beads.sort((a, b) => a.depth - b.depth);
+}
+
 function drawProtein(ctx, p, [r, g, b]) {
   ctx.save();
   ctx.translate(p.x, p.y);
   ctx.rotate(p.angle);
   const s = 1 + p.squash * 0.12;
   ctx.scale(s, 1 / s);
+  // Undo the spin for the light, so every ball is lit from the same side.
+  const lx = Math.cos(-p.angle - 2.3);
+  const ly = Math.sin(-p.angle - 2.3);
   const light = (k) => `${Math.round(r + (255 - r) * k)}, ${Math.round(g + (255 - g) * k)}, ${Math.round(b + (255 - b) * k)}`;
-  const cell = Math.max(4, Math.round(p.r / 3.2));
-  const reach = Math.ceil((p.r * 1.4) / cell);
-  for (let gy = -reach; gy <= reach; gy += 1) {
-    for (let gx = -reach; gx <= reach; gx += 1) {
-      const cx = (gx + 0.5) * cell;
-      const cy = (gy + 0.5) * cell;
-      let depth = 0;
-      for (const lobe of p.lobes) {
-        const d = Math.hypot(cx - lobe.dx, cy - lobe.dy) / lobe.r;
-        depth = Math.max(depth, 1 - d);
-      }
-      if (depth <= 0) continue;
-      const k = Math.min(1, depth * 1.6);
-      ctx.fillStyle = `rgba(${light(0.7 - 0.45 * k)}, ${(0.12 + 0.4 * k) * p.shade})`;
-      ctx.fillRect(gx * cell + 0.5, gy * cell + 0.5, cell - 1, cell - 1);
-    }
+  for (const bead of p.beads) {
+    const k = Math.max(0, Math.min(1, bead.depth));
+    const a = (0.3 + 0.35 * k) * p.shade;
+    const fill = ctx.createRadialGradient(
+      bead.x + lx * bead.r * 0.4, bead.y + ly * bead.r * 0.4, bead.r * 0.05,
+      bead.x, bead.y, bead.r,
+    );
+    fill.addColorStop(0, `rgba(${light(0.8)}, ${a})`);
+    fill.addColorStop(0.55, `rgba(${light(0.35)}, ${a * 0.85})`);
+    fill.addColorStop(1, `rgba(${light(0.05)}, ${a * 0.45})`);
+    ctx.fillStyle = fill;
+    ctx.beginPath();
+    ctx.arc(bead.x, bead.y, bead.r, 0, Math.PI * 2);
+    ctx.fill();
   }
   ctx.restore();
 }
@@ -182,7 +206,9 @@ export default function Drift({ view, still }) {
         s.y = (s.y + s.vy * dt + height) % height;
         const twinkle = 0.75 + 0.25 * Math.sin(clock * 0.6 + s.phase);
         ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${s.alpha * twinkle})`;
-        ctx.fillRect(s.x - s.r, s.y - s.r, s.r * 2, s.r * 2);
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fill();
       }
 
       if (!still) step(proteins, width, height, dt);

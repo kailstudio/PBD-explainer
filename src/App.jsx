@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { AnimatePresence, MotionConfig, motion, useReducedMotion } from 'framer-motion';
 import { findItem, site, VIEWS } from './content';
 import { hubHref, useHashRoute } from './lib/useHashRoute';
@@ -8,7 +8,6 @@ import Drift from './components/Drift';
 import Hub from './components/Hub';
 import Intro from './components/Intro';
 import Peroxisome, { BODY_SHARE } from './components/Peroxisome';
-import PixelField from './components/PixelField';
 import Logo from './components/Logo';
 
 // The peroxisome is drawn once, at this size, and never unmounts. Each page
@@ -32,15 +31,43 @@ export default function App() {
   const [slot, setSlot] = useState(null);
   const [hot, setHot] = useState(false);
 
-  // The intro plays above the hub on a first visit that lands on the hub.
-  // It is skipped for deep links and reduced motion, and retired once the
-  // visitor opens a detail page, so coming back lands straight on the hub.
+  // The intro always sits above the hub, so scrolling up from the hub plays
+  // it backwards. A first visit starts at the top of it; coming back from a
+  // detail page lands on the hub, with the intro still there above. It is
+  // left out only for reduced motion.
   const [showIntro, setShowIntro] = useState(
-    () => page === 'hub' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+    () => !window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+  );
+  const lastPage = useRef(page);
+  useLayoutEffect(() => {
+    const from = lastPage.current;
+    lastPage.current = page;
+    if (from === 'detail' && page === 'hub') {
+      const intro = rootRef.current?.querySelector('.intro');
+      window.scrollTo({ top: intro ? intro.offsetTop + intro.offsetHeight : 0, behavior: 'auto' });
+    }
+  }, [page]);
+  // Clicking the site title works like a homepage link: back to the top of
+  // the hub with the intro ready to play again from the start.
+  const [introRun, setIntroRun] = useState(0);
+  const replayIntro = useCallback(
+    (event) => {
+      event?.preventDefault();
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        window.location.hash = hubHref(view);
+        window.scrollTo({ top: 0 });
+        return;
+      }
+      if (window.location.hash !== hubHref(view)) window.location.hash = hubHref(view);
+      setShowIntro(true);
+      setIntroRun((n) => n + 1);
+    },
+    [view],
   );
   useEffect(() => {
-    if (page === 'detail') setShowIntro(false);
-  }, [page]);
+    if (introRun > 0) window.scrollTo({ top: 0, behavior: 'auto' });
+  }, [introRun]);
+
   const skipIntro = useCallback(() => {
     const intro = rootRef.current?.querySelector('.intro');
     if (!intro) return;
@@ -113,8 +140,6 @@ export default function App() {
       {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions -- mouse shortcut only; the orb and breadcrumbs are the keyboard route back */}
       <div className="app" data-view={view} data-page={page} ref={rootRef} onClick={onBackgroundClick}>
         <div className="backdrop" aria-hidden="true">
-          <PixelField view="mechanisms" />
-          <PixelField view="diseases" />
           <div className="pattern" data-kind="fine" />
           <div className="pattern" data-kind="large" />
           <div className="grain" />
@@ -160,12 +185,12 @@ export default function App() {
           )}
         </motion.div>
 
-        {showIntro && <Intro onSkip={skipIntro} />}
+        {showIntro && page === 'hub' && <Intro key={introRun} onSkip={skipIntro} />}
 
         <div className="views">
           <AnimatePresence initial={false}>
             {page === 'hub' ? (
-              <Hub key="hub" view={view} onLayout={measure} />
+              <Hub key="hub" view={view} onLayout={measure} onHome={replayIntro} />
             ) : (
               <Detail key={routeKey} view={view} item={item} partId={partId} onLayout={measure} />
             )}

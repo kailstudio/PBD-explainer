@@ -1,7 +1,7 @@
 import { useLayoutEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useIsPresent } from 'framer-motion';
 import { site, VIEWS } from '../content';
-import { itemHref } from '../lib/useHashRoute';
+import { hubHref, itemHref } from '../lib/useHashRoute';
 import { useElementSize, useMediaQuery } from '../lib/hooks';
 import ViewToggle from './ViewToggle';
 
@@ -43,6 +43,12 @@ const spokeMotion = {
     y: -uy * 46,
     transition: { duration: 0.28, ease: 'easeIn' },
   }),
+};
+
+const nodeMotion = {
+  hidden: { opacity: 0, scale: 0 },
+  shown: ({ i }) => ({ opacity: 1, scale: 1, transition: { duration: 0.4, delay: 0.25 + i * 0.045, ease: EASE } }),
+  gone: { opacity: 0, scale: 0, transition: { duration: 0.2 } },
 };
 
 const filamentMotion = {
@@ -111,6 +117,17 @@ function Ring({ view, width, height, onLayout }) {
                     initial={false}
                     animate={{ pathLength: lit ? 1 : 0, opacity: lit ? 1 : 0 }}
                     transition={{ duration: lit ? 0.38 : 0.25, ease: 'easeOut' }}
+                  />
+                  {/* a small node where each line leaves the glow, as on a circuit */}
+                  <motion.circle
+                    cx={line.x1}
+                    cy={line.y1}
+                    r={lit ? 4.5 : 3}
+                    className="filament-node"
+                    data-lit={lit || undefined}
+                    custom={{ i }}
+                    variants={nodeMotion}
+                    style={{ transformOrigin: `${line.x1}px ${line.y1}px` }}
                   />
                 </g>
               );
@@ -186,7 +203,7 @@ function Stack({ view, onLayout }) {
   );
 }
 
-export default function Hub({ view, onLayout }) {
+export default function Hub({ view, onLayout, onHome }) {
   const stageRef = useRef(null);
   const { width, height } = useElementSize(stageRef);
   const roomy = useMediaQuery('(min-width: 900px) and (min-height: 560px) and (hover: hover)');
@@ -205,8 +222,10 @@ export default function Hub({ view, onLayout }) {
         <div>
           <div className="org" aria-hidden="true" />
           <h1 className="hub-title">
-            {site.title}
-            <span className="spark title-spark" aria-hidden="true" />
+            <a className="hub-title-link" href={hubHref(view)} onClick={onHome}>
+              {site.title}
+              <span className="spark title-spark" aria-hidden="true" />
+            </a>
           </h1>
           <p className="hub-lede">{site.intro}</p>
         </div>

@@ -2,7 +2,7 @@
   {
     "id": "lipid-breakdown",
     "label": "Lipid Breakdown",
-    "summary": "27-carbon bile acid intermediates accumulate. Oral cholic acid (FDA-approved 2015) is used as add-on treatment, with caution in advanced liver disease ([Berendse 2016](https://pubmed.ncbi.nlm.nih.gov/27469511/)).",
+    "summary": "breaks down fats no other part of the cell can handle, and builds bile acids and DHA in the process",
     "description": "Peroxisomes break down fats that no other part of the cell can handle, preventing harmful build-up, and create usable molecules in the process, including bile acids (for digestion) and DHA (an omega-3 building block for the brain and retina).",
     "parts": [
       {
@@ -87,7 +87,7 @@
   {
     "id": "lipid-synthesis",
     "label": "Lipid Synthesis (Plasmalogens)",
-    "summary": "plasmalogen loss tracks with cognitive decline and influences cell-death sensitivity in aging tissues ([Curran 2025](https://www.sciencedirect.com/science/article/pii/S0022227525001889)).",
+    "summary": "makes a family of membrane fats that no other part of the cell can build",
     "description": "Peroxisomes build plasmalogens, a family of membrane fats that no other part of the cell can make. An unusual chemical bond at one end (a vinyl-ether bond) lets them do two jobs at once: structural building blocks in specialized membranes, and built-in antioxidants.",
     "parts": [
       {
@@ -134,7 +134,7 @@
   {
     "id": "detoxification",
     "label": "Detoxification",
-    "summary": "restoring the DsbA-L/catalase complex reduces kidney damage ([Liu 2023](https://www.sciencedirect.com/science/article/pii/S2213231723002562)).",
+    "summary": "runs the cell's dangerous chemistry on purpose, inside a sealed container",
     "description": "Peroxisomes are where the cell runs its dangerous chemistry on purpose, inside a sealed container. Breaking things down generates hydrogen peroxide, which the organelle neutralizes on the spot using catalase, one of the fastest enzymes known, and it disposes of other reactive molecules the body cannot leave circulating.",
     "parts": [
       {
@@ -174,7 +174,7 @@
           "**[Neurodegeneration](#/diseases/brain-nerve):** PEX5 import defects and catalase loss compromise detoxification of reactive oxygen species (ROS) in neurodegenerative disease ([Jo 2020](https://www.nature.com/articles/s12276-020-00503-9)).",
           "**[Diabetic kidney disease](#/diseases/kidney):** kidneys develop structurally intact but functionally 'empty' peroxisomes; loss of the DsbA-L/catalase complex disables local antioxidant defense and accelerates damage ([Liu 2023](https://www.sciencedirect.com/science/article/pii/S2213231723002562)).",
           "**[Obesity](#/diseases/obesity-diabetes):** in fat tissue, peroxisome-derived ROS stabilize PEX2, which degrades the fat-releasing enzyme ATGL and suppresses fat breakdown ([Ding 2021](https://pmc.ncbi.nlm.nih.gov/articles/PMC8688145/)).",
-          "**[Aging](#/diseases/aging):** declining PEX5-dependent import of catalase leaves peroxisomes as net ROS generators across multiple tissues ([Kim 2024](https://academic.oup.com/pnasnexus/article/3/10/pgae429/7793200))."
+          "**[Aging](#/diseases/aging):** catalase is mislocalized to the cytosol in aged and replicatively senescent cells, reducing peroxisomal antioxidant capacity ([Kim 2024](https://academic.oup.com/pnasnexus/article/3/10/pgae429/7793200))."
         ]
       },
       {
@@ -199,7 +199,7 @@
   {
     "id": "organelle-crosstalk",
     "label": "Organelle Crosstalk",
-    "summary": "weaker contacts accelerate mitochondrial breakdown and muscle aging ([Scalabrin 2025](https://www.nature.com/articles/s41467-025-64833-w)).",
+    "summary": "physically docks onto other compartments and hands material back and forth",
     "description": "Peroxisomes physically dock onto the cell's other compartments and hand material back and forth. These are not loose associations but physical tethers: specific proteins on each surface clamp the two compartments together at a defined distance.",
     "parts": [
       {
@@ -263,7 +263,7 @@
   {
     "id": "immune-signaling",
     "label": "Immune & Inflammatory Signaling",
-    "summary": "in cerebral ALD, microglial damage comes before myelin loss ([Bergner 2019](https://pubmed.ncbi.nlm.nih.gov/30980503/)).",
+    "summary": "raises the alarm when a virus gets in, and shapes how immune cells behave",
     "description": "Peroxisomes are one of the places a cell raises the alarm when a virus gets in, and they shape how immune cells behave once inflammation starts. Several viruses have evolved to destroy or shrink peroxisomes specifically to shut this down, a sign that this defense matters.",
     "parts": [
       {
@@ -307,7 +307,7 @@
   {
     "id": "metabolic-signaling",
     "label": "Metabolic Signaling",
-    "summary": "two PPAR-targeting drugs, elafibranor and seladelpar, received accelerated FDA approval in 2024 for PBC.",
+    "summary": "part of a fat-sensing loop that helps set how much fat the body burns versus stores",
     "description": "Peroxisomes are part of a fat-sensing loop, not only a factory. A family of proteins in the cell nucleus called PPARs (peroxisome proliferator-activated receptors) detect fats, including some made or processed in peroxisomes, and switch on fat-burning machinery, including peroxisomal enzymes. This loop helps decide how much fat the body burns versus stores.",
     "parts": [
       {
@@ -385,7 +385,7 @@
         ],
         "right": [
           "**[Kidney disease](#/diseases/kidney):** primary hyperoxaluria type 1 can be a subtler failure of this system: in some patients a single variant changes the address tag so a working AGXT enzyme is sent to mitochondria instead of peroxisomes ([Danpure 2006](https://pubmed.ncbi.nlm.nih.gov/17027096/)).",
-          "**[Aging](#/diseases/aging):** the import system declines with age, reducing import of catalase and fat-burning enzymes and triggering stress pathways ([Kim 2024](https://academic.oup.com/pnasnexus/article/3/10/pgae429/7793200)).",
+          "**[Aging](#/diseases/aging):** peroxisomal import declines with age in model systems, and experimentally blocking import activates the integrated stress response and shuts down ribosome biogenesis ([Kim 2024](https://academic.oup.com/pnasnexus/article/3/10/pgae429/7793200)).",
           "**[Neurodegeneration](#/diseases/brain-nerve):** PEX5 import defects compromise ROS detoxification ([Jo 2020](https://www.nature.com/articles/s12276-020-00503-9)).",
           "**[Diabetes](#/diseases/obesity-diabetes):** functional peroxisomes are required for insulin-producing beta-cell integrity; when import fails, beta-cells die even without obvious oxidative stress ([Baboota 2019](https://pubmed.ncbi.nlm.nih.gov/30795913/))."
         ]

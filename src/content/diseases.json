@@ -105,7 +105,7 @@
   {
     "id": "cancer",
     "label": "Cancer",
-    "summary": "AMACR and other PPAR-regulated genes link peroxisomal lipid metabolism to tumor growth; anti-cancer PPAR antagonists may expose peroxisomal vulnerabilities ([Kong 2020](https://www.frontiersin.org/journals/molecular-biosciences/articles/10.3389/fmolb.2020.00153/full)).",
+    "summary": "prostate, colorectal, lymphoma and other tumors lean on peroxisomal fat metabolism and antioxidant capacity to grow and resist treatment",
     "description": "Tumors are metabolically demanding and need both fuel and protection from oxidative damage. Several tumor types appear to lean on peroxisomal fat metabolism and peroxisomal antioxidant capacity to supply both, creating possible metabolic weak points for treatment.",
     "parts": [
       {
@@ -187,7 +187,7 @@
           "Biogenesis & Recycling: PEX5, the receptor that carries enzymes into the peroxisome, is required for glioma cell growth, migration and invasion, and a peroxisomal enzyme signature carries prognostic information ([Qin 2024](https://pubmed.ncbi.nlm.nih.gov/38540734/))."
         ],
         "furtherReading": [
-          "[Qin 2024](https://pubmed.ncbi.nlm.nih.gov/38540734/) (PEX5 is required for glioma cell growth, migration and invasion)"
+          "[Qin 2024](https://pubmed.ncbi.nlm.nih.gov/38540734/) (PEX5 is required for glioma cell growth, migration and invasion; the growth effect of the antioxidant enzyme GSTK1 depends on PTS1-mediated import)"
         ],
         "right": [
           "What other peroxisome proteins are required for glioma cell growth?"
@@ -553,7 +553,7 @@
           "Which molecules link peroxisomal fat breakdown to toxic succinate build-up and kidney damage?",
           "Can established diabetic kidney disease be reversed by restoring the DsbA-L/catalase complex, or only slowed?",
           "Could restoring peroxisomal ROS handling (for example, targeted catalase delivery or better protein import) improve brain, kidney, fat and muscle at the same time?",
-          "Whether boosting peroxisomal fat burning protects the kidney and heart during ischemia-reperfusion injury ([Gulati 1993](https://doi.org/10.1016/0925-4439(93)90071-8); [Liepinsh 2013](https://doi.org/10.1007/s00210-013-0849-0))."
+          "Whether boosting peroxisomal fat burning protects the kidney and heart during ischemia-reperfusion injury ([Gulati 1993](https://doi.org/10.1016/0925-4439%2893%2990071-8); [Liepinsh 2013](https://doi.org/10.1007/s00210-013-0849-0))."
         ]
       },
       {
@@ -576,7 +576,7 @@
   {
     "id": "aging",
     "label": "Aging",
-    "summary": "quality-control systems clear damaged peroxisomes, preventing them from becoming sources of oxidative damage; these pathways decline with age ([Jo 2020](https://www.nature.com/articles/s12276-020-00503-9)).",
+    "summary": "decline in peroxisome import, quality control and organelle contacts across tissues with age",
     "description": "With age, impaired peroxisomal import and metabolism correlate with altered lipids, oxidative stress and functional loss across multiple tissues.",
     "parts": [
       {
@@ -585,7 +585,7 @@
         "panelTitle": "Declining protein import",
         "text": "The peroxisomal import system declines with age, so key enzymes such as catalase stop reaching the peroxisome.",
         "left": [
-          "**[Biogenesis & Recycling](#/mechanisms/biogenesis-recycling):** age-related decline reduces import of catalase and fat-burning proteins and triggers stress pathways ([Kim 2024](https://academic.oup.com/pnasnexus/article/3/10/pgae429/7793200)).",
+          "**[Biogenesis & Recycling](#/mechanisms/biogenesis-recycling):** blocking peroxisomal import activates the integrated stress response and inhibits ribosome biogenesis in both human cells and flies, and the same signature appears in aged flies ([Kim 2024](https://academic.oup.com/pnasnexus/article/3/10/pgae429/7793200)).",
           "**[Biogenesis & Recycling:](#/mechanisms/biogenesis-recycling)** catalase import falls and catalase is mislocalized in senescent human cells ([Legakis 2002](https://doi.org/10.1091/mbc.e02-06-0322)), and restoring peroxisomal catalase import reverses features of cellular aging ([Koepke 2007](https://doi.org/10.1111/j.1600-0854.2007.00633.x); [Koepke 2008](https://doi.org/10.1016/j.taap.2008.06.004)).",
           "**[Detoxification:](#/mechanisms/detoxification)** in worms and yeast, losing the peroxisomal catalase alone shortens lifespan and produces premature-aging features ([Petriv 2004](https://doi.org/10.1074/jbc.m400207200))."
         ],
