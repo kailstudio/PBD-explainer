@@ -23,7 +23,7 @@ const STEPS = [
     to: 0.72,
     text: 'When it fails, the damage spreads: rare genetic disorders, and links to aging, cancer and neurodegeneration.',
   },
-  { from: 0.8, to: 1, text: 'Understanding the peroxisome is how we start to fix it.' },
+  { from: 0.8, to: 1, text: 'Understanding the peroxisome', em: 'is how we start to fix it.' },
 ];
 
 // Membrane outline: a soft, wavy closed loop around the centre of a 1000 box.
@@ -115,15 +115,21 @@ function makeDebris(count) {
   });
 }
 
-function Step({ progress, from, to, text }) {
+function Step({ progress, from, to, text, em }) {
   // Fade in just before `from`, out just before `to`; the last line stays.
   const last = to >= 1;
   const input = [Math.max(0, from - 0.04), Math.max(from, 0.001), last ? 0.999 : to - 0.03, last ? 1 : to];
   const opacity = useTransform(progress, input, [0, 1, 1, last ? 1 : 0]);
   const y = useTransform(progress, input, [24, 0, 0, last ? 0 : -24]);
   return (
-    <motion.p className="intro-line" style={{ opacity, y }}>
+    <motion.p className="intro-line" data-final={em ? true : undefined} style={{ opacity, y }}>
       {text}
+      {em && (
+        <>
+          {' '}
+          <span className="intro-em">{em}</span>
+        </>
+      )}
     </motion.p>
   );
 }

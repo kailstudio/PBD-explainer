@@ -104,7 +104,6 @@ export default function Detail({ view, item, partId, onLayout }) {
 
       <h1 className="detail-title">
         {item.label}
-        <span className="spark title-spark" aria-hidden="true" />
       </h1>
       <p className="detail-lede">
         <RichText>{item.description ?? item.summary}</RichText>

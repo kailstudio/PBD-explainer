@@ -3,7 +3,6 @@ import { AnimatePresence, MotionConfig, motion, useReducedMotion } from 'framer-
 import { findItem, site, VIEWS } from './content';
 import { hubHref, useHashRoute } from './lib/useHashRoute';
 import Detail from './components/Detail';
-import BrandArt from './components/BrandArt';
 import Drift from './components/Drift';
 import Hub from './components/Hub';
 import Intro from './components/Intro';
@@ -144,9 +143,8 @@ export default function App() {
           <div className="pattern" data-kind="large" />
           <div className="grain" />
         </div>
-        <BrandArt />
         {/* One logo for the whole site, fixed in the same spot on every page. */}
-        <Logo href={hubHref(view)} />
+        <Logo />
         <Drift view={view} still={still} />
 
         <motion.div

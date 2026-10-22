@@ -224,7 +224,6 @@ export default function Hub({ view, onLayout, onHome }) {
           <h1 className="hub-title">
             <a className="hub-title-link" href={hubHref(view)} onClick={onHome}>
               {site.title}
-              <span className="spark title-spark" aria-hidden="true" />
             </a>
           </h1>
           <p className="hub-lede">{site.intro}</p>
