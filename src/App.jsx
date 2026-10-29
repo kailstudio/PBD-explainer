@@ -125,26 +125,17 @@ export default function App() {
 
   const scale = slot ? slot.size / BODY_SHARE / CANVAS : 1;
 
-  // On a detail page, a click on empty space (anywhere outside the cards,
-  // header and links) goes back to the hub. Ignored while selecting text.
-  const onBackgroundClick = (event) => {
-    if (page !== 'detail' || event.button !== 0) return;
-    if (event.target.closest('.card, .detail-head, .detail-title, .detail-lede, .parts, .parts-lead, .panels, .site-logo, a, button')) return;
-    if (window.getSelection()?.toString()) return;
-    window.location.hash = hubHref(view);
-  };
-
   return (
     <MotionConfig reducedMotion="user">
-      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions -- mouse shortcut only; the orb and breadcrumbs are the keyboard route back */}
-      <div className="app" data-view={view} data-page={page} ref={rootRef} onClick={onBackgroundClick}>
+      <div className="app" data-view={view} data-page={page} ref={rootRef}>
         <div className="backdrop" aria-hidden="true">
+          <div className="glow" />
           <div className="pattern" data-kind="fine" />
           <div className="pattern" data-kind="large" />
           <div className="grain" />
         </div>
         {/* One logo for the whole site, fixed in the same spot on every page. */}
-        <Logo />
+        <Logo href={hubHref(view)} />
         <Drift view={view} still={still} />
 
         <motion.div

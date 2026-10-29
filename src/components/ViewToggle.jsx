@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { site, VIEWS, VIEW_IDS } from '../content';
 import { hubHref } from '../lib/useHashRoute';
 
@@ -33,17 +33,10 @@ export default function ViewToggle({ view }) {
           );
         })}
       </div>
-      <AnimatePresence mode="wait" initial={false}>
-        <motion.p
-          key={view}
-          className="switch-hint"
-          initial={{ opacity: 0, y: -4 }}
-          animate={{ opacity: 1, y: 0, transition: { duration: 0.3 } }}
-          exit={{ opacity: 0, transition: { duration: 0.15 } }}
-        >
-          {VIEWS[view].hint}
-        </motion.p>
-      </AnimatePresence>
+      <p className="switch-hint">
+        <span className="hint-dot" aria-hidden="true" />
+        {site.hubHint}
+      </p>
     </nav>
   );
 }

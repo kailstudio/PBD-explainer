@@ -29,6 +29,16 @@ function placeSpokes(items, radius) {
 
 const EASE = [0.22, 1, 0.36, 1];
 
+// A small arrow on every branch, so each one reads as a link at rest, not
+// only on hover.
+export function Chevron({ down = false }) {
+  return (
+    <svg className="chevron" data-down={down || undefined} viewBox="0 0 16 16" aria-hidden="true">
+      <path d="M6 3.5 10.5 8 6 12.5" />
+    </svg>
+  );
+}
+
 const spokeMotion = {
   hidden: ({ ux, uy }) => ({ opacity: 0, x: -ux * 46, y: -uy * 46 }),
   shown: ({ i }) => ({
@@ -67,7 +77,7 @@ function Ring({ view, width, height, onLayout }) {
 
   const labelWidth = clamp(width * 0.2, 176, 240);
   const size = clamp(
-    Math.min((width - 2 * labelWidth - 56) / (2 * BEADS), (height - 264) / (2 * BEADS)),
+    Math.min((width - 2 * labelWidth - 140) / (2 * BEADS), (height - 264) / (2 * BEADS)),
     300,
     940,
   );
@@ -154,7 +164,10 @@ function Ring({ view, width, height, onLayout }) {
                 >
                   <span className="bead" aria-hidden="true" />
                   <span className="spoke-text">
-                    <span className="spoke-label">{item.hubLabel ?? item.label}</span>
+                    <span className="spoke-label">
+                      {item.hubLabel ?? item.label}
+                      <Chevron />
+                    </span>
                     <span className="spoke-summary">{item.summary}</span>
                   </span>
                 </a>
@@ -194,6 +207,7 @@ function Stack({ view, onLayout }) {
                   <span className="spoke-label">{item.label}</span>
                   <span className="spoke-summary">{item.summary}</span>
                 </span>
+                <Chevron />
               </a>
             </li>
           ))}

@@ -5,7 +5,7 @@
    markers, and fine lines joined by small nodes. A near-black page in the brand's
    dark tone with faint tile fields of blue or red, the brand pixel pattern
    at the edges, dark glass panels, light text, and a glossy liquid drop of
-   a peroxisome. Mechanisms leans cool, diseases leans warm, and the page
+   a peroxisome. Functions leans cool, diseases leans warm, and the page
    cross-fades between them. Registering the accent as a real colour
    lets everything that uses it fade too.
    ------------------------------------------------------------------ */
@@ -1100,13 +1100,6 @@ a.peroxisome-hit:focus-visible {
   }
 }
 
-/* Detail pages: empty space is a way back to the hub, so it shows as clickable. */
-.app[data-page='detail'] {
-  cursor: pointer;
-}
-.app[data-page='detail'] :is(.card, .detail-head, .detail-title) {
-  cursor: auto;
-}
 
 /* ------------------------------------------------------------------
    Intro: a tall scroll section with a pinned stage. Scrolling scrubs the
@@ -1680,4 +1673,339 @@ a.peroxisome-hit:focus-visible {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+/* ------------------------------------------------------------------
+   Usability round 1 (participant testing)
+   ------------------------------------------------------------------ */
+
+/* Shared chevron: drawn as a stroke so it takes the text colour. */
+.chevron {
+  flex: none;
+  width: 0.95em;
+  height: 0.95em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 0.25s;
+}
+.chevron[data-down] {
+  transform: rotate(90deg);
+}
+
+/* 1. Branches read as links at rest: each label sits in a small glass
+   button with an accent chevron, and the button lights up on hover. */
+.spokes .spoke-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: -10px;
+  padding: 10px 14px 10px 18px;
+  font-size: 1rem;
+  line-height: 1.3;
+  border: 1px solid rgb(255 255 255 / 0.16);
+  border-radius: 24px;
+  background: linear-gradient(160deg, rgb(255 255 255 / 0.09), rgb(255 255 255 / 0.04));
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.08);
+  color: var(--ink);
+  text-align: left;
+  transition:
+    border-color 0.25s,
+    background-color 0.25s,
+    box-shadow 0.25s;
+}
+.spokes .spoke-label .chevron {
+  color: var(--accent);
+}
+.spoke[data-state='lit'] .spoke-label {
+  border-color: color-mix(in srgb, var(--accent) 60%, transparent);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.12),
+    0 0 18px -4px color-mix(in srgb, var(--accent-soft) 70%, transparent);
+}
+.spoke[data-state='lit'] .spoke-label .chevron {
+  transform: translateX(2px);
+}
+.spoke[data-state='dim'] a {
+  opacity: 0.7;
+}
+/* Room for the button padding, so short labels stay on one line. */
+.spokes .spoke a {
+  max-width: calc(var(--label-width) + 60px);
+}
+/* The hover description hangs from the button, not the bare text. */
+.spokes .spoke-summary {
+  margin-top: 10px;
+}
+
+/* Narrow screens: the list rows get a trailing chevron. */
+.stack-list a {
+  align-items: center;
+}
+.stack-list a .spoke-text {
+  flex: 1;
+}
+.stack-list a > .chevron {
+  width: 18px;
+  height: 18px;
+  color: var(--accent);
+}
+
+/* The standing hint under the switch, where the per-view sub-header was. */
+.switch-hint {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--body);
+}
+.hint-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 60%, transparent);
+  animation: hint-pulse 2.4s ease-out infinite;
+}
+@keyframes hint-pulse {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 55%, transparent); }
+  70%, 100% { box-shadow: 0 0 0 8px transparent; }
+}
+
+/* 2. Cards: a specific "Learn more about …" in the bottom right. */
+.part-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  align-self: flex-end;
+  margin-top: auto;
+  padding-top: 10px;
+  color: var(--accent);
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.3;
+  text-align: right;
+}
+.part:hover .part-cta {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.part:hover .part-cta .chevron:not([data-down]) {
+  transform: translateX(3px);
+}
+
+/* 4. Logo: shrinks onto a frosted pill once the page scrolls. */
+.site-logo {
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 14px;
+  transition:
+    padding 0.3s,
+    top 0.3s,
+    left 0.3s,
+    background-color 0.3s,
+    border-color 0.3s,
+    box-shadow 0.3s;
+}
+.site-logo img {
+  transition: height 0.3s;
+}
+.site-logo[data-scrolled] {
+  top: 12px;
+  left: calc(var(--pad) - 12px);
+  padding: 8px 12px;
+  border-color: rgb(255 255 255 / 0.1);
+  background: rgb(15 16 25 / 0.82);
+  -webkit-backdrop-filter: blur(16px) saturate(1.3);
+  backdrop-filter: blur(16px) saturate(1.3);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.08),
+    0 12px 30px -14px rgb(0 0 0 / 0.8);
+}
+.site-logo[data-scrolled] img {
+  height: 26px;
+}
+
+/* 7. Intro: a clear "scroll to begin" prompt, as a frosted glass pill:
+   translucent tinted fill, heavy blur, a light gradient rim, a soft sheen
+   across the top and a coloured glow underneath. */
+.intro-cue-start {
+  bottom: clamp(28px, 6vh, 56px);
+  flex-direction: row;
+  gap: 14px;
+  padding: 12px 22px 12px 16px;
+  border: 0;
+  border-radius: 999px;
+  background:
+    radial-gradient(120% 140% at 0% 0%, color-mix(in srgb, var(--accent-soft) 30%, transparent), transparent 60%),
+    linear-gradient(135deg, rgb(255 255 255 / 0.14), rgb(255 255 255 / 0.04));
+  -webkit-backdrop-filter: blur(22px) saturate(1.6);
+  backdrop-filter: blur(22px) saturate(1.6);
+  box-shadow:
+    inset 0 1px 1px rgb(255 255 255 / 0.25),
+    inset 0 -1px 1px rgb(255 255 255 / 0.05),
+    0 18px 40px -18px rgb(0 0 0 / 0.7),
+    0 8px 46px -10px color-mix(in srgb, var(--accent-soft) 60%, transparent);
+  color: var(--ink);
+  letter-spacing: 0;
+  text-transform: none;
+  isolation: isolate;
+}
+/* gradient rim: bright top-left fading to a faint accent bottom-right */
+.intro-cue-start::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgb(255 255 255 / 0.55),
+    rgb(255 255 255 / 0.08) 45%,
+    color-mix(in srgb, var(--accent) 55%, transparent)
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+}
+/* glossy sheen across the upper half */
+.intro-cue-start::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 10%;
+  right: 10%;
+  height: 45%;
+  z-index: -1;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgb(255 255 255 / 0.16), transparent);
+  pointer-events: none;
+}
+.intro-cue-text {
+  font-size: 1.0625rem;
+  font-weight: 600;
+}
+.intro-cue-mouse {
+  position: relative;
+  width: 20px;
+  height: 30px;
+  border: 1.5px solid rgb(255 255 255 / 0.85);
+  border-radius: 11px;
+  background: rgb(255 255 255 / 0.06);
+}
+.intro-cue-wheel {
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  width: 4px;
+  height: 7px;
+  margin-left: -2px;
+  border-radius: 2px;
+  background: var(--accent);
+  animation: cue-wheel 1.6s ease-in-out infinite;
+}
+@keyframes cue-wheel {
+  0% { transform: translateY(0); opacity: 1; }
+  70% { transform: translateY(10px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 0; }
+}
+.intro-cue-arrow {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  animation: cue-bob 1.6s ease-in-out infinite;
+}
+@keyframes cue-bob {
+  0%, 100% { transform: translateY(-2px); }
+  50% { transform: translateY(4px); }
+}
+@media (hover: none) {
+  /* touch screens swipe rather than scroll a wheel */
+  .intro-cue-mouse {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-cue-wheel,
+  .intro-cue-arrow,
+  .hint-dot {
+    animation: none;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Light gradients across the site
+   ------------------------------------------------------------------ */
+
+/* Soft aurora behind everything: three large, blurred pools of colour in
+   the view's palette, drifting slowly. Cool lilac/teal for Functions,
+   warm coral/plum for Diseases & Conditions. */
+.glow {
+  position: absolute;
+  inset: -20%;
+  background:
+    radial-gradient(38% 34% at 78% 12%, color-mix(in srgb, var(--accent-soft) 26%, transparent), transparent 70%),
+    radial-gradient(34% 40% at 12% 30%, rgb(4 132 158 / 0.13), transparent 72%),
+    radial-gradient(44% 38% at 40% 96%, rgb(64 74 158 / 0.2), transparent 70%),
+    radial-gradient(30% 30% at 96% 70%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 72%);
+  filter: blur(30px);
+  animation: glow-drift 40s ease-in-out infinite alternate;
+  transition: background 1.1s ease;
+}
+.app[data-view='diseases'] .glow {
+  background:
+    radial-gradient(38% 34% at 78% 12%, color-mix(in srgb, var(--accent-soft) 24%, transparent), transparent 70%),
+    radial-gradient(34% 40% at 12% 30%, rgb(180 47 86 / 0.14), transparent 72%),
+    radial-gradient(44% 38% at 40% 96%, rgb(64 74 158 / 0.16), transparent 70%),
+    radial-gradient(30% 30% at 96% 70%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 72%);
+}
+@keyframes glow-drift {
+  from { transform: translate3d(-3%, -2%, 0) scale(1); }
+  to { transform: translate3d(3%, 2%, 0) scale(1.08); }
+}
+
+/* Headings pick up a faint light-to-accent gradient. */
+.hub-title,
+.detail-title {
+  background: linear-gradient(115deg, #ffffff 0%, var(--ink) 45%, color-mix(in srgb, var(--accent) 70%, var(--ink)) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.hub-title-link {
+  color: transparent;
+}
+
+/* Cards and panels: a light sheen from the top-left corner. */
+.part,
+.panel.card {
+  background-image:
+    linear-gradient(150deg, rgb(255 255 255 / 0.1), rgb(255 255 255 / 0.02) 40%, transparent 70%),
+    radial-gradient(90% 70% at 100% 100%, color-mix(in srgb, var(--accent-soft) 10%, transparent), transparent 70%);
+}
+.part[data-selected] {
+  background-image:
+    linear-gradient(150deg, rgb(255 255 255 / 0.14), rgb(255 255 255 / 0.03) 45%, transparent 70%),
+    radial-gradient(90% 80% at 90% 100%, color-mix(in srgb, var(--accent-soft) 28%, transparent), transparent 70%);
+}
+
+/* Branch buttons and the view switch get the same gentle sheen. */
+.spokes .spoke-label {
+  background:
+    linear-gradient(150deg, rgb(255 255 255 / 0.12), rgb(255 255 255 / 0.03) 55%),
+    radial-gradient(80% 120% at 100% 100%, color-mix(in srgb, var(--accent-soft) 14%, transparent), transparent 70%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glow {
+    animation: none;
+  }
 }

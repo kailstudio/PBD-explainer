@@ -3,6 +3,7 @@ import { AnimatePresence, motion, useIsPresent } from 'framer-motion';
 import { site, VIEWS } from '../content';
 import { hubHref } from '../lib/useHashRoute';
 import RichText from './RichText';
+import { Chevron } from './Hub';
 
 const EASE = [0.22, 1, 0.36, 1];
 
@@ -136,6 +137,10 @@ export default function Detail({ view, item, partId, onLayout }) {
                     </span>
                     <span className="part-text">
                       <RichText>{part.text}</RichText>
+                    </span>
+                    <span className="part-cta">
+                      {on ? site.cardOpen : `${site.cardCta} ${site.cardKeywords?.[part.id] ?? part.label}`}
+                      <Chevron down={on} />
                     </span>
                   </button>
                 </li>

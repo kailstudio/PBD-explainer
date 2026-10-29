@@ -1,6 +1,7 @@
 import { useMemo, useRef, useState } from 'react';
 import { circOut, easeOut, motion, useMotionValueEvent, useScroll, useTransform } from 'framer-motion';
 import Peroxisome from './Peroxisome';
+import { site } from '../content';
 
 // The scroll-driven intro that sits above the hub on a first visit.
 // Scrolling scrubs it forwards and back, like a timeline:
@@ -333,9 +334,14 @@ export default function Intro({ onSkip }) {
           ))}
         </div>
 
-        <motion.div className="intro-cue" style={{ opacity: cue }} aria-hidden="true">
-          <span>Scroll</span>
-          <span className="intro-cue-line" />
+        <motion.div className="intro-cue intro-cue-start" style={{ opacity: cue }} aria-hidden="true">
+          <span className="intro-cue-mouse">
+            <span className="intro-cue-wheel" />
+          </span>
+          <span className="intro-cue-text">{site.scrollCue}</span>
+          <svg className="intro-cue-arrow" viewBox="0 0 16 16">
+            <path d="M3.5 6 8 10.5 12.5 6" />
+          </svg>
         </motion.div>
         <motion.div className="intro-cue" style={{ opacity: endCue }} aria-hidden="true">
           <span>Explore</span>
