@@ -13,16 +13,16 @@ import { site } from '../content';
 // Every number below is a share of the whole scroll (0 to 1).
 
 const STEPS = [
-  { from: 0.02, to: 0.2, text: 'Inside almost every cell in your body…' },
+  { from: 0.02, to: 0.2, text: '*Inside almost every cell in your body…*' },
   {
     from: 0.26,
     to: 0.44,
-    text: '…sits the peroxisome. It breaks down fats and clears toxins the rest of the cell can’t handle.',
+    text: '…sits *the peroxisome*. It breaks down fats and clears toxins the rest of the cell can’t handle.',
   },
   {
     from: 0.5,
     to: 0.72,
-    text: 'When it fails, the damage spreads: rare genetic disorders, and links to aging, cancer and neurodegeneration.',
+    text: 'When it fails, *the damage spreads*: rare genetic disorders, and links to aging, cancer and neurodegeneration.',
   },
   { from: 0.8, to: 1, text: 'Understanding the peroxisome', em: 'is how we start to fix it.' },
 ];
@@ -124,7 +124,20 @@ function Step({ progress, from, to, text, em }) {
   const y = useTransform(progress, input, [24, 0, 0, last ? 0 : -24]);
   return (
     <motion.p className="intro-line" data-final={em ? true : undefined} style={{ opacity, y }}>
-      {text}
+      {/* *words in asterisks* get the same gradient as the final line */}
+      {text.split(/\*([^*]+)\*/).map((bit, i, bits) =>
+        i % 2 ? (
+          <span
+            key={i}
+            className="intro-em intro-em-inline"
+            data-whole={bits.length === 3 && !bits[0] && !bits[2] ? true : undefined}
+          >
+            {bit}
+          </span>
+        ) : (
+          bit
+        ),
+      )}
       {em && (
         <>
           {' '}

@@ -242,8 +242,16 @@ export default function Hub({ view, onLayout, onHome }) {
           </h1>
           <p className="hub-lede">{site.intro}</p>
         </div>
-        <ViewToggle view={view} />
+        {roomy && <ViewToggle view={view} />}
       </header>
+
+      {/* Narrow screens: the switch sticks to the top while the list scrolls,
+          so Functions / Diseases & Conditions is never out of sight. */}
+      {!roomy && (
+        <div className="switch-sticky">
+          <ViewToggle view={view} />
+        </div>
+      )}
 
       <div className="hub-stage" ref={stageRef}>
         {roomy ? (

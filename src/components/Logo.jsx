@@ -4,9 +4,9 @@ import logo from '../assets/pbd-logo.png';
 
 // PBD Project's logo, fixed top left on every page. In testing everyone who
 // wanted to go back clicked it, so it takes you to the start of the explainer
-// (same tab). Once the page scrolls it shrinks onto a small frosted pill, so
+// (same tab), replaying the intro from the top. Once the page scrolls it shrinks onto a small frosted pill, so
 // text passing underneath never collides with it.
-export default function Logo({ href }) {
+export default function Logo({ href, onClick }) {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -32,6 +32,7 @@ export default function Logo({ href }) {
       className="site-logo"
       data-scrolled={scrolled || undefined}
       href={href}
+      onClick={onClick}
       aria-label={`${site.organisation}: back to the start of the explainer`}
     >
       <img src={logo} alt={site.organisation} />

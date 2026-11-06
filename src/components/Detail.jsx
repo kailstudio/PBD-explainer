@@ -3,6 +3,7 @@ import { AnimatePresence, motion, useIsPresent } from 'framer-motion';
 import { site, VIEWS } from '../content';
 import { hubHref } from '../lib/useHashRoute';
 import RichText from './RichText';
+import { useMediaQuery } from '../lib/hooks';
 import { Chevron } from './Hub';
 
 const EASE = [0.22, 1, 0.36, 1];
@@ -71,14 +72,37 @@ export default function Detail({ view, item, partId, onLayout }) {
     onLayout();
   }, [onLayout]);
 
-  // Bring the panels into view when a box is picked, if they sit below the fold.
+  // Phones and narrow screens: each card opens its detail right under itself
+  // (and closes again on a second tap) instead of in panels below all cards.
+  const inPlace = useMediaQuery('(max-width: 899px)');
+  const pick = (id) => setSelectedId((current) => (inPlace && current === id ? null : id));
+
+  // Picking a box scrolls what it opened up to the top of the screen, parked
+  // just under the fixed logo so the logo never covers it.
+  const firstPick = useRef(true);
   useEffect(() => {
-    if (!selectedId || !panelsRef.current) return;
-    const box = panelsRef.current.getBoundingClientRect();
-    if (box.top > window.innerHeight - 120) {
-      panelsRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (!selectedId) return;
+    // A page opened straight onto a box (a deep link) still starts at the top.
+    if (firstPick.current && partId) {
+      firstPick.current = false;
+      return;
     }
-  }, [selectedId]);
+    firstPick.current = false;
+    // Wait for the new content to mount (and, in place, for the card that
+    // was open to fold away), so the target has settled before scrolling.
+    const timer = window.setTimeout(
+      () => {
+        const target = inPlace ? document.getElementById(`part-${selectedId}`) : panelsRef.current;
+        if (!target) return;
+        // Clear the logo as it looks once scrolled (shrunk onto its pill).
+        const clearance = inPlace ? 72 : 84;
+        const top = target.getBoundingClientRect().top + window.scrollY - clearance;
+        window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+      },
+      inPlace ? 360 : 220,
+    );
+    return () => window.clearTimeout(timer);
+  }, [selectedId, partId, inPlace]);
 
   return (
     <motion.article
@@ -92,9 +116,6 @@ export default function Detail({ view, item, partId, onLayout }) {
         <div className="peroxisome-slot" data-anchor="detail" />
         <nav aria-label="Breadcrumb">
           <ol className="crumbs">
-            <li>
-              <a href={hubHref(view)}>{site.hubName}</a>
-            </li>
             <li>
               <a href={hubHref(view)}>{config.label}</a>
             </li>
@@ -121,15 +142,21 @@ export default function Detail({ view, item, partId, onLayout }) {
           <ul className="parts" style={{ '--count': parts.length }}>
             {parts.map((part) => {
               const on = part.id === selectedId;
+              const cta = on
+                ? inPlace
+                  ? site.cardClose
+                  : site.cardOpen
+                : `${site.cardCta} ${site.cardKeywords?.[part.id] ?? part.label}`;
               return (
-                <li key={part.id}>
+                <li key={part.id} id={`part-${part.id}`} data-open={(inPlace && on) || undefined}>
                   <button
                     type="button"
                     className="part"
                     data-selected={on || undefined}
-                    aria-pressed={on}
-                    aria-controls="detail-panels"
-                    onClick={() => setSelectedId(part.id)}
+                    aria-pressed={inPlace ? undefined : on}
+                    aria-expanded={inPlace ? on : undefined}
+                    aria-controls={inPlace ? `part-panels-${part.id}` : 'detail-panels'}
+                    onClick={() => pick(part.id)}
                   >
                     <span className="part-label">
                       <span className="bead" aria-hidden="true" />
@@ -139,15 +166,35 @@ export default function Detail({ view, item, partId, onLayout }) {
                       <RichText>{part.text}</RichText>
                     </span>
                     <span className="part-cta">
-                      {on ? site.cardOpen : `${site.cardCta} ${site.cardKeywords?.[part.id] ?? part.label}`}
+                      {cta}
                       <Chevron down={on} />
                     </span>
                   </button>
+                  {inPlace && (
+                    <AnimatePresence initial={false}>
+                      {on && (
+                        <motion.div
+                          key="open"
+                          id={`part-panels-${part.id}`}
+                          className="part-panels"
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1, transition: { duration: 0.35, ease: EASE } }}
+                          exit={{ height: 0, opacity: 0, transition: { duration: 0.25, ease: EASE } }}
+                        >
+                          <div className="panels-grid">
+                            <Panel side="left" heading={config.leftPanel} part={part} index={0} />
+                            <Panel side="right" heading={config.rightPanel} part={part} index={1} />
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  )}
                 </li>
               );
             })}
           </ul>
 
+          {!inPlace && (
           <div className="panels" id="detail-panels" ref={panelsRef} aria-live="polite">
             <AnimatePresence mode="wait" initial={false}>
               {selected ? (
@@ -174,6 +221,7 @@ export default function Detail({ view, item, partId, onLayout }) {
               )}
             </AnimatePresence>
           </div>
+          )}
         </>
       )}
     </motion.article>

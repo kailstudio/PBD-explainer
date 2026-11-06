@@ -1,7 +1,7 @@
 {
   "organisation": "PBD Project",
   "title": "Peroxisome Explainer",
-  "intro": "For every peroxisomal mechanism and every disease it touches: what's established, what's still open, and where the primary literature lives.",
+  "intro": "Peroxisomes are essential organelles found in nearly every cell in your body. Explore them two ways: by function, what they actually do, and by disease, where that biology breaks down. For each, we lay out what is established, what is still open, and where the primary literature lives.",
   "startFrom": "Start from",
   "hubName": "Peroxisome",
   "furtherReading": "Further Reading",
@@ -9,6 +9,18 @@
   "pickHint": "Select a box above to see how it connects to disease.",
   "emptyPanel": "This section is still being written.",
   "emptyPage": "The detail for this page is still being written.",
+  "footer": {
+    "tagline": "Understanding the peroxisome is how we start to fix it.",
+    "explore": "Explore",
+    "about": "Learn more",
+    "cta": "Visit pbdproject.org",
+    "createdBy": "Created by",
+    "orgUrl": "https://www.pbdproject.org/",
+    "madeBy": "Website by",
+    "studio": "STUDIO KAIL",
+    "studioUrl": "https://kail.studio",
+    "wordmark": "PBD Project"
+  },
   "views": {
     "mechanisms": {
       "label": "Functions",
@@ -24,6 +36,7 @@
   "hubHint": "Click a branch to learn more",
   "cardCta": "Learn more about",
   "cardOpen": "Shown below",
+  "cardClose": "Show less",
   "scrollCue": "Scroll to begin",
   "cardKeywords": {
     "breakdown-beta-oxidation-of-very-long-chain-fatty-acids-vlcfas": "VLCFAs",

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { AnimatePresence, MotionConfig, motion, useReducedMotion } from 'framer-motion';
-import { findItem, site, VIEWS } from './content';
+import { findItem, site } from './content';
 import { hubHref, useHashRoute } from './lib/useHashRoute';
 import Detail from './components/Detail';
 import Drift from './components/Drift';
@@ -8,6 +8,8 @@ import Hub from './components/Hub';
 import Intro from './components/Intro';
 import Peroxisome, { BODY_SHARE } from './components/Peroxisome';
 import Logo from './components/Logo';
+import Footer from './components/Footer';
+import { useMediaQuery } from './lib/hooks';
 
 // The peroxisome is drawn once, at this size, and never unmounts. Each page
 // marks where it should sit with an empty [data-anchor] box; we measure that
@@ -21,6 +23,9 @@ export default function App() {
   const page = item ? 'detail' : 'hub';
   const routeKey = `${view}/${item?.id ?? ''}`;
   const still = useReducedMotion() ?? false;
+  // The floating background proteins are kept for laptops and up; on a phone
+  // they crowd the screen, so they are left out entirely.
+  const phone = useMediaQuery('(max-width: 767px)');
 
   const rootRef = useRef(null);
   const latest = useRef({ page, routeKey });
@@ -38,15 +43,20 @@ export default function App() {
     () => !window.matchMedia('(prefers-reduced-motion: reduce)').matches,
   );
   const lastPage = useRef(page);
+  const replaying = useRef(false);
   useLayoutEffect(() => {
     const from = lastPage.current;
     lastPage.current = page;
-    if (from === 'detail' && page === 'hub') {
+    if (from === 'detail' && page === 'hub' && replaying.current) {
+      // Logo or title clicked on a detail page: start over from the intro.
+      replaying.current = false;
+      window.scrollTo({ top: 0, behavior: 'auto' });
+    } else if (from === 'detail' && page === 'hub') {
       const intro = rootRef.current?.querySelector('.intro');
       window.scrollTo({ top: intro ? intro.offsetTop + intro.offsetHeight : 0, behavior: 'auto' });
     }
   }, [page]);
-  // Clicking the site title works like a homepage link: back to the top of
+  // Clicking the logo or the site title works like a homepage link: back to the top of
   // the hub with the intro ready to play again from the start.
   const [introRun, setIntroRun] = useState(0);
   const replayIntro = useCallback(
@@ -57,7 +67,10 @@ export default function App() {
         window.scrollTo({ top: 0 });
         return;
       }
-      if (window.location.hash !== hubHref(view)) window.location.hash = hubHref(view);
+      if (window.location.hash !== hubHref(view)) {
+        replaying.current = true;
+        window.location.hash = hubHref(view);
+      }
       setShowIntro(true);
       setIntroRun((n) => n + 1);
     },
@@ -119,7 +132,20 @@ export default function App() {
     document.title = item
       ? `${item.label} | ${site.title}`
       : `${site.title} | ${site.organisation}`;
-    if (page === 'detail') window.scrollTo({ top: 0 });
+    if (page === 'detail') {
+      // Land at the very top of the new page so the fixed logo never sits
+      // over the organelle and breadcrumb. The outgoing page is still fading
+      // out, so repeat for a few frames in case layout shifts underneath.
+      const toTop = () => window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      toTop();
+      let frames = 0;
+      let raf = requestAnimationFrame(function again() {
+        toTop();
+        if (++frames < 6) raf = requestAnimationFrame(again);
+      });
+      setHot(false);
+      return () => cancelAnimationFrame(raf);
+    }
     setHot(false);
   }, [routeKey, item, page]);
 
@@ -135,8 +161,8 @@ export default function App() {
           <div className="grain" />
         </div>
         {/* One logo for the whole site, fixed in the same spot on every page. */}
-        <Logo href={hubHref(view)} />
-        <Drift view={view} still={still} />
+        <Logo href={hubHref(view)} onClick={replayIntro} />
+        {!phone && <Drift view={view} still={still} />}
 
         <motion.div
           className="peroxisome"
@@ -149,29 +175,23 @@ export default function App() {
               : { opacity: 0 }
           }
           transition={{
-            default: slot?.glide && !still ? GLIDE : { duration: 0 },
+            // On phones the organelle snaps into place rather than flying across
+            // the screen, which pulled attention away from the text.
+            default: slot?.glide && !still && !phone ? GLIDE : { duration: 0 },
             opacity: { duration: 0.9 },
           }}
         >
           <div className="peroxisome-aura" aria-hidden="true" />
           <Peroxisome view={view} hot={hot} still={still} />
-          {page === 'detail' ? (
-            <a
-              className="peroxisome-hit"
-              href={hubHref(view)}
-              aria-label={`Back to ${VIEWS[view].label}`}
-              onPointerEnter={() => setHot(true)}
-              onPointerLeave={() => setHot(false)}
-            />
-          ) : (
-            <div
-              className="peroxisome-hit"
-              role="img"
-              aria-label={site.hubName}
-              onPointerEnter={() => setHot(true)}
-              onPointerLeave={() => setHot(false)}
-            />
-          )}
+          {/* Decorative on every page: the logo and breadcrumb are the ways
+              back, so the organelle is not one more home link. */}
+          <div
+            className="peroxisome-hit"
+            role="img"
+            aria-label={site.hubName}
+            onPointerEnter={() => setHot(true)}
+            onPointerLeave={() => setHot(false)}
+          />
         </motion.div>
 
         {showIntro && page === 'hub' && <Intro key={introRun} onSkip={skipIntro} />}
@@ -185,6 +205,7 @@ export default function App() {
             )}
           </AnimatePresence>
         </div>
+        <Footer />
       </div>
     </MotionConfig>
   );
