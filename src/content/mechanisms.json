@@ -2,18 +2,18 @@
   {
     "id": "lipid-breakdown",
     "label": "Lipid Breakdown",
-    "summary": "Break down fats no other part of the cell can handle, and build bile acids and DHA in the process",
-    "description": "Peroxisomes break down fats no other part of the cell can handle, and build bile acids and DHA in the process.",
+    "summary": "Break down fats that no other part of the cell can handle, and build bile acids (which make fat absorbable) and DHA (a key brain fat) in the process",
+    "description": "Peroxisomes break down fats that no other part of the cell can handle, and build bile acids (which make fat absorbable) and DHA (a key brain fat) in the process.",
     "parts": [
       {
         "id": "breakdown-beta-oxidation-of-very-long-chain-fatty-acids-vlcfas",
         "label": "Breakdown (beta-oxidation) of Very Long Chain Fatty Acids (VLCFAs)",
         "panelTitle": "Breakdown (beta-oxidation) of Very Long Chain Fatty Acids (VLCFAs)",
-        "text": "Peroxisomes break down VLCFAs (fatty acids 22 carbons or longer), which mitochondria cannot process, and hand the shortened products to mitochondria to finish the job.",
+        "text": "Peroxisomes break down VLCFAs (fatty acids that are 22 carbons or longer), which mitochondria cannot process, and hand the shortened products off to mitochondria to finish the job.",
         "left": [
-          "**[X-linked adrenoleukodystrophy (X-ALD)](#/diseases/genetic-disorders):** the transporter that feeds VLCFAs into the peroxisome (ABCD1) fails, so VLCFAs build up in blood and tissue and damage the adrenal glands and the brain's white matter.",
-          "**[Peroxisome Biogenesis Disorders (PBDs)](#/diseases/genetic-disorders):** when peroxisomes fail to form, VLCFAs build up throughout the body. An elevated blood level of the 26-carbon fatty acid C26:0 is the standard first screening test for Zellweger spectrum disorders.",
-          "**[Single-enzyme disorders](#/diseases/genetic-disorders):** ACOX1 deficiency and D-bifunctional protein (HSD17B4) deficiency each block one step of this pathway and cause severe infantile neurological disease that closely resembles Zellweger spectrum ([Ferdinandusse 2006](https://pubmed.ncbi.nlm.nih.gov/16385454/))."
+          "**[X-linked adrenoleukodystrophy (X-ALD)](#/diseases/genetic-disorders):** the transporter that feeds VLCFAs into the peroxisome (ABCD1) fails, so VLCFAs build up in blood and tissue, damaging the adrenal glands and the brain's white matter.",
+          "**[Peroxisome Biogenesis Disorders (PBDs)](#/diseases/genetic-disorders):** when peroxisomes fail to form, VLCFAs build up throughout the body. An elevated blood level of the 26-carbon fatty acid C26:0 is the standard first screening test for Zellweger Spectrum Disorders.",
+          "**[Single-enzyme disorders](#/diseases/genetic-disorders):** ACOX1 deficiency and D-bifunctional protein (HSD17B4) deficiency each block one step of the beta-oxidation pathway and cause severe infantile neurological disease that closely resembles Zellweger Spectrum Disorder ([Ferdinandusse 2006](https://pubmed.ncbi.nlm.nih.gov/16385454/))."
         ],
         "furtherReading": [
           "[Wanders 2020](https://pubmed.ncbi.nlm.nih.gov/33417207/) (pathway overview)",
@@ -22,26 +22,27 @@
           "[Wanders 2014](https://doi.org/10.1016/j.biochi.2013.08.022) (metabolic functions of peroxisomes in health and disease)"
         ],
         "right": [
-          "**[Alzheimer's disease](#/diseases/brain-nerve/alzheimers-disease):** VLCFA oxidation fails in brain tissue ([Roczkowsky 2025](https://pmc.ncbi.nlm.nih.gov/articles/PMC12426004/)) and VLCFAs are elevated in cortex in proportion to disease pathology ([Kou 2011](https://pubmed.ncbi.nlm.nih.gov/21594711/)). Blocking peroxisomal beta-oxidation in rats raises VLCFAs and amyloid-beta in the brain ([Shi 2012](https://doi.org/10.1016/j.neulet.2012.08.086)).",
+          "**[Alzheimer's disease](#/diseases/brain-nerve/alzheimers-disease):** VLCFA oxidation fails in brain tissue ([Roczkowsky 2025](https://pmc.ncbi.nlm.nih.gov/articles/PMC12426004/)) and in human postmortem cortex the fats peroxisomes normally break down are higher in the most severely affected brains than in mildly affected ones ([Kou 2011](https://pubmed.ncbi.nlm.nih.gov/21594711/)). Blocking peroxisomal beta-oxidation in rats increases VLCFAs and amyloid-beta in the brain ([Shi 2012](https://doi.org/10.1016/j.neulet.2012.08.086)).",
           "**[Multiple sclerosis](#/diseases/brain-nerve/multiple-sclerosis-ms):** VLCFA oxidation fails in brain tissue ([Roczkowsky 2025](https://pmc.ncbi.nlm.nih.gov/articles/PMC12426004/)).",
-          "**[Cancer:](#/diseases/cancer)** melanoma cells that survive BRAF/MEK inhibitor treatment depend on ACOX1-driven fatty acid oxidation ([Shen 2020](https://doi.org/10.1016/j.celrep.2020.108421))."
+          "**[Cancer:](#/diseases/cancer)** melanoma cells that survive BRAF/MEK inhibitor treatment depend on ACOX1-driven fatty acid oxidation ([Shen 2020](https://doi.org/10.1016/j.celrep.2020.108421)).",
+          "**[Cancer:](#/diseases/cancer)** acute myeloid leukemia cells raise ABCD1 and depend on peroxisomal breakdown of very long chain fatty acids; blocking the transporter kills them selectively in mice ([Parfenova 2026](https://pubmed.ncbi.nlm.nih.gov/41746867/))."
         ]
       },
       {
         "id": "breakdown-alpha-oxidation-of-branched-fats-such-as-phytanic-acid",
         "label": "Breakdown (alpha-oxidation) of branched fats such as phytanic acid",
         "panelTitle": "Breakdown (alpha-oxidation) of branched fats such as phytanic acid",
-        "text": "Phytanic acid, a branched fat from dairy, ruminant meat and some fish, carries a side branch that blocks normal fat breakdown. Peroxisomes clip off one carbon (alpha-oxidation) to make pristanic acid, which is then broken down by peroxisomal beta-oxidation.",
+        "text": "Phytanic acid, a branched fat from dairy, ruminant meat and some fish, carries a side branch that blocks normal breakdown. Peroxisomes clip off one carbon (alpha-oxidation) to make pristanic acid, which is then broken down by peroxisomal beta-oxidation.",
         "left": [
-          "**[Refsum disease](#/diseases/genetic-disorders):** variants in PHYH (the alpha-oxidation enzyme) or PEX7 (the receptor that imports it) block this step. Phytanic acid builds up and causes retinitis pigmentosa (progressive vision loss), loss of smell, nerve damage and unsteady gait, typically starting in late childhood or adulthood. Restricting dietary phytanic acid is the main treatment ([Wanders 2011](https://pubmed.ncbi.nlm.nih.gov/21683154/)).",
+          "**[Refsum disease](#/diseases/genetic-disorders):** variants in PHYH (the alpha-oxidation enzyme) or PEX7 (the receptor that imports the enzyme) block alpha-oxidation. Phytanic acid builds up and causes retinitis pigmentosa (progressive vision loss), loss of smell, nerve damage and unsteady gait, typically starting in late childhood or adulthood. Restricting dietary phytanic acid is the main treatment ([Wanders 2011](https://pubmed.ncbi.nlm.nih.gov/21683154/)).",
           "**[AMACR deficiency](#/diseases/genetic-disorders):** AMACR flips pristanic acid and bile acid intermediates into the mirror-image form that beta-oxidation enzymes can use. Its loss causes an adult-onset nerve disorder ([Ferdinandusse 2000](https://pubmed.ncbi.nlm.nih.gov/10655068/)).",
-          "**[PBDs and RCDP type 1](#/diseases/genetic-disorders):** phytanic acid rises in both, because the alpha-oxidation enzyme depends on PEX7-mediated import. Levels also depend on diet and age, so they are less useful for diagnosis in infants."
+          "**[PBDs and RCDP type 1](#/diseases/genetic-disorders):** phytanic acid is increased in both, because the alpha-oxidation enzyme depends on PEX7-mediated import; phytanic acid levels also depend on diet and age, so they are less useful for diagnosis in infants."
         ],
         "furtherReading": [
           "[Wanders 2011](https://pubmed.ncbi.nlm.nih.gov/21683154/) (alpha-oxidation and disease)"
         ],
         "right": [
-          "**[Prostate cancer](#/diseases/cancer):** AMACR is elevated distinctively enough in prostate tumors to be used as a routine diagnostic marker in pathology labs ([Luo 2002](https://pubmed.ncbi.nlm.nih.gov/11956072/); [Rubin 2002](https://pubmed.ncbi.nlm.nih.gov/11926890/)), and it links this pathway to tumor growth and redox stress ([Kong 2020](https://doi.org/10.3389/fmolb.2020.00153)).",
+          "**[Prostate cancer](#/diseases/cancer):** AMACR is elevated distinctively enough in prostate tumors to be used as a routine diagnostic marker in pathology labs ([Luo 2002](https://pubmed.ncbi.nlm.nih.gov/11956072/); [Rubin 2002](https://pubmed.ncbi.nlm.nih.gov/11926890/)), linking this pathway to tumor growth and redox stress ([Kong 2020](https://pubmed.ncbi.nlm.nih.gov/32760737/)).",
           "**[Prostate cancer risk and diet](#/diseases/cancer):** dairy and red meat, the main dietary sources of phytanic acid, have been proposed as a link between diet and prostate cancer risk. Epidemiological evidence is limited and mixed: a small case-control study found higher serum phytanic acid in men with prostate cancer, while two larger prospective studies found no overall association ([Price 2010](https://pubmed.ncbi.nlm.nih.gov/20427733/); [Wright 2014](https://pubmed.ncbi.nlm.nih.gov/25132681/))."
         ]
       },
@@ -49,10 +50,10 @@
         "id": "production-beta-oxidation-of-bile-acids",
         "label": "Production (beta-oxidation) of bile acids",
         "panelTitle": "Production (beta-oxidation) of bile acids",
-        "text": "Peroxisomes trim the 27-carbon precursors the liver makes from cholesterol (DHCA and THCA) down to the 24-carbon bile acids (cholic and chenodeoxycholic acid) the gut uses to absorb fats and fat-soluble vitamins.",
+        "text": "Peroxisomes trim the 27-carbon precursors the liver makes from cholesterol (DHCA and THCA) down to the 24-carbon bile acids (cholic and chenodeoxycholic acid). The gut then uses bile acids to absorb fats and fat-soluble vitamins.",
         "left": [
-          "**[Zellweger spectrum disorders](#/diseases/genetic-disorders):** the 27-carbon intermediates accumulate in blood and are thought to contribute to liver disease. Oral cholic acid (Cholbam) was approved by the FDA in 2015 as an add-on treatment for peroxisomal disorders including Zellweger spectrum; a clinical study found it lowered the toxic intermediates in some patients but cautioned against use in advanced liver disease ([Berendse 2016](https://pubmed.ncbi.nlm.nih.gov/27469511/)).",
-          "**[Single-enzyme disorders:](https://pubmed.ncbi.nlm.nih.gov/27647924/)** AMACR, ACOX2 and D-bifunctional protein deficiencies raise the 27-carbon bile acid intermediates, and liver injury can be the presenting sign in ACOX2 deficiency (Vilarinho 2016). SCPx deficiency is different: the one reported patient had raised pristanic acid and abnormal urinary bile alcohols rather than raised 27-carbon intermediates."
+          "**[Zellweger Spectrum Disorders](#/diseases/genetic-disorders):** the 27-carbon intermediates accumulate in blood and are thought to contribute to liver disease. Oral cholic acid (Cholbam) was approved by the FDA in 2015 as an add-on treatment for peroxisomal disorders including Zellweger Spectrum Disorder; a clinical study found it lowered the toxic intermediates in some patients but cautioned against use in advanced liver disease ([Berendse 2016](https://pubmed.ncbi.nlm.nih.gov/27469511/)).",
+          "**[Single-enzyme disorders:](https://pubmed.ncbi.nlm.nih.gov/27647924/)** AMACR, ACOX2 and D-bifunctional protein deficiencies increase levels of 27-carbon bile acid intermediates, and liver injury can be the presenting sign in ACOX2 deficiency ([Vilarinho 2016](https://pubmed.ncbi.nlm.nih.gov/27647924/))."
         ],
         "furtherReading": [
           "[Ferdinandusse 2009](https://pubmed.ncbi.nlm.nih.gov/17034878/) (peroxisomes in bile acid synthesis)"
@@ -65,9 +66,9 @@
         "id": "production-beta-oxidation-of-dha",
         "label": "Production (beta-oxidation) of DHA",
         "panelTitle": "Production (beta-oxidation) of DHA",
-        "text": "DHA (docosahexaenoic acid), the brain and retina's key omega-3 fat, is finished in the peroxisome: a 24-carbon precursor made in the endoplasmic reticulum is shortened by one round of peroxisomal beta-oxidation to 22-carbon DHA.",
+        "text": "Production of DHA (docosahexaenoic acid), the brain and retina's key omega-3 fat, is finished in the peroxisome: a 24-carbon precursor made in the endoplasmic reticulum is shortened by one round of peroxisomal beta-oxidation to 22-carbon DHA.",
         "left": [
-          "**[Zellweger spectrum disorders](#/diseases/genetic-disorders):** DHA is markedly reduced in the brain and retina of patients. A randomized trial of DHA supplementation in Zellweger spectrum found no clinical benefit on vision or development ([Paker 2010](https://pubmed.ncbi.nlm.nih.gov/20805528/)).",
+          "**[Zellweger Spectrum Disorders](#/diseases/genetic-disorders):** DHA is markedly reduced in the brain and retina of patients. A randomized trial of DHA supplementation in Zellweger Spectrum Disorders found no clinical benefit on vision or development ([Paker 2010](https://pubmed.ncbi.nlm.nih.gov/20805528/)).",
           "**[D-bifunctional protein deficiency:](#/diseases/genetic-disorders/single-enzyme-disorders)** patient cells cannot complete this final chain-shortening step, so DHA is low ([Su 2001](https://pubmed.ncbi.nlm.nih.gov/11500517/))."
         ],
         "furtherReading": [
@@ -77,8 +78,8 @@
           "[Pan 2015](https://doi.org/10.2174/157488471003150820151532) (DHA and the blood-brain barrier in Alzheimer's disease)"
         ],
         "right": [
-          "**[Alzheimer's disease](#/diseases/brain-nerve/alzheimers-disease):** DHA-containing plasmalogens are reduced in Alzheimer's brain tissue ([Han 2001](https://pubmed.ncbi.nlm.nih.gov/11359882/)). Whether impaired peroxisomal DHA production contributes is not established.",
-          "**[Retinal degeneration](#/diseases/brain-nerve/vision-and-hearing-loss):** low DHA in photoreceptor membranes is linked to vision loss in genetic peroxisomal disorders. Mice lacking peroxisomal beta-oxidation enzymes develop photoreceptor and retinal pigment epithelium degeneration ([Swinkels 2023](https://pmc.ncbi.nlm.nih.gov/articles/PMC10631513/)), but omega-3 supplementation did not slow progression to advanced age-related macular degeneration in the AREDS2 trial, so a contribution to common retinal disease is unproven."
+          "**[Alzheimer's disease](#/diseases/brain-nerve/alzheimers-disease):** DHA-containing plasmalogens are reduced in Alzheimer's brain tissue ([Han 2001](https://pubmed.ncbi.nlm.nih.gov/11359882/)). Whether impaired peroxisomal DHA production contributes to this reduction is not established.",
+          "**[Retinal degeneration](#/diseases/brain-nerve/vision-and-hearing-loss):** low DHA in photoreceptor membranes is linked to vision loss in genetic peroxisomal disorders. Mice lacking peroxisomal beta-oxidation enzymes developed photoreceptor and retinal pigment epithelium degeneration ([Swinkels 2023](https://pmc.ncbi.nlm.nih.gov/articles/PMC10631513/)), but omega-3 supplementation did not slow progression to advanced age-related macular degeneration in the AREDS2 trial, so a contribution to common retinal disease is unproven."
         ]
       }
     ]
@@ -96,7 +97,7 @@
         "text": "Peroxisomes provide the first steps of building ether lipids and plasmalogens, with the endoplasmic reticulum finishing the molecule. The finished fats end up unusually concentrated in the insulation around nerve fibers (myelin), heart muscle and sperm.",
         "left": [
           "**[Rhizomelic Chondrodysplasia Punctata (RCDP)](#/diseases/genetic-disorders):** caused by variants in peroxisomal genes that block plasmalogen synthesis. Children have shortening of the upper arms and thighs (rhizomelia, the feature the disorder is named for), cataracts, skeletal changes and severe developmental delay present from birth ([Braverman 2012](https://pubmed.ncbi.nlm.nih.gov/22627108/)).",
-          "**[Zellweger spectrum disorders](#/diseases/genetic-disorders):** plasmalogens are reduced, and a low red blood cell plasmalogen level is a standard diagnostic test."
+          "**[Zellweger Spectrum Disorders](#/diseases/genetic-disorders):** plasmalogens are reduced, and a low red blood cell plasmalogen level is a standard diagnostic test."
         ],
         "furtherReading": [
           "[Luoma 2015](https://pubmed.ncbi.nlm.nih.gov/25801291/) (plasmalogens protect nerve insulation from oxidative damage)",
@@ -113,18 +114,18 @@
         "id": "antioxidant-protection",
         "label": "Antioxidant protection",
         "panelTitle": "Antioxidant protection",
-        "text": "The vinyl-ether bond in plasmalogens reacts readily with oxidants, so plasmalogens are thought to absorb oxidative damage that would otherwise strike the rest of the membrane.",
+        "text": "The vinyl-ether bond in plasmalogens reacts readily with oxidants, so plasmalogens are thought to absorb oxidative damage that would otherwise affect the rest of the membrane.",
         "left": [
-          "**[RCDP and Zellweger spectrum disorders](#/diseases/genetic-disorders)**: cells lacking plasmalogens are more vulnerable to oxidative damage. The clearest evidence comes from ether lipid-deficient cells and mouse models ([Perez 2022](https://pubmed.ncbi.nlm.nih.gov/36178986/)) rather than from patient fibroblasts."
+          "**[RCDP and Zellweger Spectrum Disorders](#/diseases/genetic-disorders)**: cells lacking plasmalogens are more vulnerable to oxidative damage. The clearest evidence comes from ether lipid-deficient cells and mouse models ([Perez 2022](https://pubmed.ncbi.nlm.nih.gov/36178986/)), rather than from patient fibroblasts."
         ],
         "furtherReading": [
           "[Zou 2020](https://pubmed.ncbi.nlm.nih.gov/32939090/) (peroxisome-made ether lipids and ferroptosis)",
           "[Dean 2018](https://pubmed.ncbi.nlm.nih.gov/28523433/) (ether lipid functions)"
         ],
         "right": [
-          "**[Cancer](#/diseases/cancer):** the peroxisomal enzyme AGPS builds ether lipids that fuel cancer cell migration, invasion and survival signals across multiple tumor types ([Chen 2024](https://www.nature.com/articles/s41467-024-51489-1)). The same ether lipids can make tumor cells more vulnerable to ferroptosis, an iron-dependent form of cell death driven by lipid oxidation (Zou 2020). This is a paradox: the property that protects healthy membranes can be a weak point in tumors.",
+          "**[Cancer](#/diseases/cancer):** the peroxisomal enzyme AGPS builds ether lipids that fuel cancer cell migration, invasion and survival signals across multiple tumor types ([Chen 2024](https://www.nature.com/articles/s41467-024-51489-1)). The same ether lipids can make tumor cells more vulnerable to ferroptosis, an iron-dependent form of cell death driven by lipid oxidation ([Zou 2020](https://pubmed.ncbi.nlm.nih.gov/32939090/)).",
           "**[Aging](#/diseases/aging):** falling plasmalogen levels influence cell-death sensitivity in aging tissues ([Curran 2025](https://www.sciencedirect.com/science/article/pii/S0022227525001889)).",
-          "**[Viral infection](#/diseases/infection):** some enveloped viruses expand peroxisomes and take over ether lipid and plasmalogen production to build their own membranes ([Ferreira 2022](http://linkinghub.elsevier.com/retrieve/pii/S0962892421001999)).",
+          "**[Viral infection](#/diseases/infection):** some enveloped viruses expand peroxisomes and take over ether lipid and plasmalogen production to build their own membranes ([Ferreira 2022](https://pubmed.ncbi.nlm.nih.gov/34696946/)).",
           "**[Parkinson's disease:](#/diseases/brain-nerve)** blood plasmalogens are lower in Parkinson's disease ([Dragonas 2009](https://doi.org/10.1515/cclm.2009.205)), and the lipid composition of frontal cortex membranes is altered ([Fabelo 2011](https://doi.org/10.2119/molmed.2011.00119)). In MPTP mice, plasmalogen augmentation and plasmalogen precursors reduce striatal dopamine loss ([Miville-Godbout 2016](https://doi.org/10.1371/journal.pone.0151020); [Miville-Godbout 2017](https://doi.org/10.1016/j.brainres.2017.08.020))."
         ]
       }
@@ -133,8 +134,8 @@
   {
     "id": "detoxification",
     "label": "Detoxification",
-    "summary": "Neutralize the corrosive by-products of the cell's own chemistry, and clear waste the body cannot leave in circulation",
-    "description": "Peroxisomes neutralize the corrosive by-products of the cell's own chemistry, and clear waste the body cannot leave in circulation.",
+    "summary": "Neutralize the damaging by-products of the cell's own chemistry, and clear waste the body cannot leave in circulation",
+    "description": "Peroxisomes neutralize the damaging by-products of the cell's own chemistry, and clear waste the body cannot leave in circulation.",
     "parts": [
       {
         "id": "glyoxylate-disposal",
@@ -142,8 +143,8 @@
         "panelTitle": "Glyoxylate disposal",
         "text": "Glyoxylate is a metabolic by-product that turns into oxalate, which crystallizes into kidney stones if not cleared. The peroxisomal enzyme AGXT converts glyoxylate into the harmless amino acid glycine. Silencing glycolate oxidase, the peroxisomal enzyme that makes glyoxylate, is the basis of an approved drug that switches the enzyme off.",
         "left": [
-          "**[Primary Hyperoxaluria Type 1 (PH1)](#/diseases/genetic-disorders):** loss of AGXT causes oxalate to accumulate and crystallize, damaging the kidneys and, as kidney function falls, other organs.",
-          "**[Zellweger spectrum disorders](#/diseases/genetic-disorders):** calcium oxalate kidney stones also occur in some patients ([van Woerden 2006](https://pubmed.ncbi.nlm.nih.gov/16621644/))."
+          "**[Primary Hyperoxaluria Type 1 (PH1)](#/diseases/genetic-disorders):** loss of AGXT causes oxalate to accumulate and crystallize, damaging the kidneys and, as kidney function decreases, other organs.",
+          "**[Zellweger Spectrum Disorders](#/diseases/genetic-disorders):** calcium oxalate kidney stones also occur in some patients ([van Woerden 2006](https://pubmed.ncbi.nlm.nih.gov/16621644/))."
         ],
         "furtherReading": [
           "[Danpure 2006](https://pubmed.ncbi.nlm.nih.gov/17027096/) (PH1 and peroxisomal enzyme targeting)",
@@ -157,9 +158,9 @@
         "id": "hydrogen-peroxide-and-reactive-oxygen-species-ros",
         "label": "Hydrogen peroxide and reactive oxygen species (ROS)",
         "panelTitle": "Hydrogen peroxide and reactive oxygen species (ROS)",
-        "text": "Peroxisomal fat breakdown generates hydrogen peroxide, which catalase neutralizes inside the same compartment. Controlled leakage of hydrogen peroxide may also act as a signal that reports the cell's metabolic state. Peroxisomes also handle reactive nitrogen species (RNS), and the balance of these reactive molecules may help decide whether a stressed cell survives or dies.",
+        "text": "Peroxisomal fat breakdown generates hydrogen peroxide, which catalase neutralizes inside the same compartment. Controlled leakage of hydrogen peroxide may also act as a signal that reports the cell's metabolic state. Peroxisomes also handle reactive nitrogen species (RNS).",
         "left": [
-          "**[Zellweger spectrum disorders](#/diseases/genetic-disorders):** catalase cannot be imported and stays in the cytosol, leaving empty peroxisome membranes ('ghosts'). Catalase location in patient cells is a classic diagnostic readout.",
+          "**[Zellweger Spectrum Disorders](#/diseases/genetic-disorders):** catalase cannot be imported and stays in the cytosol, leaving empty peroxisome membranes ('ghosts'). Catalase location in patient cells is a classic diagnostic readout.",
           "**[Acatalasemia](#/diseases/genetic-disorders):** inherited loss of catalase (CAT gene) is usually mild; some individuals develop mouth ulcers, and an increased frequency of diabetes has been reported in catalase-deficient families ([Góth 2000](https://pubmed.ncbi.nlm.nih.gov/11117918/))."
         ],
         "furtherReading": [
@@ -173,7 +174,7 @@
           "**[Neurodegeneration](#/diseases/brain-nerve):** PEX5 import defects and catalase loss compromise detoxification of reactive oxygen species (ROS) in neurodegenerative disease ([Jo 2020](https://www.nature.com/articles/s12276-020-00503-9)).",
           "**[Diabetic kidney disease](#/diseases/kidney):** kidneys develop structurally intact but functionally 'empty' peroxisomes; loss of the DsbA-L/catalase complex disables local antioxidant defense and accelerates damage ([Liu 2023](https://www.sciencedirect.com/science/article/pii/S2213231723002562)).",
           "**[Obesity](#/diseases/obesity-diabetes):** in fat tissue, peroxisome-derived ROS stabilize PEX2, which degrades the fat-releasing enzyme ATGL and suppresses fat breakdown ([Ding 2021](https://pmc.ncbi.nlm.nih.gov/articles/PMC8688145/)).",
-          "**[Aging](#/diseases/aging):** catalase is mislocalized to the cytosol in aged and replicatively senescent cells, reducing peroxisomal antioxidant capacity ([Kim 2024](https://academic.oup.com/pnasnexus/article/3/10/pgae429/7793200))."
+          "**[Aging](#/diseases/aging):** catalase is mislocalized to the cytosol in aged and replicatively senescent cells, reducing peroxisomal antioxidant capacity ([Kim 2024](https://pubmed.ncbi.nlm.nih.gov/39398621/))."
         ]
       },
       {
@@ -189,7 +190,7 @@
           "[Paul and De Belleroche 2012](https://doi.org/10.1007/s00726-012-1385-9) (D-amino acids in ALS)"
         ],
         "right": [
-          "**Schizophrenia:** reduced NMDA receptor signaling is a leading hypothesis, and DAAO inhibitors have been tested in clinical trials to raise D-serine ([Terry-Lorenzo 2024](https://pmc.ncbi.nlm.nih.gov/articles/PMC11712274/)).",
+          "**Schizophrenia:** reduced NMDA receptor signaling is a leading hypothesis, and DAAO inhibitors have been tested in clinical trials to raise D-serine ([Terry-Lorenzo 2024](https://pubmed.ncbi.nlm.nih.gov/39756412/)).",
           "**ALS:** a DAAO variant (R199W) was identified in a family with inherited ALS ([Mitchell 2010](https://pubmed.ncbi.nlm.nih.gov/20368421/))."
         ]
       }
@@ -198,19 +199,20 @@
   {
     "id": "organelle-crosstalk",
     "label": "Organelle Crosstalk",
-    "summary": "Physically dock onto other compartments and hand material back and forth",
-    "description": "Peroxisomes physically dock onto other compartments and hand material back and forth.",
+    "summary": "Physically make contact with other compartments and hand material back and forth",
+    "description": "Peroxisomes physically make contact with other compartments and hand material back and forth.",
     "parts": [
       {
         "id": "mitochondria",
         "label": "Mitochondria",
         "panelTitle": "Mitochondria",
-        "text": "Peroxisomes pass partially broken-down fats to mitochondria to finish the job, and mitochondria in peroxisome-deficient cells are visibly abnormal.",
+        "text": "Peroxisomes pass partially broken-down fats to mitochondria to finish beta-oxidation, and mitochondria in some peroxisome-deficient cells are visibly abnormal.",
         "left": [
-          "**[Zellweger spectrum disorders](#/diseases/genetic-disorders):** some of the cellular damage in peroxisomal disease is inflicted second-hand, through structurally and functionally abnormal mitochondria in peroxisome-deficient cells ([Baumgart 2001](https://pubmed.ncbi.nlm.nih.gov/11583975/))."
+          "**[Zellweger Spectrum Disorders](#/diseases/genetic-disorders):** some of the cellular damage in peroxisomal disease is inflicted second-hand, through structurally and functionally abnormal mitochondria in peroxisome-deficient cells ([Baumgart 2001](https://pubmed.ncbi.nlm.nih.gov/11583975/)).",
+          "**[Zellweger Spectrum Disorders](#/diseases/genetic-disorders):** when peroxisome biogenesis fails, orphaned peroxisomal membrane proteins are rerouted to mitochondria and tagged for disposal by MUL1 and MARCH5, a backup quality-control system that clears them before they accumulate ([Segev-Nakar 2026](https://pubmed.ncbi.nlm.nih.gov/42270660/))."
         ],
         "furtherReading": [
-          "[Schrader 2015a](https://pubmed.ncbi.nlm.nih.gov/25687155/) (peroxisome-mitochondria interplay in disease)",
+          "[Schrader 2015](https://pubmed.ncbi.nlm.nih.gov/25687155/) (peroxisome-mitochondria interplay in disease)",
           "[Schrader 2020](https://doi.org/10.1002/jimd.12083) (organelle interplay: peroxisome interactions in health and disease)",
           "[Ravi 2021](https://doi.org/10.1016/j.devcel.2021.04.019) (PI5P4Ks and peroxisome-mitochondria interplay)",
           "[Tanaka 2019](https://doi.org/10.1242/jcs.224766) (peroxisomes control mitochondrial dynamics and apoptosis)"
@@ -225,7 +227,7 @@
         "id": "endoplasmic-reticulum-er",
         "label": "Endoplasmic reticulum (ER)",
         "panelTitle": "Endoplasmic reticulum (ER)",
-        "text": "Peroxisomes draw raw material from the ER, the cell's membrane-building factory. Tether proteins such as ACBD5 on the peroxisome and VAPB on the ER hold the two together so lipids can move between them.",
+        "text": "Peroxisomes draw raw material from the ER, the cell's membrane-building factory. Tether proteins (such as ACBD5) on the peroxisome and VAPB on the ER hold the two together so lipids can move between them.",
         "left": [
           "**[ACBD5 deficiency](#/diseases/genetic-disorders):** loss of the peroxisome-ER tether causes retinal degeneration and white matter disease with raised VLCFAs ([Ferdinandusse 2017](https://pubmed.ncbi.nlm.nih.gov/27799409/)).",
           "**[PBDs caused by PEX3, PEX16 or PEX19](#/diseases/genetic-disorders):** these genes build the peroxisome membrane itself. Patient cells in these groups lack even the empty membrane 'ghosts' found in most other Zellweger groups ([Honsho 1998](https://pubmed.ncbi.nlm.nih.gov/9837814/)), and the presentation is usually at the severe end, though milder PEX16 cases have been reported ([Kumar 2018](https://pubmed.ncbi.nlm.nih.gov/30094183/))."
@@ -235,7 +237,7 @@
           "[Castro 2018](https://doi.org/10.1016/j.tibs.2018.01.001) (peroxisome contact sites in disease)"
         ],
         "right": [
-          "**[Neurodegeneration](#/diseases/brain-nerve):** peroxisome contacts with mitochondria and the ER help shape the lipid composition of synaptic membranes ([Carmichael 2025](https://www.frontiersin.org/journals/molecular-neuroscience/articles/10.3389/fnmol.2025.1603632/full)).",
+          "**[Neurodegeneration](#/diseases/brain-nerve):** peroxisome contacts with mitochondria and the ER help shape the lipid composition of synaptic membranes ([Carmichael 2025](https://pubmed.ncbi.nlm.nih.gov/40621503/)).",
           "**[Aging](#/diseases/aging):** aging weakens peroxisome contacts with the ER and mitochondria, disrupting lipid transfer ([Scalabrin 2025](https://www.nature.com/articles/s41467-025-64833-w))."
         ]
       },
@@ -245,7 +247,7 @@
         "panelTitle": "Lipid droplets",
         "text": "Peroxisomes tap directly into stored fat droplets for fuel. During fasting, peroxisomes move to lipid droplets and help switch on fat release.",
         "left": [
-          "No genetic peroxisomal disorder has been defined by a lipid droplet contact defect. The one disorder defined by a contact site defect, ACBD5 deficiency, involves peroxisome-ER contacts instead."
+          "No genetic peroxisomal disorder has been defined by a lipid droplet contact defect. The one disorder defined by a contact site defect, ACBD5 deficiency, involves peroxisome-ER contacts."
         ],
         "furtherReading": [
           "[Kong 2020](https://pubmed.ncbi.nlm.nih.gov/31996685/) (PEX5 brings ATGL to peroxisome-lipid droplet contacts)",
@@ -262,8 +264,8 @@
   {
     "id": "immune-signaling",
     "label": "Immune & Inflammatory Signaling",
-    "summary": "Raise the alarm when a virus gets in and shape how immune cells behave",
-    "description": "Peroxisomes raise the alarm when a virus gets in and shape how immune cells behave.",
+    "summary": "Raise the alarm when a virus gets in, and shape how immune cells behave in response",
+    "description": "Peroxisomes raise the alarm when a virus gets in, and shape how immune cells behave in response.",
     "parts": [
       {
         "id": "immune-cell-behavior-and-inflammation",
@@ -271,7 +273,7 @@
         "panelTitle": "Immune cell behavior and inflammation",
         "text": "Immune cells depend heavily on lipid handling to decide what to do, and the brain's resident immune cells (microglia) are particularly sensitive to peroxisomal failure.",
         "left": [
-          "**[Cerebral adrenoleukodystrophy (childhood cerebral ALD)](#/diseases/genetic-disorders):** microglial damage appears before major loss of nerve insulation, not after it, meaning inflammation is part of the disease mechanism rather than a downstream reaction ([Bergner 2019](https://pubmed.ncbi.nlm.nih.gov/30980503/)). This is why the disease is treated by replacing the patient's blood-forming stem cells, through transplant or the approved gene therapy elivaldogene autotemcel."
+          "**[Cerebral adrenoleukodystrophy (childhood cerebral ALD)](#/diseases/genetic-disorders):** microglial damage appears before major loss of nerve insulation, not after it, meaning inflammation is part of the disease mechanism rather than a downstream reaction ([Bergner 2019](https://pubmed.ncbi.nlm.nih.gov/30980503/)). This is why the disease is treated by replacing the patient's blood-forming stem cells, through transplant or the approved gene therapy (elivaldogene autotemcel)."
         ],
         "furtherReading": [
           "[Ferreira 2019](https://pubmed.ncbi.nlm.nih.gov/31382586/) (review of peroxisomes in innate immunity)",
@@ -279,7 +281,8 @@
           "[Di Cara 2019](https://doi.org/10.3390/ijms20163877) (peroxisomes in immune response and inflammation)"
         ],
         "right": [
-          "**[Brain and nerve disease](#/diseases/brain-nerve):** the microglial sensitivity to peroxisomal dysfunction seen in ALD now has direct support in Alzheimer's disease: the peroxisomal beta-oxidation enzyme MFE-2 is reduced in microglia from patients and from model mice, and removing it from microglia drives inflammation and amyloid deposition ([Gao 2025](https://pubmed.ncbi.nlm.nih.gov/41162676/)). For Parkinson's disease and MS this remains a hypothesis."
+          "**[Brain and nerve disease](#/diseases/brain-nerve):** the microglial sensitivity to peroxisomal dysfunction seen in ALD now has direct support in Alzheimer's disease: the peroxisomal beta-oxidation enzyme MFE-2 is reduced in microglia from patients and from model mice, and removing it from microglia drives inflammation and amyloid deposition ([Gao 2025](https://pubmed.ncbi.nlm.nih.gov/41162676/)). For Parkinson's disease and MS this remains a hypothesis.",
+          "**[Infection (COVID-19)](#/diseases/infection):** mice whose macrophages lack Pex5 had worse outcomes and longer-lasting lung damage, placing peroxisomes in how macrophages resolve inflammation rather than prolong it ([Wei 2025](https://pubmed.ncbi.nlm.nih.gov/40048515/))."
         ]
       },
       {
@@ -293,7 +296,7 @@
         "furtherReading": [
           "[Dixit 2010](https://pubmed.ncbi.nlm.nih.gov/20451243/) (discovery of peroxisomal MAVS signaling)",
           "[Odendall 2014](https://pubmed.ncbi.nlm.nih.gov/24952503/) (peroxisomal MAVS drives type III interferon)",
-          "[Ferreira 2022](http://linkinghub.elsevier.com/retrieve/pii/S0962892421001999) (review of how viruses exploit peroxisomes)"
+          "[Ferreira 2022](https://pubmed.ncbi.nlm.nih.gov/34696946/) (review of how viruses exploit peroxisomes)"
         ],
         "right": [
           "**[Viral infection:](#/diseases/infection)** peroxisomes act as an early antiviral alarm, switching on defense genes that slow infection before the full immune response arrives ([Dixit 2010](https://pubmed.ncbi.nlm.nih.gov/20451243/)) and many viruses reduce peroxisome numbers to silence this early warning system."
@@ -308,52 +311,40 @@
     "description": "Peroxisomes sense fats and help set how much of them the body burns versus stores.",
     "parts": [
       {
-        "id": "pan-ppar-signaling",
-        "label": "Pan-PPAR signaling",
-        "panelTitle": "Pan-PPAR signaling",
-        "text": "Pan-PPAR drugs act on several PPAR family members at once. Lanifibranor has been studied in clinical trials for fatty liver disease (MASH).",
+        "id": "peroxisomes-supply-the-fats-that-switch-ppars-on",
+        "label": "Peroxisomes supply the fats that switch PPARs on",
+        "panelTitle": "Peroxisomes supply the fats that switch PPARs on",
+        "text": "PPARs are nuclear receptors switched on by fatty acids, and peroxisomes make and break down a number of those fatty acids; the peroxisome therefore helps set how much signal the receptors receive.",
         "left": [
-          "**[Peroxisome Biogenesis Disorders (indirect)](#/diseases/genetic-disorders):** several of the fats that activate PPARs are made or broken down in peroxisomes, so when peroxisomes fail, this signaling loop is disrupted as a downstream consequence rather than a primary cause. Of the seven mechanisms, this one has the weakest direct genetic link."
+          "**[ACOX1 deficiency](#/diseases/genetic-disorders/single-enzyme-disorders):** ACOX1 carries out the first step of peroxisomal fat breakdown, and its substrates are themselves PPARα ligands. In mice lacking ACOX1 those substrates are not degraded and PPARα is persistently switched on, followed by liver inflammation and tumors ([Huang 2011](https://pubmed.ncbi.nlm.nih.gov/21801867/)), providing clear genetic evidence that a peroxisomal enzyme sets PPAR signaling rather than only responding to it.",
+          "**[Peroxisome Biogenesis Disorders](#/diseases/genetic-disorders):** when peroxisomes fail to form, the fats that activate PPARs are not processed normally, so the signal supply is disrupted as a downstream consequence rather than a primary cause."
         ],
         "furtherReading": [
-          "[Gonzalez 2008](https://pubmed.ncbi.nlm.nih.gov/18006136/) (the “peroxisome proliferation” that gave PPARs appears to be unique to rodents)"
+          "[Kleiboeker and Lodhi 2022](https://pubmed.ncbi.nlm.nih.gov/35988716/) (review of how peroxisomal metabolism regulates whole-body energy balance)"
         ],
         "right": [
-          "**[Liver disease](#/diseases/liver):** lanifibranor has been studied in clinical trials for MASH (fatty liver disease with inflammation) and two PPAR-targeting drugs, elafibranor and seladelpar, received accelerated FDA approval in 2024 for primary biliary cholangitis. The share of their benefit that runs through peroxisomes is not known."
+          "**[Obesity](#/diseases/obesity-diabetes)**: fat cells silenced for the peroxisome factor PEX16 failed to mature, and adding peroxisome-derived lipids together with a PPARgamma agonist restored maturation, so the lipids peroxisomes make feed the receptor that drives fat cell development ([Hofer 2017](https://pubmed.ncbi.nlm.nih.gov/28017862/)).",
+          "**[Obesity](#/diseases/obesity-diabetes)**: peroxisomal lipid synthesis in fat tissue generates lipids that activate a nuclear receptor and drive fat storage, reported for LXR rather than PPAR, so the receptor differs but the principle that peroxisomes supply the signal is the same ([Kleiboeker 2024](https://pubmed.ncbi.nlm.nih.gov/38458567/))."
         ]
       },
       {
-        "id": "ppar-fibrates-pemafibrate",
-        "label": "PPARα (fibrates, pemafibrate)",
-        "panelTitle": "PPARα (fibrates, pemafibrate)",
-        "text": "PPARα is the most established drug target in this family. It switches on peroxisomal and mitochondrial fat-burning genes and is targeted clinically to lower triglycerides.",
+        "id": "ppars-switch-on-peroxisomal-fat-burning-genes",
+        "label": "PPARs switch on peroxisomal fat-burning genes",
+        "panelTitle": "PPARs switch on peroxisomal fat-burning genes",
+        "text": "Once activated, PPARs induce the peroxisomal fat-burning enzymes and transporters, so part of what the receptor does is build more peroxisomal capacity (the name \"peroxisome proliferator\" comes from this effect, though the effect may be mostly rodent-specific).",
         "left": [
-          "**[Peroxisome Biogenesis Disorders (indirect)](#/diseases/genetic-disorders):** as with pan-PPAR signaling, the link is downstream of failed peroxisomal fat metabolism rather than a primary cause."
-        ],
-        "furtherReading": [
-          "[Gonzalez 2008](https://pubmed.ncbi.nlm.nih.gov/18006136/) (review of PPARα signaling and peroxisome proliferation)"
-        ],
-        "right": [
-          "**[Obesity](#/diseases/obesity-diabetes):** PPARα activation, exercise and fasting enhance peroxisomal function in fat tissue and liver, improving fat burning ([Jiang 2022](https://doi.org/10.4093/dmj.2021.0274)).",
-          "**[Cancer](#/diseases/cancer):** AMACR and other PPAR-regulated genes link peroxisomal lipid metabolism to tumor growth; anti-cancer PPAR antagonists may expose peroxisomal vulnerabilities ([Kong 2020](https://www.frontiersin.org/journals/molecular-biosciences/articles/10.3389/fmolb.2020.00153/full)).",
-          "**Heart disease:** fibrates lower triglycerides, but pemafibrate did not reduce cardiovascular events in a large outcome trial ([Das Pradhan 2022](https://pubmed.ncbi.nlm.nih.gov/36342113/))."
-        ]
-      },
-      {
-        "id": "ppar-pioglitazone",
-        "label": "PPARγ (pioglitazone)",
-        "panelTitle": "PPARγ (pioglitazone)",
-        "text": "PPARγ controls fat cell development and insulin sensitivity. The PPARγ agonist pioglitazone is used clinically in type 2 diabetes.",
-        "left": [
+          "**[Peroxisome Biogenesis Disorders](#/diseases/genetic-disorders):** the enzymes PPARα induces aren’t delivered effectively into dysfunctional peroxisomes, so the response is blunted downstream of the receptor.",
           "**[X-linked adrenoleukodystrophy](#/diseases/genetic-disorders):** leriglitazone, a brain-penetrant PPARγ agonist, has been studied in clinical trials in adults with X-ALD."
         ],
         "furtherReading": [
-          "[Vales-Villamarin 2022](https://www.frontiersin.org/journals/pharmacology/articles/10.3389/fphar.2021.763853/full) (PPARγ variants and drugs affect insulin sensitivity and diabetes risk)",
-          "[Steinke 2023](https://www.mdpi.com/2073-4409/12/8/1116) (PPARγ agonists rescue cognition in Alzheimer's models)"
+          "[Tahri-Joutey 2021](https://pubmed.ncbi.nlm.nih.gov/34445672/) (review of how PPARα regulates peroxisomal fatty acid beta-oxidation)",
+          "[Gonzalez 2008](https://pubmed.ncbi.nlm.nih.gov/18006136/) (review how the peroxisome proliferation that gave PPARs their name appears to be mostly rodent-specific)"
         ],
         "right": [
-          "**[Type 2 diabetes](#/diseases/obesity-diabetes):** genetic variants and drugs that activate PPARγ affect insulin sensitivity and diabetes risk ([Vales-Villamarin 2022](https://www.frontiersin.org/journals/pharmacology/articles/10.3389/fphar.2021.763853/full)).",
-          "**[Alzheimer's disease](#/diseases/brain-nerve/alzheimers-disease):** PPARγ agonists rescue cognition in animal models, but a peroxisome-driven mechanism is unproven ([Steinke 2023](https://www.mdpi.com/2073-4409/12/8/1116))."
+          "**[Cancer](#/diseases/cancer):** AMACR and other PPAR-regulated genes link peroxisomal lipid metabolism to tumor growth; anti-cancer PPAR antagonists may expose peroxisomal vulnerabilities ([Kong 2020](https://pubmed.ncbi.nlm.nih.gov/32760737/)).",
+          "**[Diabetes](#/diseases/obesity-diabetes):** genetic variants that activate PPARγ affect insulin sensitivity and diabetes risk ([Vales-Villamarin 2021](https://pubmed.ncbi.nlm.nih.gov/34887761/)).",
+          "**[Liver disease](#/diseases/liver):** lanifibranor has been studied in clinical trials for MASH (fatty liver disease with inflammation), and two PPAR-targeting drugs, elafibranor and seladelpar, received accelerated FDA approval in 2024 for primary biliary cholangitis. The share of their benefit that runs through peroxisomes is not known.",
+          "**[Alzheimer's disease](#/diseases/brain-nerve):** PPARγ agonists rescue cognition in animal models, but a peroxisome-driven mechanism is unproven ([Steinke 2023](https://www.mdpi.com/2073-4409/12/8/1116))."
         ]
       }
     ]
@@ -370,7 +361,7 @@
         "panelTitle": "Import (address-tag delivery)",
         "text": "Every enzyme inside a peroxisome is made in the cytosol and carried in through the membrane. Each carries a short address tag (PTS1 or PTS2) that a shuttle receptor reads: PEX5 for PTS1, and PEX7 together with PEX5 for PTS2.",
         "left": [
-          "**[Zellweger spectrum disorders](#/diseases/genetic-disorders):** variants in PEX1, PEX6, PEX26, PEX10 and other PEX genes disrupt this import and assembly system, so peroxisomes are not built, or are built empty, and every peroxisomal function fails together.",
+          "**[Zellweger Spectrum Disorders](#/diseases/genetic-disorders):** variants in PEX genes disrupt the peroxisome’s import and assembly system, impacting broad peroxisomal function.",
           "**[RCDP type 1](#/diseases/genetic-disorders):** loss of PEX7 blocks only PTS2 cargo, which explains why plasmalogen synthesis and alpha-oxidation fail while most other functions are spared."
         ],
         "furtherReading": [
@@ -381,29 +372,33 @@
           "[Honsho 2020](https://doi.org/10.1007/978-3-030-60204-8_4) (peroxisome biogenesis disorders)"
         ],
         "right": [
-          "**[Kidney disease](#/diseases/kidney):** primary hyperoxaluria type 1 can be a subtler failure of this system: in some patients a single variant changes the address tag so a working AGXT enzyme is sent to mitochondria instead of peroxisomes ([Danpure 2006](https://pubmed.ncbi.nlm.nih.gov/17027096/)).",
-          "**[Multiple sclerosis](#/diseases/brain-nerve/multiple-sclerosis-ms):** removing peroxisomes from oligodendrocytes, the cells that make myelin, causes demyelination in mice, suggesting a route by which peroxisomal failure could contribute to multiple sclerosis ([Martinović 2023](https://link.springer.com/article/10.1186/s40478-023-01595-w)).",
-          "**[Aging](#/diseases/aging):** peroxisomal import declines with age in model systems, and experimentally blocking import activates the integrated stress response and shuts down ribosome biogenesis ([Kim 2024](https://academic.oup.com/pnasnexus/article/3/10/pgae429/7793200)).",
+          "**[Kidney disease](#/diseases/kidney):** primary hyperoxaluria type 1 can be a subtler failure of this system: in some patients, a single variant changes the address tag so a working AGXT enzyme is sent to mitochondria instead of peroxisomes ([Danpure 2006](https://pubmed.ncbi.nlm.nih.gov/17027096/)).",
+          "**[Multiple sclerosis](#/diseases/brain-nerve/multiple-sclerosis-ms):** neuronal peroxisomes are reduced in the grey matter of people with multiple sclerosis ([Gray 2014](https://doi.org/10.1177/1352458513505691)).",
+          "**[Aging](#/diseases/aging):** peroxisomal import declines with age in model systems, and experimentally blocking import activates the integrated stress response and shuts down ribosome biogenesis ([Kim 2024](https://pubmed.ncbi.nlm.nih.gov/39398621/)).",
           "**[Neurodegeneration](#/diseases/brain-nerve):** PEX5 import defects compromise ROS detoxification ([Jo 2020](https://www.nature.com/articles/s12276-020-00503-9)).",
-          "**[Diabetes](#/diseases/obesity-diabetes):** functional peroxisomes are required for insulin-producing beta-cell integrity; when import fails, beta-cells die even without obvious oxidative stress ([Baboota 2019](https://pubmed.ncbi.nlm.nih.gov/30795913/))."
+          "**[Diabetes](#/diseases/obesity-diabetes):** functional peroxisomes are required for insulin-producing beta-cell integrity; when import fails, beta-cells die even without obvious oxidative stress ([Baboota 2019](https://pubmed.ncbi.nlm.nih.gov/30795913/)).",
+          "**[Brain (Sleep)](#/diseases/brain-nerve)**: in the fly brain, peroxisomal import in neuronal glia rises and falls on a daily cycle that peaks in the early morning and depends on the circadian clock and PEX5; reducing PEX5 in those glia caused hyperactivity and less total sleep, and shifted brain lipid composition ([Das 2026](https://pubmed.ncbi.nlm.nih.gov/42455861/))"
         ]
       },
       {
         "id": "division",
         "label": "Division",
         "panelTitle": "Division",
-        "text": "Peroxisomes divide to multiply, expanding their numbers as the cell's needs change. PEX11B elongates the membrane, and fission proteins shared with mitochondria (DRP1, MFF, FIS1) pinch it in two.",
+        "text": "Peroxisomes divide to multiply, expanding their numbers as the cell's needs change. PEX11B elongates the membrane and helps assemble the fission proteins, which are shared with mitochondria (DRP1, MFF, FIS1) and pinch the membrane in two. Super-resolution imaging in neurons suggests peroxisomes can also form anew from vesicles budding off mitochondria and the endoplasmic reticulum, rather than only by division.",
         "left": [
-          "**[PEX11B deficiency](#/diseases/genetic-disorders):** a mild PBD with cataracts, hearing loss and short stature, often with normal standard blood tests ([Ebberink 2012](https://pubmed.ncbi.nlm.nih.gov/22581968/)).",
+          "**[PEX11B deficiency](#/diseases/genetic-disorders):** a milder PBD with cataracts, hearing loss and short stature, often with normal standard blood tests ([Ebberink 2012](https://pubmed.ncbi.nlm.nih.gov/22581968/)).",
+          "**[PEX11B deficiency](#/diseases/genetic-disorders):** knocking out PEX11B in human iPSC-derived brain cells impaired peroxisome division and shifted lipid composition, altering neural progenitor fate and how the developing tissue organized itself, with mitochondria unaffected ([Bodnya 2026](https://pubmed.ncbi.nlm.nih.gov/42753733/)).",
           "**[DRP1 (DNM1L) and MFF deficiencies](#/diseases/genetic-disorders):** these break both peroxisome and mitochondrial division, producing elongated organelles and severe neurological disease ([Waterham 2007](https://pubmed.ncbi.nlm.nih.gov/17460227/))."
         ],
         "furtherReading": [
-          "[Schrader 2015b](https://pubmed.ncbi.nlm.nih.gov/25687155/) (peroxisome division in health and disease)"
+          "[Schrader 2015](https://pubmed.ncbi.nlm.nih.gov/26409486/) (peroxisome division in health and disease)",
+          "[Coceano 2026](https://pubmed.ncbi.nlm.nih.gov/41507166/) (mitochondria-derived vesicles contribute to new peroxisome formation in neurons)",
+          "[Bodnya 2026](https://pubmed.ncbi.nlm.nih.gov/42753733/) (PEX11B loss in human iPSC brain cells alters neural progenitor fate, with mitochondria unaffected)"
         ],
         "right": [
-          "**[Diabetic neuropathy](#/diseases/obesity-diabetes):** excess fat chemically modifies PEX11B, blocking peroxisome formation in Schwann cells and driving nerve damage ([Yang 2025](https://pubmed.ncbi.nlm.nih.gov/39934809/)).",
+          "**[Diabetic neuropathy](#/diseases/obesity-diabetes):** excess fat chemically modifies PEX11B so peroxisomes cannot elongate and divide, leaving fewer of them in the Schwann cells that insulate peripheral nerves, and driving nerve damage ([Yang 2025](https://pubmed.ncbi.nlm.nih.gov/39934809/)).",
           "**[Viral infection](#/diseases/infection):** infection reshapes peroxisome size, number and positioning over time ([Knoblach 2021](https://www.molbiolcell.org/doi/10.1091/mbc.E21-02-0074)).",
-          "**[Obesity](#/diseases/obesity-diabetes):** peroxisome number and function rise as fat cells mature ([Park 2019](https://www.jci.org/articles/view/120606))."
+          "**[Obesity](#/diseases/obesity-diabetes):** as fat cells mature, peroxisome number and function increase ([Hofer 2017](https://pubmed.ncbi.nlm.nih.gov/28017862/))."
         ]
       },
       {
@@ -412,11 +407,11 @@
         "panelTitle": "Recycling (pexophagy)",
         "text": "Worn-out or excess peroxisomes are tagged with ubiquitin, engulfed by autophagy and digested so their components can be reused.",
         "left": [
-          "**[Zellweger spectrum (PEX1 variants)](#/diseases/genetic-disorders):** in cells with impaired PEX1, ubiquitin-tagged PEX5 builds up on the peroxisome and marks it for destruction, so excess pexophagy contributes to peroxisome loss; blocking pexophagy restored peroxisome function in patient cells ([Law 2017](https://pubmed.ncbi.nlm.nih.gov/28521612/)). This points to a possible therapeutic route."
+          "**[Zellweger Spectrum Disorder](#/diseases/genetic-disorders):** in cells with impaired PEX1, ubiquitin-tagged PEX5 builds up on the peroxisome and marks it for destruction, so excess pexophagy contributes to peroxisome loss; blocking pexophagy restored peroxisome function in patient cells ([Law 2017](https://pubmed.ncbi.nlm.nih.gov/28521612/)), pointing to a possible therapeutic route.",
+          "**[Zellweger Spectrum Disorder](#/diseases/genetic-disorders):** inhibiting USP2, which stabilizes the pexophagy regulator STUB1, reduced runaway pexophagy in PEX1-mutant patient cells, restored peroxisome numbers, eased VLCFA abnormalities and improved movement in PEX1-knockdown flies ([Kim 2026](https://pubmed.ncbi.nlm.nih.gov/42778528/))."
         ],
         "furtherReading": [
           "[Zhang 2015](https://pubmed.ncbi.nlm.nih.gov/26344566/) (oxidative stress triggers pexophagy through ATM and PEX5)",
-          "[Law 2017](https://pubmed.ncbi.nlm.nih.gov/28521612/) (how the peroxisomal AAA ATPase complex prevents runaway pexophagy)",
           "[Li 2021](https://doi.org/10.3389/fcell.2021.814047) (the peroxisome-autophagy redox connection)"
         ],
         "right": [

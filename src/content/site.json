@@ -1,7 +1,7 @@
 {
   "organisation": "PBD Project",
   "title": "Peroxisome Explainer",
-  "intro": "Peroxisomes are essential organelles found in nearly every cell in your body. Explore them two ways: by function, what they actually do, and by disease, where that biology breaks down. For each, we lay out what is established, what is still open, and where the primary literature lives.",
+  "intro": "Peroxisomes are critical organelles in almost every cell in your body. See below to learn more about what it does, how it is implicated in many different diseases, and why we need to invest in further study.",
   "startFrom": "Start from",
   "hubName": "Peroxisome",
   "furtherReading": "Further Reading",
@@ -10,16 +10,12 @@
   "emptyPanel": "This section is still being written.",
   "emptyPage": "The detail for this page is still being written.",
   "footer": {
-    "tagline": "Understanding the peroxisome is how we start to fix it.",
-    "explore": "Explore",
-    "about": "Learn more",
-    "cta": "Visit pbdproject.org",
-    "createdBy": "Created by",
     "orgUrl": "https://www.pbdproject.org/",
     "madeBy": "Website by",
     "studio": "STUDIO KAIL",
     "studioUrl": "https://kail.studio",
-    "wordmark": "PBD Project"
+    "wordmark": "PBD Project",
+    "wordmarkLabel": "PBD Project homepage"
   },
   "views": {
     "mechanisms": {
@@ -53,9 +49,8 @@
     "lipid-droplets": "lipid droplets",
     "immune-cell-behavior-and-inflammation": "inflammation",
     "antiviral-alarm-system": "antiviral alarms",
-    "pan-ppar-signaling": "pan-PPAR",
-    "ppar-fibrates-pemafibrate": "PPARα",
-    "ppar-pioglitazone": "PPARγ",
+    "peroxisomes-supply-the-fats-that-switch-ppars-on": "PPAR-activating fats",
+    "ppars-switch-on-peroxisomal-fat-burning-genes": "fat-burning genes",
     "import-address-tag-delivery": "import",
     "division": "division",
     "recycling-pexophagy": "pexophagy",
@@ -64,8 +59,7 @@
     "rhizomelic-chondrodysplasia-punctata-rcdp": "RCDP",
     "refsum-disease": "Refsum disease",
     "single-enzyme-disorders": "single-enzyme disorders",
-    "prostate-cancer": "prostate cancer",
-    "colorectal-cancer": "colorectal cancer",
+    "tumors-that-run-on-peroxisomal-fat-burning": "fat-burning tumors",
     "lymphoma": "lymphoma",
     "ether-lipid-dependent-tumors-multiple-types": "ether lipid tumors",
     "glioblastoma": "glioblastoma",
@@ -77,7 +71,7 @@
     "vision-and-hearing-loss": "vision & hearing",
     "diabetic-neuropathy": "neuropathy",
     "obesity": "obesity",
-    "brown-fat-and-energy-expenditure": "brown fat",
+    "fat-and-energy-expenditure": "fat and energy",
     "insulin-producing-beta-cells": "beta-cells",
     "fatty-liver-disease-masld-mash": "fatty liver",
     "bile-flow-disorders-cholestatic-liver-disease": "bile flow",
@@ -85,8 +79,7 @@
     "oxalate-and-kidney-stone-disease": "kidney stones",
     "diabetic-kidney-disease": "diabetic kidneys",
     "kidney-involvement-in-zellweger-spectrum-disorders": "Zellweger kidneys",
-    "peroxisomes-decline-with-age": "age-related decline",
-    "tracking-peroxisomal-aging-in-blood": "blood markers",
-    "plasmalogens-and-cognitive-aging": "cognitive aging"
+    "peroxisomal-function-declines-with-age-and-may-contribute-to-aging-itself": "age-related decline",
+    "peroxisomal-lipids-change-with-age-in-brain-and-blood": "lipid changes"
   }
 }

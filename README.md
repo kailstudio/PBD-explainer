@@ -107,6 +107,7 @@ src/
     Drift.jsx                 background specks and the passing protein
     Detail.jsx                detail page
     ViewToggle.jsx, RichText.jsx
+    Icon.jsx, iconArt.js      the icons (iconArt.js is generated, see below)
   lib/                        hash routing and small hooks
 ```
 
@@ -117,3 +118,14 @@ ring proportions at the top of `Hub.jsx`.
 Type follows the brand, two fonts only: Atkinson Hyperlegible Next for the two
 heading sizes, Roboto for everything you read or press. Both are bundled,
 so nothing is fetched from a font service.
+
+## Icons
+
+The icons come from `icons/for-dark-backgrounds/svg/`. `python3 scripts/build-icons.py`
+(needs Pillow) converts them into `src/components/iconArt.js`, pulls their shared
+grain texture out into `src/assets/icon-grain.png` once, and marks the parts
+that move on hover (the motion itself is under "Icons" in `styles.css`).
+Re-run it after changing an icon. Metabolic Signaling and Peroxisome Biogenesis &
+Recycling have no icon in the set yet, so the script draws stand-ins for them in
+the same style; add real SVGs to the folder and to `SOURCES` in the script to
+replace them.

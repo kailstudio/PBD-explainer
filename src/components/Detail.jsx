@@ -5,15 +5,26 @@ import { hubHref } from '../lib/useHashRoute';
 import RichText from './RichText';
 import { useMediaQuery } from '../lib/hooks';
 import { Chevron } from './Hub';
+import Icon, { usePlayOnce } from './Icon';
+
+// Which research icon heads which panel. Functions' panels keep the spark:
+// none of the three research icons describes them.
+const PANEL_ICONS = {
+  diseases: { left: 'research-established', right: 'research-open' },
+};
 
 const EASE = [0.22, 1, 0.36, 1];
 
 // Reads top to bottom: title, what it is, then one box per sub-type. Picking
 // a box opens the two detail panels below it, each headed by its topic.
-function Panel({ side, heading, part, index }) {
+function Panel({ view, side, heading, part, index }) {
   const entries = part[side] ?? [];
   const reading = side === 'left' ? (part.furtherReading ?? []) : [];
   const empty = entries.length === 0 && reading.length === 0;
+  const iconId = PANEL_ICONS[view]?.[side];
+  // the icons play as the panel opens, and again on hover
+  const opening = usePlayOnce(2600 + index * 300);
+  const [hover, setHover] = useState(null);
 
   return (
     <motion.section
@@ -23,8 +34,19 @@ function Panel({ side, heading, part, index }) {
       animate={{ opacity: 1, y: 0, transition: { duration: 0.45, delay: index * 0.08, ease: EASE } }}
       exit={{ opacity: 0, transition: { duration: 0.15 } }}
     >
-      <h2 className="panel-heading">
-        <span className="spark heading-spark" aria-hidden="true" />
+      <h2
+        className="panel-heading"
+        data-icon={iconId ? true : undefined}
+        onPointerEnter={() => setHover('heading')}
+        onPointerLeave={() => setHover(null)}
+      >
+        {iconId ? (
+          <span className="panel-icon" aria-hidden="true">
+            <Icon id={iconId} on={opening || hover === 'heading'} />
+          </span>
+        ) : (
+          <span className="spark heading-spark" aria-hidden="true" />
+        )}
         {heading}
       </h2>
       {empty ? (
@@ -40,7 +62,16 @@ function Panel({ side, heading, part, index }) {
           </ul>
           {reading.length > 0 && (
             <>
-              <h3 className="panel-subheading">{site.furtherReading}</h3>
+              <h3
+                className="panel-subheading"
+                onPointerEnter={() => setHover('reading')}
+                onPointerLeave={() => setHover(null)}
+              >
+                <span className="panel-icon panel-icon-small" aria-hidden="true">
+                  <Icon id="research-reading" on={opening || hover === 'reading'} />
+                </span>
+                {site.furtherReading}
+              </h3>
               <ul className="panel-list">
                 {reading.map((entry) => (
                   <li key={entry}>
@@ -67,6 +98,9 @@ export default function Detail({ view, item, partId, onLayout }) {
   const selected = parts.find((part) => part.id === selectedId) ?? null;
   const present = useIsPresent();
   const panelsRef = useRef(null);
+  // the page's icon plays as the page opens, and again on hover
+  const opening = usePlayOnce(3000, item.id);
+  const [titleHover, setTitleHover] = useState(false);
 
   useLayoutEffect(() => {
     onLayout();
@@ -124,9 +158,16 @@ export default function Detail({ view, item, partId, onLayout }) {
         </nav>
       </header>
 
-      <h1 className="detail-title">
-        {item.label}
-      </h1>
+      <div
+        className="detail-title-row"
+        onPointerEnter={() => setTitleHover(true)}
+        onPointerLeave={() => setTitleHover(false)}
+      >
+        <span className="detail-icon" aria-hidden="true">
+          <Icon id={item.id} on={opening || titleHover} />
+        </span>
+        <h1 className="detail-title">{item.label}</h1>
+      </div>
       <p className="detail-lede">
         <RichText>{item.description ?? item.summary}</RichText>
       </p>
@@ -182,8 +223,8 @@ export default function Detail({ view, item, partId, onLayout }) {
                           exit={{ height: 0, opacity: 0, transition: { duration: 0.25, ease: EASE } }}
                         >
                           <div className="panels-grid">
-                            <Panel side="left" heading={config.leftPanel} part={part} index={0} />
-                            <Panel side="right" heading={config.rightPanel} part={part} index={1} />
+                            <Panel view={view} side="left" heading={config.leftPanel} part={part} index={0} />
+                            <Panel view={view} side="right" heading={config.rightPanel} part={part} index={1} />
                           </div>
                         </motion.div>
                       )}
@@ -204,8 +245,8 @@ export default function Detail({ view, item, partId, onLayout }) {
                     {selected.panelTitle ?? selected.label}
                   </p>
                   <div className="panels-grid">
-                    <Panel side="left" heading={config.leftPanel} part={selected} index={0} />
-                    <Panel side="right" heading={config.rightPanel} part={selected} index={1} />
+                    <Panel view={view} side="left" heading={config.leftPanel} part={selected} index={0} />
+                    <Panel view={view} side="right" heading={config.rightPanel} part={selected} index={1} />
                   </div>
                 </motion.div>
               ) : (

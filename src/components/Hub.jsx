@@ -4,12 +4,14 @@ import { site, VIEWS } from '../content';
 import { hubHref, itemHref } from '../lib/useHashRoute';
 import { useElementSize, useMediaQuery } from '../lib/hooks';
 import ViewToggle from './ViewToggle';
+import Icon from './Icon';
 
 // Proportions of the ring, as shares of its overall size S.
 const BODY = 0.36; // diameter of the peroxisome itself
 const BEADS = 0.33; // distance from centre to each spoke's bead
 const FILAMENT_FROM = 0.222; // where a filament leaves the glow
 const BEAD_GAP = 11; // px kept clear between filament tip and bead
+const ICON_ROOM = 60; // px each label grows by to hold its icon
 
 const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
 
@@ -75,9 +77,11 @@ function Ring({ view, width, height, onLayout }) {
   const [active, setActive] = useState(null);
   const items = VIEWS[view].items;
 
+  // Each label holds its icon at the front, so the ring leaves the labels
+  // that much more room either side.
   const labelWidth = clamp(width * 0.2, 176, 240);
   const size = clamp(
-    Math.min((width - 2 * labelWidth - 140) / (2 * BEADS), (height - 264) / (2 * BEADS)),
+    Math.min((width - 2 * labelWidth - 140 - 2 * ICON_ROOM) / (2 * BEADS), (height - 264) / (2 * BEADS)),
     300,
     940,
   );
@@ -165,6 +169,10 @@ function Ring({ view, width, height, onLayout }) {
                   <span className="bead" aria-hidden="true" />
                   <span className="spoke-text">
                     <span className="spoke-label">
+                      {/* the branch's icon, in a small glass circle at the front of the label */}
+                      <span className="spoke-badge" aria-hidden="true">
+                        <Icon id={item.id} on={active === item.id} />
+                      </span>
                       {item.hubLabel ?? item.label}
                       <Chevron />
                     </span>
@@ -182,6 +190,7 @@ function Ring({ view, width, height, onLayout }) {
 
 // Narrow and touch screens: the same items as a plain list under the organelle.
 function Stack({ view, onLayout }) {
+  const [active, setActive] = useState(null);
   const items = VIEWS[view].items;
 
   useLayoutEffect(() => {
@@ -201,8 +210,17 @@ function Stack({ view, onLayout }) {
         >
           {items.map((item) => (
             <li key={item.id}>
-              <a href={itemHref(view, item.id)}>
-                <span className="bead" aria-hidden="true" />
+              <a
+                href={itemHref(view, item.id)}
+                onPointerEnter={() => setActive(item.id)}
+                onPointerLeave={() => setActive((id) => (id === item.id ? null : id))}
+                onFocus={() => setActive(item.id)}
+                onBlur={() => setActive((id) => (id === item.id ? null : id))}
+              >
+                {/* the icon, in its glass circle, is the row's marker */}
+                <span className="spoke-badge" aria-hidden="true">
+                  <Icon id={item.id} on={active === item.id} />
+                </span>
                 <span className="spoke-text">
                   <span className="spoke-label">{item.label}</span>
                   <span className="spoke-summary">{item.summary}</span>
